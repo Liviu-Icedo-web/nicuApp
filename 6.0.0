@@ -1,0 +1,21 @@
+
+> fsevents@1.2.9 install /Volumes/D/Nicole/nicuApp/node_modules/fsevents
+> node install
+
+[fsevents] Success: "/Volumes/D/Nicole/nicuApp/node_modules/fsevents/lib/binding/Release/node-v72-darwin-x64/fse.node" is installed via remote
+
+> core-js@2.6.10 postinstall /Volumes/D/Nicole/nicuApp/node_modules/core-js
+> node postinstall || echo "ignore"
+
+[96mThank you for using core-js ([94m https://github.com/zloirock/core-js [96m) for polyfilling JavaScript standard library![0m
+
+[96mThe project needs your help! Please consider supporting of core-js on Open Collective or Patreon: [0m
+[96m>[94m https://opencollective.com/core-js [0m
+[96m>[94m https://www.patreon.com/zloirock [0m
+
+[96mAlso, the author of core-js ([94m https://github.com/zloirock [96m) is looking for a good job -)[0m
+
++ react-native-vector-icons@6.6.0
+added 35 packages from 17 contributors, removed 324 packages, updated 610 packages and audited 7672 packages in 78.613s
+found 0 vulnerabilities
+
