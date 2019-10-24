@@ -8,6 +8,7 @@ const instance = axios.create({
     //baseURL: 'http://1bbcb045.ngrok.io',
     baseURL: 'http://localhost:8090',
     headers: {'Content-Type': 'text/plain'},
+    //headers: {'Content-Type': 'application/json'},
     withCredentials: false,
     
 
@@ -18,22 +19,21 @@ instance.interceptors.request.use(
      async (config) => { 
         const token = await AsyncStorage.getItem('token');
         const noTokenUrl =    ['/cars',
-                        '/users' 
+                        '/users',
+                        '/user'
                         ]
         console.log(config.url)                
-        if(config.method!='get' && noTokenUrl.includes(config.url)) {
+        if(noTokenUrl.includes(config.url)) {
             console.log('INTRAAAAA');
         }
         
-        if(noTokenUrl.includes(config.url) && config.method!='get'){ //Problema era ca tot timpul se treace tokenul ca si parametru la api,tokenul api il accepta doar pt PUT, POST , DELETE
-            console.log(token);
-            if (token) {
-                axios.defaults.withCredentials = true;
-                //config.headers['Accept']= '*/*';           
-                config.headers['Content-Type']= 'application/x-www-form-urlencoded';
+        if(noTokenUrl.includes(config.url)){ //Problema era ca tot timpul se treace tokenul ca si parametru la api,tokenul api il accepta doar pt PUT, POST , DELETE
+            if (token) {                
+                config.headers['Content-Type']= 'application/json';
                 config.headers.Authorization = `Bearer ${token}`;
              }
-        }        
+        }       
+        
         console.log("check config send ***", config)
          return config;
      },

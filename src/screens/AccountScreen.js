@@ -8,10 +8,8 @@ import Card from '../components/Card';
 import AppStyle from '../components/AppStyle';
 import { Context as AuthContext } from '../context/AuthContext';
 
-
-
 const AccountScreen = () => {
-    const { fetchUserAuth } = useContext(AuthContext);
+    const { state,fetchUserAuth } = useContext(AuthContext);        
     
     return (
         <AppStyle>
@@ -19,24 +17,24 @@ const AccountScreen = () => {
             <ScrollView >
                 <View style={styles.userView}>
                     <Spacer/>
-                    <Entypo name="user" size={100} />
+                    <Entypo name="user" size={100} /> 
                 </View> 
                 <Card>
                     <TouchableOpacity style={{ alignItems: 'flex-end'}} onPress={() => navigation.navigate('Account')}>
                         <EvilIcons name="pencil" size={30} />
                     </TouchableOpacity>
                     <Spacer/>
-                    <Text >Username:{fetchUserAuth.nick_name}</Text>
+                    <Text >Username:{state.nick_name}</Text>
                     <Spacer/>
-                    <Text >Nume:{fetchUserAuth.first_name} </Text>
+                    <Text >Nume:{state.first_name} </Text>
                     <Spacer/>
-                    <Text >Prenume:{fetchUserAuth.last_name}</Text>
+                    <Text >Prenume:{state.last_name}</Text>
                     <Spacer/>
-                    <Text >Prenume2:{fetchUserAuth.last_name2} </Text>
+                    <Text >Prenume2:{state.last_name2} </Text>
                     <Spacer/>
-                    <Text >Mail:{fetchUserAuth.email} </Text>
+                    <Text >Mail:{state.email} </Text>
                     <Spacer/>
-                    <Text >Numar Permis de Condus: {fetchUserAuth.driving_licence_number}</Text>
+                    <Text >Numar Permis de Condus: {state.driving_licence_number}</Text>
                     <Spacer/>
                 </Card>     
             </ScrollView>                       

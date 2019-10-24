@@ -11,8 +11,7 @@ import { SimpleLineIcons} from '@expo/vector-icons';
 
 const CarListScreen = ({ navigation }) => {
     const { state, fetchCars, token} = useContext(CarContext);
-
-
+    
     return ( 
         <AppStyle>  
             {!token
@@ -23,13 +22,15 @@ const CarListScreen = ({ navigation }) => {
             }    
             <SearchBar />
             <NavigationEvents onWillFocus={fetchCars} />
+            
+
             <FlatList 
                 data={state}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({ item }) => {
                     return ( 
-                        <View style={{ flex: 1 }}>
-                            <Card>                      
+                        <View style={{ flex: 1 }}>                            
+                            <Card >                      
                                 <TouchableOpacity onPress={() => navigation.navigate('CarDetail', { id: item.id })} >
                                     <View style={styles.carView}>
                                         <View style={styles.imageView}>
@@ -60,11 +61,12 @@ const CarListScreen = ({ navigation }) => {
                                         </TouchableOpacity>
                                     </View>                                 
                                 </View>                                                                 
-                            </Card>
+                            </Card>                            
                         </View>    
                     );
                 }}
-            />  
+            /> 
+             
         </AppStyle> 
     );
 };

@@ -21,8 +21,7 @@ const fetchCars = dispatch => async () => {
 
 //Esta funccion habria que mirar como meter el id del token conectado  y  aver como hacemos lo del array de imagenes 
 const addCar = dispatch => async ({ brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour }) => {
-        //Pasalomo los datos de string a int asi es como lo necesitamos en la api
-        var user_id = 6
+        //Pasalomo los datos de string a int asi es como lo necesitamos en la api        
         year = parseInt(year)
         hp = parseInt(hp)
         doors = parseInt(doors)
@@ -43,24 +42,7 @@ const addCar = dispatch => async ({ brand, year, hp, doors, seats, insurance, im
                 payload: 'Exista o erroare, daca nu ai perfil creaza !!' });
             }
     }; 
-    
-    const addCarOldVersion = dispatch => async ({ brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour }, callback) => {
-        //Pasalomo los datos de string a int asi es como lo necesitamos en la api
-        var user_id = 6
-        year = parseInt(year)
-        hp = parseInt(hp)
-        doors = parseInt(doors)
-        seats = parseInt(seats)
-        PriceDay = parseFloat(PriceDay)
-        PriceHour = parseFloat(PriceHour)        
-        console.log('Add Car ***')
-        await nicuApi.post('/cars', { user_id,brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour });
-
-        if (callback){
-            callback();
-        }  
-    };
-
+  
 
 export const { Context, Provider } = createDataContext(
     carsReducer,

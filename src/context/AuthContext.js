@@ -17,6 +17,7 @@ const authReducer = (state, action) => {
         case 'signout':
             return { token: null, errorMessage: '' };
         case 'fetch_userAuth':
+            console.log('**** action.payload', action.payload)
             return action.payload;          
         default:
             return state;
@@ -74,7 +75,8 @@ const signout = dispatch => async () => {
 
 //No tengo ni ideea como sacar el Usuario que esta logueado para ponerlo en el AccountScreen
 const fetchUserAuth = dispatch => async (token) => {
-    const response = await nicuApi.get(`/users/${id}`, token); 
+    //const response = await nicuApi.get(`/users/${id}`, token); 
+    const response = await nicuApi.get(`/user`);     
     dispatch({ type: 'fetch_userAuth', payload: response.data });
 };
 
