@@ -1,4 +1,4 @@
-import React, { useContext,useEffect } from 'react';
+import React, { useContext } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { NavigationEvents } from 'react-navigation';
@@ -6,10 +6,10 @@ import { Button } from 'react-native-elements';
 import { Context as CarContext } from '../context/CarContext';
 import { Context as AuthContext } from '../context/AuthContext';
 import Card from '../components/Card';
-import Spacer from '../components/Spacer';
 import SearchBar from '../components/SearchBar';
 import { SimpleLineIcons} from '@expo/vector-icons';
 import StyleSheet from '../styles';
+import CheckLogin from '../components/CheckLogin';
 
 
 
@@ -23,16 +23,7 @@ const CarListScreen = ({ navigation }) => {
         
         <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>  
         <ScrollView>
-            {!token
-                ?  <View style={StyleSheet.button}>
-                        <Button type="outline" title="Creaza-ti un Perfil si Inchiriaza Masina in Localitatea Ta pentru cate ore ai Nevoie !!" onPress={() => navigation.navigate('Signup')} />
-                    </View>  
-
-                :  <Spacer>
-                      <Button title="Sign Out" onPress={signout} type="outline" /> 
-                    </Spacer>   
-            }  
-
+            <CheckLogin />
             <SearchBar />
             <NavigationEvents onWillFocus={fetchCars} />    
             <FlatList 

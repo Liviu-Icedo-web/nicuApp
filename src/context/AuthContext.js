@@ -20,7 +20,7 @@ const authReducer = (state, action) => {
             return action.payload;
         case 'check_login':
             console.log('Login Dispacher', action.payload)
-            return {...state, token: action.payload};          
+            return {token: action.payload};          
         default:
             return state;
     }
@@ -39,6 +39,7 @@ const tryLocalSignin = dispatch => async () => {
 const checkLogin = dispatch => async () => {
     const token = await AsyncStorage.getItem('token');
     if (token) {
+        console.log('Before despach', token)
         dispatch({ type: 'check_login', payload: true });
     } else {
         dispatch({ type: 'check_login', payload: false });
