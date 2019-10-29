@@ -1,21 +1,22 @@
 import React, { useContext } from 'react';
-import { View, StyleSheet ,ScrollView, TouchableOpacity} from 'react-native';
+import { View ,ScrollView, TouchableOpacity} from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 import { MaterialIcons} from '@expo/vector-icons';
 import { NavigationEvents } from 'react-navigation';
 import { Context as AuthContext } from '../context/AuthContext';
 import UserForm from '../components/UserForm';
 import NavLink from '../components/NavLink';
-import AppStyle from '../components/AppStyle';
 import Card from '../components/Card';
+import StyleSheet from '../styles';
 
 
 const SignupScreen = ({ navigation }) => {
    const { state, signUp,clearErrorMessage  } = useContext(AuthContext);
    
     return ( 
-        <AppStyle>  
+        <SafeAreaView style={StyleSheet.AppStyle}  forceInset={{ top: 'always' }} >
             <ScrollView>
-                <View style={styles.container}>
+                <View style={StyleSheet.SignView}>
                     <Card>
                         <NavigationEvents onWillBlur={clearErrorMessage} />
                         <TouchableOpacity onPress={() => navigation.navigate('CarList')}>
@@ -34,7 +35,7 @@ const SignupScreen = ({ navigation }) => {
                     </Card>  
                 </View>        
             </ScrollView>             
-        </AppStyle>   
+        </SafeAreaView>   
     );
 };
 
@@ -43,14 +44,5 @@ SignupScreen.navigationOptions = () => {
         header: null,
     };
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center'
-      
-    }
-    
-});
 
 export default SignupScreen;

@@ -1,21 +1,22 @@
 import React , {useContext} from 'react';
-import { View, StyleSheet, ScrollView , TouchableOpacity } from 'react-native';
+import { View, ScrollView , TouchableOpacity } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
+import { SafeAreaView } from 'react-navigation';
 import {Text} from 'react-native-elements';
 import { FontAwesome, Entypo, EvilIcons } from '@expo/vector-icons';
 import Spacer from '../components/Spacer';
 import Card from '../components/Card';
-import AppStyle from '../components/AppStyle';
 import { Context as AuthContext } from '../context/AuthContext';
+import StyleSheet from '../styles';
+
 
 const AccountScreen = () => {
     const { state,fetchUserAuth } = useContext(AuthContext);        
-    
     return (
-        <AppStyle>
+        <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'always' }}>         
             <NavigationEvents onWillFocus={fetchUserAuth} />
             <ScrollView >
-                <View style={styles.userView}>
+                <View style={StyleSheet.userView}>
                     <Spacer/>
                     <Entypo name="user" size={100} /> 
                 </View> 
@@ -38,7 +39,7 @@ const AccountScreen = () => {
                     <Spacer/>
                 </Card>     
             </ScrollView>                       
-        </AppStyle>
+        </SafeAreaView>
     );
 }
 
@@ -48,12 +49,5 @@ AccountScreen.navigationOptions = () => {
         tabBarIcon: <FontAwesome name="gear" size={20} />
     };
 };
-
-const styles= StyleSheet.create({
-    userView: {
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-});
 
 export default AccountScreen;

@@ -27,14 +27,15 @@ const addCar = dispatch => async ({ brand, year, hp, doors, seats, insurance, im
         doors = parseInt(doors)
         seats = parseInt(seats)
         PriceDay = parseFloat(PriceDay)
-        PriceHour = parseFloat(PriceHour)        
-        console.log('Add Car ***')
+        PriceHour = parseFloat(PriceHour)    
+               
+        console.log('Add Car ***',images);
         try {
             const response = await nicuApi.post('/cars', { brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour });
             console.log("Add Car ***",response);
            // await AsyncStorage.setItem('token', response.data.token);//esto esta aqui porque se loguaza automatic si ramane cu tokenul dupa ce se creasza perfilul
             dispatch({ type: 'addCar', payload: response.data });
-            navigate('CarList');
+            navigate('mainFlow');
         } catch (err) {
             console.log("Error URL",err)
             dispatch({ 

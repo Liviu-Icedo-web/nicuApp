@@ -1,40 +1,21 @@
 /* eslint-disable arrow-body-style */
 import React from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
+import { View, TextInput } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import StyleSheet from '../styles';
 
 const SearchBar = () => {
     return (
-        <View style={styles.backgroundStyle}>
-            <Feather name="search" style={styles.iconStyle} />
+        <View style={StyleSheet.backgroundSearchar}>
+            <Feather name="search" style={StyleSheet.iconSearchStyle} />
             <TextInput 
                 autoCapitalize="none"
                 autoCorrect
-                style={styles.inputStyle} 
+                style={StyleSheet.inputSearchStyle} 
                 placeholder="Cauta localitate..." 
             />
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    backgroundStyle: {
-        marginTop: 10,
-        backgroundColor: '#fff',
-        height: 50,
-        borderRadius: 5,
-        marginHorizontal: 10,
-        flexDirection: 'row'
-    },
-    inputStyle: {
-        flex: 1,
-        fontSize: 18
-    },
-    iconStyle: {
-        fontSize: 35,
-        alignSelf: 'center',
-        marginHorizontal: 10
-    }
-});
 
 export default SearchBar;

@@ -1,19 +1,20 @@
 import React, { useContext } from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 import { NavigationEvents } from 'react-navigation';
 import { MaterialIcons} from '@expo/vector-icons';
 import { Context as AuthContext } from '../context/AuthContext';
 import AuthForm from '../components/AuthForm';
 import NavLink from '../components/NavLink';
-import AppStyle from '../components/AppStyle';
 import Card from '../components/Card';
+import StyleSheet from '../styles';
 
 const SigninScreen = ({navigation}) => {
     const { state, signin, clearErrorMessage } = useContext(AuthContext);
    
     return ( 
-        <AppStyle>
-            <View style={styles.container}>
+        <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'always' }}>
+            <View style={StyleSheet.SignView}>
                  <Card>
                     <NavigationEvents onWillBlur={clearErrorMessage} />
                     <TouchableOpacity onPress={() => navigation.navigate('CarList')}>
@@ -31,7 +32,7 @@ const SigninScreen = ({navigation}) => {
                     /> 
                 </Card>      
             </View>        
-        </AppStyle>
+        </SafeAreaView>
       
     );
 };
@@ -42,11 +43,5 @@ SigninScreen.navigationOptions = () => {
     };
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center'
-    }
-});
 
 export default SigninScreen;

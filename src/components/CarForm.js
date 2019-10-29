@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text  } from 'react-native';
+import {  Text  } from 'react-native';
 import {  Button, Input } from 'react-native-elements';
-import Spacer from './Spacer'; 
+import Spacer from './Spacer';
+import ImageUpload from './ImageUpload';
+import StyleSheet from '../styles';
 
 const CarForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
     const[brand, setbrand] = useState('');
@@ -19,16 +21,17 @@ const CarForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
     return (
         <>
             <Spacer>
-                <Text style={styles.headerText}>{headerText}</Text>
+                <Text style={StyleSheet.headerText}>{headerText}</Text>
             </Spacer>  
-            <Input         
+            <ImageUpload/>
+            <Input
                 label="Marca"
                 value={brand}
                 onChangeText={setbrand}
                 autoCapitalize="none"
                 autoCorrect={false}
             />
-            <Input        
+              <Input        
                 label="An Inmatriculare"  
                 type="number"                
                 value={year}
@@ -60,13 +63,6 @@ const CarForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
                 autoCapitalize="none"
                 autoCorrect={false}
             />
-            <Input         
-                label="Imagini"
-                value={images}
-                onChangeText={setimages}
-                autoCapitalize="none"
-                autoCorrect={false}
-            />
             <Input 
                 label="Oras"
                 value={Town}
@@ -78,6 +74,13 @@ const CarForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
                 label="Asigurare"
                 value={insurance}
                 onChangeText={setinsurance}
+                autoCapitalize="none"
+                autoCorrect={false}
+            />
+            <Input         
+                label="Imagini"
+                value={images}
+                onChangeText={setimages}
                 autoCapitalize="none"
                 autoCorrect={false}
             />
@@ -97,7 +100,7 @@ const CarForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
                 autoCapitalize="none"
                 autoCorrect={false}
             />
-             {errorMessage ? <Text style={styles.errorMessage}>{errorMessage}</Text> : null }
+             {errorMessage ? <Text style={StyleSheet.errorMessage}>{errorMessage}</Text> : null }
             <Spacer>
                 <Button
                     title={submitButtonText}
@@ -110,17 +113,5 @@ const CarForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
 
 };
 
-const styles = StyleSheet.create({
-    errorMessage: {
-        fontSize: 16,
-        color: 'red',
-        marginLeft: 15,
-        marginTop: 15
-    },
-    headerText: {
-        fontSize: 30,
-        paddingBottom: 10
-    }
-});
 
 export default CarForm;

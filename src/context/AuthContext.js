@@ -17,8 +17,10 @@ const authReducer = (state, action) => {
         case 'signout':
             return { token: null, errorMessage: '' };
         case 'fetch_userAuth':
-            console.log('**** action.payload', action.payload)
-            return action.payload;          
+            return action.payload;
+        case 'check_login':
+            console.log('Login Dispacher', action.payload)
+            return {...state, token: action.payload};          
         default:
             return state;
     }
@@ -31,6 +33,15 @@ const tryLocalSignin = dispatch => async () => {
         navigate('CarList');
     } else {
         navigate('CarList');
+    }
+};
+
+const checkLogin = dispatch => async () => {
+    const token = await AsyncStorage.getItem('token');
+    if (token) {
+        dispatch({ type: 'check_login', payload: true });
+    } else {
+        dispatch({ type: 'check_login', payload: false });
     }
 };
 
@@ -74,7 +85,7 @@ const signout = dispatch => async () => {
 };
 
 //No tengo ni ideea como sacar el Usuario que esta logueado para ponerlo en el AccountScreen
-const fetchUserAuth = dispatch => async (token) => {
+const fetchUserAuth = dispatch => async () => {
     //const response = await nicuApi.get(`/users/${id}`, token); 
     const response = await nicuApi.get(`/user`);     
     dispatch({ type: 'fetch_userAuth', payload: response.data });
@@ -84,6 +95,6 @@ const fetchUserAuth = dispatch => async (token) => {
 
 export const { Provider, Context } = createDataContext (
     authReducer,
-    { signin, signout, signUp, clearErrorMessage , tryLocalSignin, fetchUserAuth },
+    { signin, signout, signUp, clearErrorMessage , tryLocalSignin, fetchUserAuth, checkLogin },
     { token: null, errorMessage: ''}
 );
