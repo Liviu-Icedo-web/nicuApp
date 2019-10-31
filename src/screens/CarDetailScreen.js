@@ -4,9 +4,9 @@ import { SafeAreaView } from 'react-navigation';
 import { Text } from 'react-native-elements';
 import { Context as CarContext } from '../context/CarContext';
 import Spacer from '../components/Spacer';
-import Card from '../components/Card';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import StyleSheet from '../styles';
+import IfSignIn from '../components/IfSignIn';
 
 
 const CarDetailScreen = ({ navigation }) => {
@@ -17,33 +17,33 @@ const CarDetailScreen = ({ navigation }) => {
     );
  
     return (
-        <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>
+        <SafeAreaView style={StyleSheet.AppSecondaryStyle} forceInset={{ top: 'never' }}>
             <ScrollView>
                 <Image style={StyleSheet.imageDetail} source={{uri: car.images}} />   
                 <Text style={StyleSheet.title}>{car.brand}, {car.Town}</Text> 
                 <View style={StyleSheet.stars}>
-                    <FontAwesome name="star" size={20} />
-                    <FontAwesome name="star" size={20} />
-                    <FontAwesome name="star" size={20} />
-                    <FontAwesome name="star-half-full" size={20} />
-                    <Text> (26likes) </Text>
+                    <FontAwesome style={StyleSheet.star} name="star" size={20} />
+                    <FontAwesome style={StyleSheet.star} name="star" size={20} />
+                    <FontAwesome style={StyleSheet.star} name="star" size={20} />
+                    <FontAwesome style={StyleSheet.star} name="star-half-full" size={20} />
+                    <Text style={StyleSheet.star} > (26likes) </Text>
                 </View> 
                 <View style={StyleSheet.detailCarView}>
                     <View>              
-                        <Text>Anul: {car.year}</Text>
-                        <Text >Usi: {car.doors}, Locuri: {car.seats}</Text>
-                        <Text >Cai Putere: {car.hp}</Text>
+                        <Text style={StyleSheet.info}>Anul: {car.year}</Text>
+                        <Text style={StyleSheet.info} >Usi: {car.doors}, Locuri: {car.seats}</Text>
+                        <Text style={StyleSheet.info} >Cai Putere: {car.hp}</Text>
                     </View>
                     <View style={StyleSheet.detailPriceView}>
                         <Text style={StyleSheet.Text}>{car.PriceDay} Lei Ziua</Text>
                         <Text style={StyleSheet.Text}>{car.PriceHour} Lei Hora</Text>
                     </View>  
                 </View>                
-                <Card>
-                    <Text h4>Proprietar: {car.user.last_name} {car.user.first_name}</Text>
-                    <Text>Mail: {car.user.email}</Text>
-                    <Text>Publicada: {car.user.created_at}</Text>
-                </Card> 
+                <Spacer>
+                    <Text style={StyleSheet.info}>Proprietar: {car.user.last_name} {car.user.first_name}</Text>
+                    <Text style={StyleSheet.info}>Mail: {car.user.email}</Text>
+                    <Text style={StyleSheet.info}>Publicada: {car.user.created_at}</Text>
+                </Spacer> 
                 <View style={StyleSheet.bookDetailView}>  
                     <Text h4>Completeaza pentru rezerva :</Text> 
                     <Spacer/>
@@ -70,11 +70,18 @@ const CarDetailScreen = ({ navigation }) => {
 }
 
 
-
-CarDetailScreen.navigationOptions = {
-    title: 'Rezerva',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    }
+CarDetailScreen.navigationOptions = ({ navigation}) => { 
+    return {
+        headerRight:
+                <IfSignIn>
+                    <TouchableOpacity onPress={() => navigation.navigate('CarEdit')}>
+                        <MaterialCommunityIcons style={{ padding:5 }} name="playlist-edit" size={30} />
+                    </TouchableOpacity> 
+                </IfSignIn> ,           
+        title: 'Rezerva',
+        headerTitleStyle: {
+            fontWeight: 'bold'
+        },
+    }     
 };
 export default CarDetailScreen;

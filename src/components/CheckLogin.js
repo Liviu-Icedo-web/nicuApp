@@ -1,13 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View ,Text } from 'react-native';
 import { useEffect, useContext } from 'react';
 import { Button } from 'react-native-elements';
+import { FontAwesome} from '@expo/vector-icons';
 import { Context as AuthContext } from '../context/AuthContext';
-import Spacer from '../components/Spacer';
 import StyleSheet from '../styles';
 
 const CheckLogin = () => {
-    const { checkLogin, state ,signout} = useContext(AuthContext);
+    const { checkLogin, state ,signout } = useContext(AuthContext);
 
     useEffect(() => {
         checkLogin();
@@ -16,13 +16,16 @@ const CheckLogin = () => {
     return (
         <>
             {!state.token ?
-            <View style={StyleSheet.button}>
-                    <Button type="outline" title="Creaza-ti un Perfil si Inchiriaza Masina in Localitatea Ta pentru cate ore ai Nevoie !!" onPress={() => navigation.navigate('Signup')} />
-                </View>  
+            <View style={StyleSheet.HomeView}>
+                <Text style={StyleSheet.HomeText}>Creaza-ti un Perfil si Inchiriaza Masina in Localitatea Ta pentru cate ore ai Nevoie !!</Text>
+                <FontAwesome style={StyleSheet.homeIcon} name="angle-double-up" size={30} />
+            </View>  
 
-            :  <Spacer>
-                <Button title="Sign Out" onPress={signout} type="outline" /> 
-                </Spacer>   
+            :  <View style={StyleSheet.HomeView}>
+                    <Text style={StyleSheet.HomeText}>Salut Acum Poti cauta si Rezerva Masina dorita!!!!</Text>
+                    <Button title="Sign Out" onPress={signout} type="outline" /> 
+                </View>  
+                
             }
         </> 
     );

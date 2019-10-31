@@ -8,7 +8,15 @@ const carsReducer = (state, action) => {
         case 'fetch_cars':
             return action.payload;
         case 'addCar' :
-                return {errorMessage: ''};        
+            return {errorMessage: ''};   
+        case 'edit_car':
+            return state.map((car) => {
+                if (car.id === action.payload.id ){
+                return action.payload;
+                } else {
+                    return car;
+                }
+            });             
         default:
             return state;
     }
@@ -43,10 +51,21 @@ const addCar = dispatch => async ({ brand, year, hp, doors, seats, insurance, im
                 payload: 'Exista o erroare, daca nu ai perfil creaza !!' });
             }
     }; 
+
+const editCar = dispatch => {
+    return async (id, brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour, callback ) => {
+        await nicuApi.put(`/cars/${id}`, { brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour });
+
+        dispatch({ type: 'edit_car', payload: { id, brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour}});
+        if (callback){
+            callback();
+            }            
+     };
+}
   
 
 export const { Context, Provider } = createDataContext(
     carsReducer,
-    { fetchCars ,addCar },
+    { fetchCars ,addCar , editCar },
     []
 );

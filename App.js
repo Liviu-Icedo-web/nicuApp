@@ -12,6 +12,8 @@ import CarDetailScreen from './src/screens/CarDetailScreen';
 import CarCreateScreen from './src/screens/CarCreateScreen';
 import AccountScreen from './src/screens/AccountScreen';
 import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
+import CarEditScreen from './src/screens/CarEditScreen';
+
 
 import { Provider as CarProvider } from './src/context/CarContext';
 import { Provider as AuthProvider } from './src/context/AuthContext';
@@ -21,7 +23,8 @@ import { FontAwesome } from '@expo/vector-icons';
 
 const carListFlow = createStackNavigator({
    CarList: CarListScreen,
-   CarDetail: CarDetailScreen
+   CarDetail: CarDetailScreen,
+   CarEdit: CarEditScreen
 });
 
 carListFlow.navigationOptions = {
@@ -36,7 +39,7 @@ const switchNavigator = createSwitchNavigator({
     CarCreate: CarCreateScreen,
     Account: AccountScreen
    }),
-  loginFlow: createStackNavigator({
+   loginFlow: createStackNavigator({
     Signup: SignupScreen,
     Signin: SigninScreen,
   }),

@@ -9,6 +9,7 @@ import CarForm from '../components/CarForm';
 import Card from '../components/Card';
 
 
+
 const CarCreateScreen = () => {
    const { state, addCar, clearErrorMessage  } = useContext(CarContext);
    
@@ -34,7 +35,9 @@ const CarCreateScreen = () => {
 CarCreateScreen.navigationOptions = () => {
     return {
         title: 'Adauga Masina',
-        tabBarIcon: <FontAwesome name="plus" size={20} />,             
+        tabBarIcon:
+            <FontAwesome name="plus" size={20} />
+                         
     };
 };
 

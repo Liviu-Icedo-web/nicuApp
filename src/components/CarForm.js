@@ -5,17 +5,17 @@ import Spacer from './Spacer';
 import ImageUpload from './ImageUpload';
 import StyleSheet from '../styles';
 
-const CarForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
-    const[brand, setbrand] = useState('');
-    const[year, setyear] = useState('');
-    const[hp, sethp] = useState('');
-    const[doors, setdoors] = useState('');
-    const[seats, setseats] = useState('');
-    const[images, setimages] = useState('');
-    const[insurance, setinsurance] = useState('');
-    const[Town, setTown] = useState('');
-    const[PriceDay, setPriceDay] = useState('');
-    const[PriceHour, setPriceHour] = useState('');
+const CarForm = ({ headerText, errorMessage, initialValues , onSubmit, submitButtonText, }) => {
+    const[brand, setbrand] = useState(initialValues.brand);
+    const[year, setyear] = useState(initialValues.year);
+    const[hp, sethp] = useState(initialValues.hp);
+    const[doors, setdoors] = useState(initialValues.doors);
+    const[seats, setseats] = useState(initialValues.seats);
+    const[images, setimages] = useState(initialValues.images);
+    const[insurance, setinsurance] = useState(initialValues.insurance);
+    const[Town, setTown] = useState(initialValues.Town);
+    const[PriceDay, setPriceDay] = useState(initialValues.PriceDay);
+    const[PriceHour, setPriceHour] = useState(initialValues.PriceHour);
 
     
     return (
@@ -104,13 +104,29 @@ const CarForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
             <Spacer>
                 <Button
                     title={submitButtonText}
-                    onPress={() => onSubmit({ brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour })}
+                    onPress={() => onSubmit( brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour )}
                     type="outline"
                 />
             </Spacer>
         </>
     );
 
+};
+
+CarForm.defaultProps = {
+    initialValues: {
+        brand: '',
+        year: '',
+        hp: '',
+        doors: '',
+        seats: '',
+        insurance: '',
+        images: '',
+        Town: '',
+        PriceDay: '',
+        PriceHour: ''
+
+    }
 };
 
 

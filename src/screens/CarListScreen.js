@@ -1,23 +1,19 @@
-import React, { useContext } from 'react';
+import React, {  useContext } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { NavigationEvents } from 'react-navigation';
-import { Button } from 'react-native-elements';
 import { Context as CarContext } from '../context/CarContext';
-import { Context as AuthContext } from '../context/AuthContext';
 import Card from '../components/Card';
 import SearchBar from '../components/SearchBar';
-import { SimpleLineIcons} from '@expo/vector-icons';
+import { SimpleLineIcons } from '@expo/vector-icons';
 import StyleSheet from '../styles';
 import CheckLogin from '../components/CheckLogin';
+import IfSignOut from '../components/IfSignOut';
 
 
 
 const CarListScreen = ({ navigation }) => {
-    const { state, fetchCars} = useContext(CarContext);  
-    const { token ,signout } = useContext(AuthContext);  
-    
-
+    const { state, fetchCars} = useContext(CarContext); 
     
     return ( 
         
@@ -73,13 +69,15 @@ const CarListScreen = ({ navigation }) => {
     );
 };
 
-CarListScreen.navigationOptions = ({ navigation }) => { 
+CarListScreen.navigationOptions = ({ navigation}) => { 
     return {
         headerRight:
-            <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-                    <SimpleLineIcons style={{ margin : 15 }} name="user-follow" size={30} />
-                </TouchableOpacity> ,     
-        title: 'Nicu App',
+                <IfSignOut>
+                    <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+                        <SimpleLineIcons style={{ margin : 15 }} name="user-follow" size={30} />
+                    </TouchableOpacity>  
+                </IfSignOut>  ,           
+        title: 'NicuApp',
         headerTitleStyle: {
             textAlign:'center',
             flex: 1

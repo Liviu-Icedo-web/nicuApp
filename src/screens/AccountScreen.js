@@ -10,34 +10,37 @@ import { Context as AuthContext } from '../context/AuthContext';
 import StyleSheet from '../styles';
 
 
+
 const AccountScreen = () => {
     const { state,fetchUserAuth } = useContext(AuthContext);        
     return (
-        <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'always' }}>         
+        <SafeAreaView  style={StyleSheet.AppThirdStyle} forceInset={{ top: 'always' }}>         
             <NavigationEvents onWillFocus={fetchUserAuth} />
             <ScrollView >
                 <View style={StyleSheet.userView}>
                     <Spacer/>
-                    <Entypo name="user" size={100} /> 
+                    <Entypo style={StyleSheet.iconColor} name="user" size={100} /> 
                 </View> 
-                <Card>
-                    <TouchableOpacity style={{ alignItems: 'flex-end'}} onPress={() => navigation.navigate('Account')}>
-                        <EvilIcons name="pencil" size={30} />
+                <Spacer>
+                <View style={{ alignItems:'center' }}>
+                    <TouchableOpacity style={{ alignSelf: 'flex-end'}} onPress={() => navigation.navigate('Account')}>
+                        <EvilIcons style={StyleSheet.iconColor} name="pencil" size={30} />
                     </TouchableOpacity>
                     <Spacer/>
-                    <Text >Username:{state.nick_name}</Text>
+                    <Text style={StyleSheet.Text} >Username:  {state.nick_name}</Text>
                     <Spacer/>
-                    <Text >Nume:{state.first_name} </Text>
+                    <Text style={StyleSheet.Text}>Nume:  {state.first_name} </Text>
                     <Spacer/>
-                    <Text >Prenume:{state.last_name}</Text>
+                    <Text style={StyleSheet.Text}>Prenume:  {state.last_name}</Text>
                     <Spacer/>
-                    <Text >Prenume2:{state.last_name2} </Text>
+                    <Text style={StyleSheet.Text}>Prenume2:  {state.last_name2} </Text>
                     <Spacer/>
-                    <Text >Mail:{state.email} </Text>
+                    <Text style={StyleSheet.Text}>Mail:  {state.email} </Text>
                     <Spacer/>
-                    <Text >Numar Permis de Condus: {state.driving_licence_number}</Text>
+                    <Text style={StyleSheet.Text}>Numar Permis de Condus:  {state.driving_licence_number}</Text>
                     <Spacer/>
-                </Card>     
+                </View> 
+                </Spacer>    
             </ScrollView>                       
         </SafeAreaView>
     );

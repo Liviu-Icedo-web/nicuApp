@@ -1,16 +1,55 @@
 'use strict';
 import {StyleSheet} from 'react-native';
 
+const PRIMARY_COLOR = "#fff7f7"; 
+const SECONDARY_COLOR = '#dadada';
+const THIRD_COLOR = '#08ffc8';
+const QUART_COLOR = '#204969';
+
+const WHITE = '#fff';
+const GRAY = '#D3D3D3';
+const BORDER_COLOR = '#ddd';
+
+
 export default StyleSheet.create({
     //Container
     AppStyle: {
-        backgroundColor: '#FFF5EE',
+        backgroundColor: PRIMARY_COLOR,
         flex: 1,
+    },
+
+    AppSecondaryStyle: {
+        backgroundColor: QUART_COLOR,
+        flex: 1,
+    },
+
+    AppThirdStyle: {
+        backgroundColor: THIRD_COLOR,
+        flex: 1,
+    },
+    //Home
+    HomeView: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        backgroundColor: THIRD_COLOR,
+        padding: 10
+    },
+    HomeText: {
+        flex: 9,
+        color: QUART_COLOR,
+        fontWeight: 'bold',
+        marginRight: 5
+    },
+    homeIcon:{
+        flex: 1,
+        color: QUART_COLOR,
+        marginRight: 5
     },
     //SearchBar
     backgroundSearchar: {
         marginTop: 10,
-        backgroundColor: '#fff',
+        backgroundColor: WHITE,
         height: 50,
         borderRadius: 5,
         marginHorizontal: 10,
@@ -62,43 +101,43 @@ export default StyleSheet.create({
     },
     priceHourView: {
         flexDirection: 'column',
-        backgroundColor: '#F08080',
+        backgroundColor: SECONDARY_COLOR,
         margin: 10,
         borderRadius: 10,
         paddingHorizontal: 15,
         paddingVertical: 5
     },
     priceHourText: {
-        color: '#fff',
+        color: QUART_COLOR ,
         fontWeight: 'bold'
     },
     priceDayView: {
         flexDirection: 'column',
-        backgroundColor: '#FFE4E1',
+        backgroundColor: THIRD_COLOR ,
         margin: 10,
         borderRadius: 10,
         paddingHorizontal: 15,
         paddingVertical: 5
     },
     priceDayText: {
-        color: '#F08080',
+        color: QUART_COLOR ,
         fontWeight: 'bold'
     },
     bookView: {
         justifyContent: 'center',
         alignContent: 'center',
-        backgroundColor: '#3CB371',
+        backgroundColor: QUART_COLOR,
         margin: 10,
         borderRadius: 10,
         paddingHorizontal: 15,
         paddingVertical: 5
     },
     bookText: {
-        color: '#fff',
+        color: WHITE,
         fontWeight: 'bold'
     },
     detailTextCar: {
-        color: '#D3D3D3',
+        color: GRAY,
         fontWeight: 'bold'
     },
 
@@ -117,16 +156,23 @@ export default StyleSheet.create({
         borderTopRightRadius: 20,
         borderTopLeftRadius: 20,
         borderWidth: 1,
-        borderColor: '#ddd',
+        borderColor: BORDER_COLOR,
         margin: 15
     },
     stars: {
         marginLeft:15,
-        flexDirection: 'row'
+        flexDirection: 'row',
+    },
+    star :{
+        color: WHITE 
     },
     title: {
         marginLeft:15,
-        fontSize: 30
+        fontSize: 30,
+        color: WHITE,
+    },
+    info:{
+        color: WHITE
     },
     detailCarView: {
         flexDirection: 'row',
@@ -135,10 +181,11 @@ export default StyleSheet.create({
 
     },
     Text: {
-        color: '#F08080',
+        color:  QUART_COLOR ,
+        fontWeight: 'bold'
     },
     detailPriceView: {
-        backgroundColor: '#FFE4E1',
+        backgroundColor: THIRD_COLOR ,
         justifyContent:'space-around',
         borderRadius: 10,
         paddingHorizontal: 15
@@ -146,22 +193,22 @@ export default StyleSheet.create({
     bookButton: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#3CB371',
+        backgroundColor: QUART_COLOR,
         borderRadius: 10,
         margin: 5
     },
     bookDetailView: {
         borderWidth: 1,
         borderRadius: 20,
-        borderColor: '#ddd',
-        backgroundColor: '#FFE4E1',
+        borderColor: BORDER_COLOR ,
+        backgroundColor: PRIMARY_COLOR,
         margin: 15,
         padding:15
     
     },
   
     bookDetailText: {
-        color: '#fff',
+        color: WHITE,
         fontWeight: 'bold'
     },
 
@@ -190,7 +237,34 @@ export default StyleSheet.create({
 
     //NavLink
     link: {
-        color: '#F08080',
+        color: QUART_COLOR ,
         fontSize: 16
+    },
+
+    //Card
+    containerStyle: {
+        borderWidth: 1,
+        borderRadius: 20,
+        borderColor: BORDER_COLOR,
+        elevation: 1,
+        marginHorizontal: 10,
+        marginTop: 5,
+        marginBottom: 5,
+        padding: 10,
+        minHeight: 90,
+        backgroundColor: WHITE,
+    
+    },
+
+    //Spacer
+    spacer: {
+        margin: 15,
+    
+    },
+
+    //Account
+    iconColor: {
+        color: QUART_COLOR
     }
+
 });
