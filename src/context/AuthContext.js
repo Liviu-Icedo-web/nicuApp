@@ -20,7 +20,7 @@ const authReducer = (state, action) => {
             return action.payload;
         case 'check_login':
             console.log('Login Dispacher', action.payload)
-            return {token: action.payload};          
+            return {token: action.payload, errorMessage:"Error del dispacher check login"};          
         default:
             return state;
     }
@@ -39,9 +39,10 @@ const tryLocalSignin = dispatch => async () => {
 const checkLogin = dispatch => async () => {
     const token = await AsyncStorage.getItem('token');
     if (token) {
-        console.log('Before despach', token)
+        console.log('*** AuthContext:CheckLogin : true ****', token)
         dispatch({ type: 'check_login', payload: true });
     } else {
+        console.log('*** AuthContext:CheckLogin : flase ****')
         dispatch({ type: 'check_login', payload: false });
     }
 };
@@ -88,7 +89,9 @@ const signout = dispatch => async () => {
 //No tengo ni ideea como sacar el Usuario que esta logueado para ponerlo en el AccountScreen
 const fetchUserAuth = dispatch => async () => {
     //const response = await nicuApi.get(`/users/${id}`, token); 
-    const response = await nicuApi.get(`/user`);     
+    const response = await nicuApi.get(`/user`);
+    checkLogin(); 
+    console.log('**** Fetch Useeer ****');   
     dispatch({ type: 'fetch_userAuth', payload: response.data });
 };
 

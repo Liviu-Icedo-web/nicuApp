@@ -7,13 +7,15 @@ import { Context as AuthContext } from '../context/AuthContext';
 import StyleSheet from '../styles';
 
 const CheckLogin = () => {
-    const { checkLogin, state ,signout } = useContext(AuthContext);
+    const { checkLogin, state ,signout,token } = useContext(AuthContext);
 
     useEffect(() => {
         checkLogin();
+        console.log("*** CheckLogin : State", state);
     }, []);
 
     return (
+        console.log("*** CheckLogin Return: State", token),
         <>
             {!state.token ?
             <View style={StyleSheet.HomeView}>

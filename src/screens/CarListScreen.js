@@ -14,6 +14,7 @@ import IfSignOut from '../components/IfSignOut';
 
 const CarListScreen = ({ navigation }) => {
     const { state, fetchCars} = useContext(CarContext); 
+    console.log("*** Car list Screen : State *** ", state)
     
     return ( 
         
