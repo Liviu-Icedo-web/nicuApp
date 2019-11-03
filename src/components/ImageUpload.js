@@ -56,8 +56,6 @@ export default class ImageUpload extends React.Component {
       allowsMultipleSelection:true
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
       this.setState({ image: result.uri });
     }

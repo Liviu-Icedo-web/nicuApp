@@ -9,10 +9,11 @@ import StyleSheet from '../styles';
 import IfSignIn from '../components/IfSignIn';
 
 
+
 const CarDetailScreen = ({ navigation }) => {
     const { state } = useContext(CarContext);
 
-    const car = state.find(
+    const car = state.car.find(
         car => car.id === navigation.getParam('id')
     );
  
@@ -70,11 +71,12 @@ const CarDetailScreen = ({ navigation }) => {
 }
 
 
+
 CarDetailScreen.navigationOptions = ({ navigation}) => { 
     return {
         headerRight:
                 <IfSignIn>
-                    <TouchableOpacity onPress={() => navigation.navigate('CarEdit')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('CarEdit',{_id:navigation.getParam('id')})}>
                         <MaterialCommunityIcons style={{ padding:5 }} name="playlist-edit" size={30} />
                     </TouchableOpacity> 
                 </IfSignIn> ,           

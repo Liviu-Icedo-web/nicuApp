@@ -1,8 +1,9 @@
-import React, {  useContext } from 'react';
+import React, {  useContext, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { NavigationEvents } from 'react-navigation';
 import { Context as CarContext } from '../context/CarContext';
+import { Context as AuthContext } from '../context/AuthContext';
 import Card from '../components/Card';
 import SearchBar from '../components/SearchBar';
 import { SimpleLineIcons } from '@expo/vector-icons';
@@ -12,10 +13,15 @@ import IfSignOut from '../components/IfSignOut';
 
 
 
+
 const CarListScreen = ({ navigation }) => {
     const { state, fetchCars} = useContext(CarContext); 
-    console.log("*** Car list Screen : State *** ", state)
-    
+    const { fetchUserAuth } = useContext(AuthContext);
+    /* We run Fecth User to have the user data Like this is the Home page*/
+    useEffect(() => {   
+        fetchUserAuth();
+    }, []);
+
     return ( 
         
         <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>  
@@ -24,7 +30,7 @@ const CarListScreen = ({ navigation }) => {
             <SearchBar />
             <NavigationEvents onWillFocus={fetchCars} />    
             <FlatList 
-                data={state}
+                data={state.car}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({ item }) => {
                     return ( 
@@ -71,6 +77,7 @@ const CarListScreen = ({ navigation }) => {
 };
 
 CarListScreen.navigationOptions = ({ navigation}) => { 
+
     return {
         headerRight:
                 <IfSignOut>

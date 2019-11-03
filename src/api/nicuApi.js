@@ -5,8 +5,8 @@ import { AsyncStorage } from 'react-native';
 
 
 const instance = axios.create({
-    //baseURL: 'http://7e7e4e8d.ngrok.io',
-    baseURL: 'http://localhost:8090',
+    baseURL: 'http://1abc439d.ngrok.io',
+    //baseURL: 'http://localhost:8090',
     headers: {'Content-Type': 'text/plain'},
     withCredentials: false,
     
@@ -19,21 +19,29 @@ instance.interceptors.request.use(
         const token = await AsyncStorage.getItem('token');
         const noTokenUrl =    ['/cars',
                         '/users',
-                        '/user'
+                        '/user',
+                        '/cars/1'
                         ]
-        console.log(config.url)                
+        console.log('*** Config Before Url: ',config)                
         if(noTokenUrl.includes(config.url)) {
-            console.log('INTRAAAAA');
+            console.log('*** INTRAAAAA');
         }
         
-        if(noTokenUrl.includes(config.url)){ //Problema era ca tot timpul se treace tokenul ca si parametru la api,tokenul api il accepta doar pt PUT, POST , DELETE
+        // if(noTokenUrl.includes(config.url)){ //Problema era ca tot timpul se treace tokenul ca si parametru la api,tokenul api il accepta doar pt PUT, POST , DELETE
+        //     if (token) {                
+        //         config.headers['Content-Type']= 'application/json';
+        //         config.headers.Authorization = `Bearer ${token}`;
+        //      }
+        // }  
+        
+        if(config.method !== 'GET'){
             if (token) {                
                 config.headers['Content-Type']= 'application/json';
                 config.headers.Authorization = `Bearer ${token}`;
-             }
-        }       
+            }
+        }
         
-        console.log("check config send ***", config)
+        console.log("*** check config send", config)
          return config;
      },
      (err) => Promise.reject(err),

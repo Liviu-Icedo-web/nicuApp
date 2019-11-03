@@ -5,9 +5,9 @@ import Spacer from './Spacer';
 import ImageUpload from './ImageUpload';
 import StyleSheet from '../styles';
 
-const CarForm = ({ headerText, errorMessage, initialValues , onSubmit, submitButtonText, }) => {
-    const[brand, setbrand] = useState(initialValues.brand);
-    const[year, setyear] = useState(initialValues.year);
+const CarForm = ({ headerText, errorMessage, initialValues , onSubmit, submitButtonText }) => {
+    const[brand, setbrand] = useState(initialValues.brand != '' ? initialValues.brand : '' );
+    const[year, setyear] = useState(initialValues.year !== '' ? initialValues.year:'');
     const[hp, sethp] = useState(initialValues.hp);
     const[doors, setdoors] = useState(initialValues.doors);
     const[seats, setseats] = useState(initialValues.seats);
@@ -34,7 +34,7 @@ const CarForm = ({ headerText, errorMessage, initialValues , onSubmit, submitBut
               <Input        
                 label="An Inmatriculare"  
                 type="number"                
-                value={year}
+                value={year.toString()}
                 onChangeText={setyear}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -42,7 +42,7 @@ const CarForm = ({ headerText, errorMessage, initialValues , onSubmit, submitBut
             <Input
                 label="Cai Putere"          
                 type="number"                
-                value={hp}
+                value={hp.toString()}
                 onChangeText={sethp}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -50,7 +50,7 @@ const CarForm = ({ headerText, errorMessage, initialValues , onSubmit, submitBut
             <Input                         
                 label="Usi"
                 type="number"
-                value={doors}
+                value={doors.toString()}
                 onChangeText={setdoors}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -58,7 +58,7 @@ const CarForm = ({ headerText, errorMessage, initialValues , onSubmit, submitBut
             <Input         
                 label="Locuri"
                 type="number"
-                value={seats}
+                value={seats.toString()}
                 onChangeText={setseats}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -87,7 +87,7 @@ const CarForm = ({ headerText, errorMessage, initialValues , onSubmit, submitBut
             <Input 
                 label="Pret/ZI"
                 type="number"
-                value={PriceDay}
+                value={PriceDay.toString()}
                 onChangeText={setPriceDay}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -95,7 +95,7 @@ const CarForm = ({ headerText, errorMessage, initialValues , onSubmit, submitBut
              <Input 
                 label="Pret/HORA"
                 type="number"
-                value={PriceHour}
+                value={PriceHour.toString()}
                 onChangeText={setPriceHour}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -113,21 +113,21 @@ const CarForm = ({ headerText, errorMessage, initialValues , onSubmit, submitBut
 
 };
 
-CarForm.defaultProps = {
-    initialValues: {
-        brand: '',
-        year: '',
-        hp: '',
-        doors: '',
-        seats: '',
-        insurance: '',
-        images: '',
-        Town: '',
-        PriceDay: '',
-        PriceHour: ''
+// CarForm.defaultProps = {
+//     initialValues: {
+//         brand: '',
+//         year: '',
+//         hp: '',
+//         doors: '',
+//         seats: '',
+//         insurance: '',
+//         images: '',
+//         Town: '',
+//         PriceDay: '',
+//         PriceHour: ''
 
-    }
-};
+//     }
+// };
 
 
 export default CarForm;

@@ -3,11 +3,7 @@ import { View } from 'react-native';
 import { Context as AuthContext } from '../context/AuthContext';
 
 const IfSignOut = (props) => {
-    const { checkLogin , state } = useContext(AuthContext);
-
-    useEffect(() => {
-        checkLogin();
-    }, []);
+    const { state } = useContext(AuthContext);
 
     return (
         <>

@@ -23,6 +23,7 @@ const CarCreateScreen = () => {
                             headerText="Adauga o Masina "
                             errorMessage={state.errorMessage}
                             submitButtonText="Salveaza"
+                            initialValues ={{brand: '', year: '', hp: '', doors: '', seats: '', insurance: '', images: '', Town: '', PriceDay: '',PriceHour: ''}}
                             onSubmit={addCar}
                         />
                     </Card>  
