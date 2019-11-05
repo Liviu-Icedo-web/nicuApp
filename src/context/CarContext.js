@@ -41,7 +41,7 @@ const addCar = dispatch => {
         try {
             const response = await nicuApi.post('/cars', { brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour });
             dispatch({ type: 'addCar', payload: response.data });
-            navigate ('CarList')
+            navigate ('CarOwn')
         } catch (err) {
             console.log("Error URL",err)
             dispatch({ 
@@ -62,7 +62,7 @@ const editCar = dispatch => {
         try {
             const response = await nicuApi.put(`/cars/${id}`, { user_id,brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour });
             dispatch({ type: 'edit_car', payload: response.data });
-            navigate('CarDetail',{id});   
+            navigate('CarOwnDetail',{id});   
         } catch (error) {
             dispatch({ 
                 type: 'add_error', 
@@ -74,6 +74,7 @@ const deleteCar = dispatch => {
     return async id => {
         await nicuApi.delete(`/cars/${id}`);
         dispatch({ type: 'delete_car', payload: id});
+        navigate('CarOwn');
     };
  }
 

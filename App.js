@@ -50,6 +50,7 @@ const switchNavigator = createSwitchNavigator({
     carOwnFlow,
     Account: AccountScreen,
    }),
+   
    CarEdit: CarEditScreen,
    UserEdit: UserEditScreen,
    loginFlow: createStackNavigator({

@@ -14,10 +14,10 @@ import StyleSheet from '../styles';
 const CarOwnScreen = ({ navigation }) => {
     const { state, fetchCars, deleteCar} = useContext(CarContext); 
     const { fetchUserAuth } = useContext(AuthContext);
-
+    console.log('***state CarOwnScreen', state)
     /* We run Fecth User to have the user data Like this is the Home page*/
     useEffect(() => {   
-        fetchUserAuth();
+        //fetchUserAuth();
     }, []);
 
     return (   

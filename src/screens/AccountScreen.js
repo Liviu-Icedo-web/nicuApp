@@ -7,9 +7,10 @@ import Spacer from '../components/Spacer';
 import { Context as AuthContext } from '../context/AuthContext';
 import StyleSheet from '../styles';
 
-
 const AccountScreen = ({ navigation }) => {
-    const { state } = useContext(AuthContext);  
+    const { state } = useContext(AuthContext); 
+    
+   console.log('***state AccountScreen', state)
       
     return (
         <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'always' }}>         

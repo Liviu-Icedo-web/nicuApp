@@ -3,6 +3,7 @@ import createDataContext from './createDataContext';
 import nicuApi from '../api/nicuApi';
 import { navigate } from '../navigationRef';
 
+
 const authReducer = (state, action) => {
     switch (action.type) {
         case 'add_error':
@@ -31,6 +32,7 @@ const tryLocalSignin = dispatch => async () => {
     if (token) {
         dispatch({ type: 'signin', payload: token });
         navigate('mainFlow');
+        console.log('*** fetchuser ***')
     } else {
         navigate('Home');
     }
@@ -73,6 +75,7 @@ const signout = dispatch => async () => {
 
 const fetchUserAuth = dispatch => async () => {
     const response = await nicuApi.get(`/user`);
+    console.log('*** fetchuser *** 222')
     dispatch({ type: 'fetch_userAuth', payload: response.data });
 };
 
@@ -92,6 +95,7 @@ const deleteUser = dispatch => {
     return async id => {
         await nicuApi.delete(`/users/${id}`);
         dispatch({ type: 'delete_user', payload: id});
+        navigate('Home');
     };
  }
 

@@ -15,7 +15,7 @@ const UserEditScreen = ({ navigation }) => {
     const user = state.user ;
 
  
-    console.log('*** USER EDIT', user);
+    console.log('***state USER EDIT', user);
 
     return (
         <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'always' }}>  
