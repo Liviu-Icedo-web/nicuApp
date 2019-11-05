@@ -2,18 +2,17 @@ import React , {useContext} from 'react';
 import { View, ScrollView , TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import {Text} from 'react-native-elements';
-import { FontAwesome, Entypo, EvilIcons,SimpleLineIcons } from '@expo/vector-icons';
+import { FontAwesome, Entypo, EvilIcons,SimpleLineIcons, AntDesign } from '@expo/vector-icons';
 import Spacer from '../components/Spacer';
-import Card from '../components/Card';
 import { Context as AuthContext } from '../context/AuthContext';
 import StyleSheet from '../styles';
 
 
 const AccountScreen = ({ navigation }) => {
-    const { state} = useContext(AuthContext);  
+    const { state } = useContext(AuthContext);  
       
     return (
-        <SafeAreaView  style={StyleSheet.AppThirdStyle} forceInset={{ top: 'always' }}>         
+        <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'always' }}>         
             {state.user !== undefined ? userCard(state.user,navigation) : noUser(navigation) }                      
         </SafeAreaView>
        
@@ -21,6 +20,7 @@ const AccountScreen = ({ navigation }) => {
 }
 
 const userCard = (user,navigation) => {
+    const {deleteUser } = useContext(AuthContext);  
     return (
         <ScrollView >
             <View style={StyleSheet.userView}>
@@ -28,10 +28,15 @@ const userCard = (user,navigation) => {
                 <Entypo style={StyleSheet.iconColor} name="user" size={100} /> 
             </View> 
             <Spacer>
-            <View style={{ alignItems:'center' }}>
-                <TouchableOpacity style={{ alignSelf: 'flex-end'}} onPress={() => navigation.navigate('Account')}>
-                    <EvilIcons style={StyleSheet.iconColor} name="pencil" size={30} />
-                </TouchableOpacity>
+            <View style={StyleSheet.userDetail}>
+                <View style={StyleSheet.iconView}>
+                    <TouchableOpacity  onPress={() => navigation.navigate('UserEdit')}>
+                        <EvilIcons style={StyleSheet.iconColor} name="pencil" size={50} />          
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => deleteUser(user.id)}>
+                        <AntDesign style={StyleSheet.iconColor} name="delete" size={30}/>
+                    </TouchableOpacity>
+                </View>
                 <Spacer/>
                 <Text style={StyleSheet.Text} >Username:  {user.nick_name}</Text>
                 <Spacer/>
@@ -53,7 +58,7 @@ const userCard = (user,navigation) => {
 
 const noUser = (navigation) =>{
     return (   
-        <View style={StyleSheet.userView}>
+        <View style={StyleSheet.userDetail}>
             <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
                 <Text style={StyleSheet.Text}>Nu ai user, creaza unul </Text>
                 <SimpleLineIcons style={{ margin : 15 }} name="user-follow" size={30} />
@@ -65,7 +70,7 @@ const noUser = (navigation) =>{
 AccountScreen.navigationOptions = () => {
     return {    
         title: 'Profil',
-        tabBarIcon: <FontAwesome name="gear" size={20} />
+        tabBarIcon: <FontAwesome name="gear" size={25} />
     };
 };
 

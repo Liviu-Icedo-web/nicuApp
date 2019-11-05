@@ -1,7 +1,7 @@
 'use strict';
 import {StyleSheet} from 'react-native';
 
-const PRIMARY_COLOR = "#fff7f7"; 
+const PRIMARY_COLOR = "#F5FFFA"; 
 const SECONDARY_COLOR = '#dadada';
 const THIRD_COLOR = '#08ffc8';
 const QUART_COLOR = '#204969';
@@ -265,6 +265,40 @@ export default StyleSheet.create({
     //Account
     iconColor: {
         color: QUART_COLOR
-    }
+    },
+    iconView: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
+        backgroundColor: SECONDARY_COLOR,
+        borderBottomRightRadius: 20,
+        padding: 10
+    },
+    userDetail:{
+        borderBottomRightRadius: 20,
+        borderWidth: 1,
+        borderColor: BORDER_COLOR,
+        elevation: 1,
+        marginHorizontal: 10,
+        marginTop: 5,
+        marginBottom: 5,
+        padding: 20,
+        minHeight: 90,
+        backgroundColor: WHITE,
+    },
+
+    //OwnCar
+    OwnControlsView: {
+        justifyContent: 'center',
+        alignContent: 'center',
+        backgroundColor: QUART_COLOR,
+        margin: 10,
+        borderRadius: 10,
+        paddingHorizontal: 15,
+        paddingVertical: 5
+    },
+    OwnControlsIcon: {
+        color: WHITE
+    },
 
 });

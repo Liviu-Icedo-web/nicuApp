@@ -12,7 +12,9 @@ const carsReducer = (state, action) => {
             return  navigate('CarDetail',{id});*/
             return {erroMessage:''} ; 
         case 'edit_car':
-                return {...state, car1:action.payload};          
+            return {...state, car1:action.payload};  
+        case 'delete_car':
+            return state.filter(car => car.id !== action.payload);         
         default:
             return state;
     }
@@ -66,10 +68,17 @@ const editCar = dispatch => {
              }         
         };
 }
+const deleteCar = dispatch => {
+    return async id => {
+        await nicuApi.delete(`/cars/${id}`);
+        dispatch({ type: 'delete_car', payload: id});
+    };
+ }
   
+
 
 export const { Context, Provider } = createDataContext(
     carsReducer,
-    { fetchCars ,addCar , editCar },
+    { fetchCars ,addCar , editCar ,deleteCar},
     []
 );

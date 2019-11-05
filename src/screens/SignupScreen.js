@@ -26,6 +26,7 @@ const SignupScreen = ({ navigation }) => {
                             headerText="Creaza-ti Perfil"
                             errorMessage={state.errorMessage}
                             submitButtonText="Trimite"
+                            initialValues ={{ email: '', password: '', nick_name: '', first_name: '', last_name: '', last_name2: '', driving_licence_number: '' }}
                             onSubmit={signUp}
                         />
                         <NavLink

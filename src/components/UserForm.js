@@ -1,17 +1,18 @@
+
 import React, { useState } from 'react';
 import { Text  } from 'react-native';
 import {  Button, Input } from 'react-native-elements';
 import Spacer from './Spacer'; 
 import StyleSheet from '../styles';
 
-const UserForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
-    const[email, setEmail] = useState('');
-    const[password, setPassword] = useState('');
-    const[nick_name, setNickName] = useState('');
-    const[first_name, setFirstName] = useState('');
-    const[last_name, setLastName] = useState('');
-    const[last_name2, setLastName2] = useState('');
-    const[driving_licence_number, setDrivingLicenceNumber] = useState('');
+const UserForm = ({ headerText, errorMessage, initialValues, onSubmit, submitButtonText }) => {
+    const[email, setEmail] = useState(initialValues.email);
+    const[password, setPassword] = useState(initialValues.password);
+    const[nick_name, setNickName] = useState(initialValues.nick_name);
+    const[first_name, setFirstName] = useState(initialValues.first_name);
+    const[last_name, setLastName] = useState(initialValues.last_name);
+    const[last_name2, setLastName2] = useState(initialValues.last_name2);
+    const[driving_licence_number, setDrivingLicenceNumber] = useState(initialValues.driving_licence_number);
 
     
     return (
@@ -73,7 +74,7 @@ const UserForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
             <Spacer>
                 <Button
                     title={submitButtonText}
-                    onPress={() => onSubmit({  email, password, nick_name, first_name, last_name,last_name2, driving_licence_number })}
+                    onPress={() => onSubmit( email, password, nick_name, first_name, last_name,last_name2, driving_licence_number )}
                     type="outline"
                 />
             </Spacer>
@@ -81,5 +82,7 @@ const UserForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
     );
 
 };
+
+
 
 export default UserForm;

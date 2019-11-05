@@ -44,27 +44,7 @@ const CarDetailScreen = ({ navigation }) => {
                     <Text style={StyleSheet.info}>Proprietar: {car.user.last_name} {car.user.first_name}</Text>
                     <Text style={StyleSheet.info}>Mail: {car.user.email}</Text>
                     <Text style={StyleSheet.info}>Publicada: {car.user.created_at}</Text>
-                </Spacer> 
-                <View style={StyleSheet.bookDetailView}>  
-                    <Text h4>Completeaza pentru rezerva :</Text> 
-                    <Spacer/>
-                    <Text style={StyleSheet.Text}>Alege cum vrei sa inchiriezi</Text>          
-                    <Picker>  
-                        <Picker.Item label = "Hora" value = "" />
-                        <Picker.Item label = "Zi" value = "" />
-                    </Picker> 
-                    <Text style={StyleSheet.Text}>Alege cate hore/zile...</Text>             
-                     <Picker>  
-                        <Picker.Item label = "1" value = "" />
-                        <Picker.Item label = "2" value = "" />
-                    </Picker> 
-                    <Text h4 style={StyleSheet.Text}>Suma totala rezerva : 250 Lei</Text> 
-                    <View style={StyleSheet.bookButton}>
-                        <TouchableOpacity onPress={() => navigation.navigate('CarList')}>
-                            <Text h4 style={StyleSheet.bookDetailText}>REZERVA</Text>
-                        </TouchableOpacity>
-                    </View>              
-                </View>     
+                </Spacer>     
             </ScrollView>                       
         </SafeAreaView>
     );
@@ -74,12 +54,12 @@ const CarDetailScreen = ({ navigation }) => {
 
 CarDetailScreen.navigationOptions = ({ navigation}) => { 
     return {
-       /*// headerRight:
-               // <IfSignIn>
-                   // <TouchableOpacity onPress={() => navigation.navigate('CarEdit',{_id:navigation.getParam('id')})}>
-                     //   <MaterialCommunityIcons style={{ padding:5 }} name="playlist-edit" size={30} />
-                    //</TouchableOpacity>
-               // </IfSignIn> , */          
+        headerRight:
+                <IfSignIn>
+                    <TouchableOpacity onPress={() => navigation.navigate('CarEdit',{_id:navigation.getParam('id')})}>
+                        <MaterialCommunityIcons style={{ padding:5 }} name="playlist-edit" size={30} />
+                    </TouchableOpacity>
+                </IfSignIn> ,           
         title: 'Rezerva',
         headerTitleStyle: {
             fontWeight: 'bold'

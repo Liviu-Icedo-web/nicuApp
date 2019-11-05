@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { FontAwesome } from '@expo/vector-icons';
-import { View,ScrollView } from 'react-native';
+import { View,ScrollView ,TouchableOpacity} from 'react-native';
 import { SafeAreaView } from 'react-navigation';
+import { MaterialIcons} from '@expo/vector-icons';
 import { NavigationEvents } from 'react-navigation';
 import { Context as CarContext } from '../context/CarContext';
 import StyleSheet from '../styles';
@@ -10,7 +10,7 @@ import Card from '../components/Card';
 
 
 
-const CarCreateScreen = () => {
+const CarCreateScreen = ({ navigation }) => {
    const { state, addCar, clearErrorMessage  } = useContext(CarContext);
    
     return ( 
@@ -19,6 +19,9 @@ const CarCreateScreen = () => {
                 <View style={StyleSheet.CarCreateView}>
                     <Card>
                         <NavigationEvents onWillBlur={clearErrorMessage} />
+                        <TouchableOpacity onPress={() => navigation.navigate('CarOwn')}>
+                            <MaterialIcons name="arrow-back" size={30} />
+                        </TouchableOpacity>
                         <CarForm
                             headerText="Adauga o Masina "
                             errorMessage={state.errorMessage}
@@ -35,10 +38,7 @@ const CarCreateScreen = () => {
 
 CarCreateScreen.navigationOptions = () => {
     return {
-        title: 'Adauga Masina',
-        tabBarIcon:
-            <FontAwesome name="plus" size={20} />
-                         
+        header: null
     };
 };
 

@@ -113,21 +113,5 @@ const CarForm = ({ headerText, errorMessage, initialValues , onSubmit, submitBut
 
 };
 
-// CarForm.defaultProps = {
-//     initialValues: {
-//         brand: '',
-//         year: '',
-//         hp: '',
-//         doors: '',
-//         seats: '',
-//         insurance: '',
-//         images: '',
-//         Town: '',
-//         PriceDay: '',
-//         PriceHour: ''
-
-//     }
-// };
-
 
 export default CarForm;
