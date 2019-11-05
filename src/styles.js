@@ -27,24 +27,61 @@ export default StyleSheet.create({
         backgroundColor: THIRD_COLOR,
         flex: 1,
     },
+
     //Home
-    HomeView: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
+    HomeView:{
+        justifyContent: 'center',
+        alignItems: 'center', 
+        marginBottom: 40,
+
+    },
+    HomeHeaderView:{
+        marginTop: 50,
+        marginBottom: 10,
+    },
+    HomeHeaderText: {
+        color: WHITE,
+        fontSize: 30,
+        fontWeight: 'bold'
+
+    },
+    HomeCardView:{
+        padding: 5,
+    },
+    HomeCardSubtitle: {
+        color: GRAY,
+        padding: 7,
+        fontSize: 15,
+        fontWeight:'bold'
+    },
+    HomeCardTitle:{
+       color: QUART_COLOR,
+        padding: 7,
+        fontSize: 27,
+        fontWeight:'bold'
+    },
+    HomeCardImage:{
+        height: 200,
+        width: null,
+    },
+
+    ButtonView:{
+        justifyContent: 'center',
+        alignItems: 'center',  
+    },
+    TouchableStyle:{
         backgroundColor: THIRD_COLOR,
-        padding: 10
+        borderRadius: 15,
+        marginBottom: -40,
+        alignContent: 'center',
+        alignItems:'center',
+        paddingHorizontal: 20,
+        paddingVertical: 10
     },
-    HomeText: {
-        flex: 9,
+    ButtonText:{
         color: QUART_COLOR,
+        fontSize: 20,
         fontWeight: 'bold',
-        marginRight: 5
-    },
-    homeIcon:{
-        flex: 1,
-        color: QUART_COLOR,
-        marginRight: 5
     },
     //SearchBar
     backgroundSearchar: {
@@ -300,5 +337,27 @@ export default StyleSheet.create({
     OwnControlsIcon: {
         color: WHITE
     },
+
+
+
+    // Check login
+    CheckView: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        backgroundColor: THIRD_COLOR,
+        padding: 10
+    },
+    CheckText: {
+        flex: 9,
+        color: QUART_COLOR,
+        fontWeight: 'bold',
+        marginRight: 5
+    },
+    CheckIcon:{
+        flex: 1,
+        color: QUART_COLOR,
+        marginRight: 5
+    }
 
 });

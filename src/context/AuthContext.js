@@ -30,9 +30,9 @@ const tryLocalSignin = dispatch => async () => {
     const token = await AsyncStorage.getItem('token');
     if (token) {
         dispatch({ type: 'signin', payload: token });
-        navigate('CarList');
+        navigate('mainFlow');
     } else {
-        navigate('CarList');
+        navigate('Home');
     }
 };
 
@@ -44,7 +44,7 @@ const signUp = dispatch => async ( email, password, nick_name, first_name, last_
     try {
         const response = await nicuApi.post('/users', { email, password, nick_name, first_name, last_name,last_name2, driving_licence_number });        
         dispatch({ type: 'signUp', payload: response.data });
-        navigate('CarList');
+        navigate('Signin');
     } catch (err) {
         dispatch({ 
            type: 'add_error', 
@@ -57,7 +57,7 @@ const signin = dispatch => async ({ email, password }) => {
         const response = await nicuApi.post('/login', { email, password });
         await AsyncStorage.setItem('token', response.data);
         dispatch({ type: 'signin', payload: response.data});
-        navigate('CarList');
+        navigate('mainFlow');
     } catch (err) {
         dispatch({ 
             type: 'add_error', 
@@ -68,7 +68,7 @@ const signin = dispatch => async ({ email, password }) => {
 const signout = dispatch => async () => {
   await AsyncStorage.removeItem('token');
   dispatch({ type: 'signout' });
-  navigate('CarList');
+  navigate('Home');
 };
 
 const fetchUserAuth = dispatch => async () => {

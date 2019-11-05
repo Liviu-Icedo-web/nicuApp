@@ -12,6 +12,7 @@ import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
 import CarOwnScreen from './src/screens/CarOwnScreen';
 import CarEditScreen from './src/screens/CarEditScreen';
 import UserEditScreen from './src/screens/UserEditScreen';
+import HomeScreen from './src/screens/HomeScreen';
 import CarOwnDetailScreen from './src/screens/CarOwnDetailScreen';
 import { Provider as CarProvider } from './src/context/CarContext';
 import { Provider as AuthProvider } from './src/context/AuthContext';
@@ -43,6 +44,7 @@ carListFlow.navigationOptions = {
 
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolveAuthScreen,
+  Home: HomeScreen,
   mainFlow: createBottomTabNavigator({
     carListFlow,
     carOwnFlow,
