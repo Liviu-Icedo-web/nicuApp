@@ -30,7 +30,7 @@ const tryLocalSignin = dispatch => async () => {
     const token = await AsyncStorage.getItem('token');
     if (token) {
         dispatch({ type: 'signin', payload: token });
-        navigate('mainFlow');
+        navigate('CarList');
     } else {
         navigate('Home');
     }
@@ -57,7 +57,7 @@ const signin = dispatch => async ({ email, password }) => {
         const response = await nicuApi.post('/login', { email, password });
         await AsyncStorage.setItem('token', response.data);
         dispatch({ type: 'signin', payload: response.data});
-        navigate('mainFlow');
+        navigate('CarList');
     } catch (err) {
         dispatch({ 
             type: 'add_error', 
@@ -68,7 +68,6 @@ const signin = dispatch => async ({ email, password }) => {
 const signout = dispatch => async () => {
   await AsyncStorage.removeItem('token');
   dispatch({ type: 'signout' });
-  navigate('Home');
 };
 
 const fetchUserAuth = dispatch => async () => {
@@ -92,6 +91,7 @@ const deleteUser = dispatch => {
     return async id => {
         await nicuApi.delete(`/users/${id}`);
         dispatch({ type: 'delete_user', payload: id});
+        navigate('CarList');
     };
  }
 
