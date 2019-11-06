@@ -19,9 +19,9 @@ const authReducer = (state, action) => {
         case 'fetch_userAuth':
             return {...state,user:action.payload};  
         case 'edit_user':
-            return {...state, user:action.payload, errorMessage: ''}; 
-        case 'delete_user':
-            return state.filter(user => user.id !== action.payload);       
+            return {...state, user:action.payload, errorMessage: ''};    
+        case 'delete_user':  
+            return state.filter(({ user }) => user.id !== action.payload);      
         default:
             return state;
     }
@@ -31,8 +31,7 @@ const tryLocalSignin = dispatch => async () => {
     const token = await AsyncStorage.getItem('token');
     if (token) {
         dispatch({ type: 'signin', payload: token });
-        navigate('mainFlow');
-        console.log('*** fetchuser ***')
+        navigate('CarList');
     } else {
         navigate('Home');
     }
@@ -59,7 +58,7 @@ const signin = dispatch => async ({ email, password }) => {
         const response = await nicuApi.post('/login', { email, password });
         await AsyncStorage.setItem('token', response.data);
         dispatch({ type: 'signin', payload: response.data});
-        navigate('mainFlow');
+        navigate('CarList');
     } catch (err) {
         dispatch({ 
             type: 'add_error', 
@@ -94,6 +93,7 @@ const editUser = dispatch => async (id, email, password, nick_name, first_name, 
 const deleteUser = dispatch => {
     return async id => {
         await nicuApi.delete(`/users/${id}`);
+        await AsyncStorage.removeItem('token');
         dispatch({ type: 'delete_user', payload: id});
         navigate('Home');
     };

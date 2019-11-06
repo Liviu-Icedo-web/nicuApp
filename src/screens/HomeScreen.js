@@ -23,8 +23,8 @@ const HomeScreen = ({ navigation }) => {
                                 <Text style={StyleSheet.HomeCardSubtitle}>Alegerea ta de Preferinta CAUTA sau OFERA masina </Text>
                                 <Image style={StyleSheet.HomeCardImage} source={require('../img/imageCarHome.png' )} /> 
                                 <View style={StyleSheet.ButtonView}>
-                                    <TouchableOpacity style={StyleSheet.TouchableStyle} onPress={() => navigation.navigate('Signup')}>
-                                        <Text style={StyleSheet.ButtonText}>Creaza Perfil</Text>
+                                    <TouchableOpacity style={StyleSheet.TouchableStyle} onPress={() => navigation.navigate('CarList')}>
+                                        <Text style={StyleSheet.ButtonText}>Cauta</Text>
                                     </TouchableOpacity>
                                 </View> 
                             </View>

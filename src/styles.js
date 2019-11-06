@@ -75,7 +75,7 @@ export default StyleSheet.create({
         marginBottom: -40,
         alignContent: 'center',
         alignItems:'center',
-        paddingHorizontal: 20,
+        paddingHorizontal: 40,
         paddingVertical: 10
     },
     ButtonText:{
@@ -83,6 +83,29 @@ export default StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
     },
+
+    //No User View
+    NoUserView: {
+        justifyContent:'center',
+        marginBottom: 40,
+        marginTop:100
+    },
+
+    NoUserCardView:{
+        justifyContent: 'center',
+        alignItems: 'center', 
+    },
+    NoUserTitle:{
+        color: QUART_COLOR,
+        padding: 7,
+        fontSize: 27,
+        fontWeight:'bold'
+    },
+    NoUserIcon:{
+        color: QUART_COLOR,
+        marginBottom: -5,
+    },
+
     //SearchBar
     backgroundSearchar: {
         marginTop: 10,
@@ -254,11 +277,6 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: 'center'
     },
-    //AccoutScreen
-    userView: {
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
 
     //AuthForm,CarForm,UserForm
     errorMessage: {
@@ -299,17 +317,18 @@ export default StyleSheet.create({
     
     },
 
-    //Account
+    //AccoutScreen
+    userView: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     iconColor: {
         color: QUART_COLOR
     },
     iconView: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'flex-end',
-        backgroundColor: SECONDARY_COLOR,
-        borderBottomRightRadius: 20,
-        padding: 10
+        justifyContent:'flex-end',
+     
     },
     userDetail:{
         borderBottomRightRadius: 20,

@@ -1,27 +1,28 @@
 import React , {useContext} from 'react';
-import { View, ScrollView , TouchableOpacity } from 'react-native';
+import { View, ScrollView , TouchableOpacity, Image  } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import {Text} from 'react-native-elements';
-import { FontAwesome, Entypo, EvilIcons,SimpleLineIcons, AntDesign } from '@expo/vector-icons';
+import { FontAwesome, Entypo, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import Spacer from '../components/Spacer';
 import { Context as AuthContext } from '../context/AuthContext';
+import Card from '../components/Card';
 import StyleSheet from '../styles';
 
 const AccountScreen = ({ navigation }) => {
-    const { state } = useContext(AuthContext); 
-    
-   console.log('***state AccountScreen', state)
+    const usersContext =  useContext(AuthContext); 
+    const { state } = usersContext;
       
     return (
         <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'always' }}>         
-            {state.user !== undefined ? userCard(state.user,navigation) : noUser(navigation) }                      
+            {state.user !== undefined ? userCard(state.user,navigation,usersContext) : noUser(navigation) }                      
         </SafeAreaView>
        
     );
 }
 
-const userCard = (user,navigation) => {
-    const {deleteUser } = useContext(AuthContext);  
+const userCard = (user,navigation,usersContext) => { 
+    const { deleteUser} = usersContext;
+
     return (
         <ScrollView >
             <View style={StyleSheet.userView}>
@@ -30,13 +31,17 @@ const userCard = (user,navigation) => {
             </View> 
             <Spacer>
             <View style={StyleSheet.userDetail}>
-                <View style={StyleSheet.iconView}>
-                    <TouchableOpacity  onPress={() => navigation.navigate('UserEdit')}>
-                        <EvilIcons style={StyleSheet.iconColor} name="pencil" size={50} />          
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => deleteUser(user.id)}>
-                        <AntDesign style={StyleSheet.iconColor} name="delete" size={30}/>
-                    </TouchableOpacity>
+                <View style={StyleSheet.iconView}> 
+                    <View style={StyleSheet.priceDayView}>        
+                        <TouchableOpacity  onPress={() => navigation.navigate('UserEdit')}>
+                            <MaterialCommunityIcons style={StyleSheet.iconColor} name="playlist-edit" size={30} />
+                        </TouchableOpacity> 
+                    </View>  
+                    <View style={StyleSheet.bookView}>    
+                        <TouchableOpacity onPress={() => deleteUser(user.id)}>  
+                            <AntDesign style={StyleSheet.OwnControlsIcon} name="delete" size={20}/>     
+                        </TouchableOpacity> 
+                    </View>  
                 </View>
                 <Spacer/>
                 <Text style={StyleSheet.Text} >Username:  {user.nick_name}</Text>
@@ -59,12 +64,23 @@ const userCard = (user,navigation) => {
 
 const noUser = (navigation) =>{
     return (   
-        <View style={StyleSheet.userDetail}>
-            <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-                <Text style={StyleSheet.Text}>Nu ai user, creaza unul </Text>
-                <SimpleLineIcons style={{ margin : 15 }} name="user-follow" size={30} />
-            </TouchableOpacity> 
-        </View>        
+        <SafeAreaView  style={StyleSheet.AppSecondaryStyle} forceInset={{ top: 'always' }}>  
+            <ScrollView>
+                <View style={StyleSheet.NoUserView}>
+                    <Card>
+                        <View style={StyleSheet.NoUserCardView}>                       
+                            <Text style={StyleSheet.NoUserTitle}> Nu ai perfil, creaza unul </Text>
+                            <Entypo style={StyleSheet.NoUserIcon} name="user" size={100} /> 
+                            <View style={StyleSheet.ButtonView}>
+                                <TouchableOpacity style={StyleSheet.TouchableStyle} onPress={() => navigation.navigate('Signup')}>
+                                    <Text style={StyleSheet.ButtonText}>Creaza</Text>
+                                </TouchableOpacity>
+                            </View> 
+                        </View>
+                    </Card>
+                </View>                   
+            </ScrollView>    
+        </SafeAreaView>        
     );    
 } 
 

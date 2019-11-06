@@ -16,7 +16,7 @@ const carsReducer = (state, action) => {
         case 'fetch_own_cars':
             return state.filter(car => car.user_id == action.payload);     
         case 'delete_car':
-            return state.filter(car => car.id !== action.payload);         
+            return state.filter(({ car }) => car.id !== action.payload);         
         default:
             return state;
     }
@@ -41,7 +41,7 @@ const addCar = dispatch => {
         try {
             const response = await nicuApi.post('/cars', { brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour });
             dispatch({ type: 'addCar', payload: response.data });
-            navigate ('CarOwn')
+            navigate ('CarOwn');
         } catch (err) {
             console.log("Error URL",err)
             dispatch({ 
@@ -62,7 +62,11 @@ const editCar = dispatch => {
         try {
             const response = await nicuApi.put(`/cars/${id}`, { user_id,brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour });
             dispatch({ type: 'edit_car', payload: response.data });
+<<<<<<< HEAD
             navigate('CarOwnDetail',{id});   
+=======
+            navigate('CarOwn');   
+>>>>>>> master
         } catch (error) {
             dispatch({ 
                 type: 'add_error', 
@@ -74,7 +78,11 @@ const deleteCar = dispatch => {
     return async id => {
         await nicuApi.delete(`/cars/${id}`);
         dispatch({ type: 'delete_car', payload: id});
+<<<<<<< HEAD
         navigate('CarOwn');
+=======
+        navigate('CarOwn'); 
+>>>>>>> master
     };
  }
 
