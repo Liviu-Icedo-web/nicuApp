@@ -91,6 +91,7 @@ const editUser = dispatch => async (id, email, password, nick_name, first_name, 
 const deleteUser = dispatch => {
     return async id => {
         await nicuApi.delete(`/users/${id}`);
+        await AsyncStorage.removeItem('token');
         dispatch({ type: 'delete_user', payload: id});
         navigate('Home');
     };
