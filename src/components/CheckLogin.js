@@ -11,7 +11,8 @@ const CheckLogin = () => {
 
     return (
         <>
-            {state.token !== null ?
+            {state.token        
+            ?      
             <View style={StyleSheet.CheckView}>
                 <Text style={StyleSheet.CheckText}>Salut Acum Poti cauta si Rezerva Masina dorita!!!!</Text>
                 <Button title="Sign Out" onPress={signout} type="outline" /> 

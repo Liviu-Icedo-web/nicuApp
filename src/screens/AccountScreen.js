@@ -10,18 +10,20 @@ import StyleSheet from '../styles';
 
 
 const AccountScreen = ({ navigation }) => {
-    const { state } = useContext(AuthContext);  
+    const usersContext =  useContext(AuthContext); 
+    const { state } = usersContext;
       
     return (
         <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'always' }}>         
-            {state.user !== undefined ? userCard(state.user,navigation) : noUser(navigation) }                      
+            {state.user !== undefined ? userCard(state.user,navigation,usersContext) : noUser(navigation) }                      
         </SafeAreaView>
        
     );
 }
 
-const userCard = (user,navigation) => {
-    const {deleteUser } = useContext(AuthContext);  
+const userCard = (user,navigation,usersContext) => { 
+    const { deleteUser} = usersContext;
+
     return (
         <ScrollView >
             <View style={StyleSheet.userView}>

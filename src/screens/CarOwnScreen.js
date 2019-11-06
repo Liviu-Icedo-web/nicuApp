@@ -8,25 +8,31 @@ import { Context as AuthContext } from '../context/AuthContext';
 import Card from '../components/Card';
 import StyleSheet from '../styles';
 
-const CarOwnScreen = ({ navigation }) => {
-    const { state } = useContext(AuthContext);  
+const CarOwnScreen = ({ navigation }) => { 
+    const usersContext =  useContext(AuthContext); 
+    const carsContext = useContext(CarContext);
+    const { state } = usersContext; 
       
     return (
         <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'always' }}>         
-            {state.user !== undefined ? UserOwnCars(navigation) : noUser(navigation) }                      
+            {state.user !== undefined ? UserOwnCars(navigation, carsContext) : noUser(navigation) }                      
         </SafeAreaView>
        
     );
 }
 
-
-const UserOwnCars = (navigation) => {
-    const { state, fetchCars, deleteCar} = useContext(CarContext); 
+const UserOwnCars = (navigation,carsContext) => {
+    const { state, fetchCars, deleteCar} = carsContext;
 
     return (   
         <ScrollView>
             <View style={StyleSheet.CheckView}>
                 <Text style={StyleSheet.CheckText}>ADAUGA, VIZUALIZA/EDITEAZA sau ELIMINA Masinile Publicate Pentru Inchiriere !!!!</Text>
+                <View style={StyleSheet.priceHourView}>
+                    <TouchableOpacity onPress={() => navigation.navigate('CarCreate')}>
+                        <Entypo style={StyleSheet.iconColor} name="plus" size={30} />         
+                    </TouchableOpacity> 
+                </View>  
             </View> 
             <NavigationEvents onWillFocus={fetchCars} /> 
             <FlatList 
@@ -47,19 +53,12 @@ const UserOwnCars = (navigation) => {
                                         </View>  
                                     </View>
                                 </TouchableOpacity>      
-                                <View style={StyleSheet.bookSectionView}> 
-                                    <View style={StyleSheet.bookSectionView}>                       
-                                        <View style={StyleSheet.priceHourView}>
-                                            <TouchableOpacity onPress={() => navigation.navigate('CarCreate')}>
-                                                <Entypo style={StyleSheet.iconColor} name="plus" size={30} />         
-                                            </TouchableOpacity> 
-                                        </View>  
-                                        <View style={StyleSheet.priceDayView}>        
-                                            <TouchableOpacity onPress={() => navigation.navigate('CarOwnDetail', { id: item.id })}>
-                                                <MaterialCommunityIcons style={StyleSheet.iconColor} name="playlist-edit" size={30} />
-                                            </TouchableOpacity> 
-                                        </View>   
-                                    </View>                                                     
+                                <View style={StyleSheet.iconView}>                                 
+                                    <View style={StyleSheet.priceDayView}>        
+                                        <TouchableOpacity onPress={() => navigation.navigate('CarOwnDetail', { id: item.id })}>
+                                            <MaterialCommunityIcons style={StyleSheet.iconColor} name="playlist-edit" size={30} />
+                                        </TouchableOpacity> 
+                                    </View>                                                      
                                     <View style={StyleSheet.bookView}>    
                                         <TouchableOpacity onPress={() => deleteCar(item.id)}>
                                             <AntDesign style={StyleSheet.OwnControlsIcon} name="delete" size={20}/>     

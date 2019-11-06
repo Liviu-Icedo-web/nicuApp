@@ -18,9 +18,9 @@ const authReducer = (state, action) => {
         case 'fetch_userAuth':
             return {...state,user:action.payload};  
         case 'edit_user':
-            return {...state, user:action.payload, errorMessage: ''}; 
-        case 'delete_user':
-            return state.filter(user => user.id !== action.payload);       
+            return {...state, user:action.payload, errorMessage: ''};    
+        case 'delete_user':  
+            return state.filter(({ user }) => user.id !== action.payload);      
         default:
             return state;
     }
@@ -68,6 +68,7 @@ const signin = dispatch => async ({ email, password }) => {
 const signout = dispatch => async () => {
   await AsyncStorage.removeItem('token');
   dispatch({ type: 'signout' });
+  navigate('Home');
 };
 
 const fetchUserAuth = dispatch => async () => {
@@ -91,7 +92,7 @@ const deleteUser = dispatch => {
     return async id => {
         await nicuApi.delete(`/users/${id}`);
         dispatch({ type: 'delete_user', payload: id});
-        navigate('CarList');
+        navigate('Home');
     };
  }
 
