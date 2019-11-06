@@ -12,7 +12,6 @@ import Card from '../components/Card';
 
 const CarCreateScreen = ({ navigation }) => {
    const { state, addCar, clearErrorMessage  } = useContext(CarContext);
-   console.log('***state CarCreateScreen', state)
     return ( 
         <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'always' }}>  
             <ScrollView >           

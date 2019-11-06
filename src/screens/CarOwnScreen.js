@@ -8,6 +8,7 @@ import { Context as AuthContext } from '../context/AuthContext';
 import Card from '../components/Card';
 import StyleSheet from '../styles';
 
+
 const CarOwnScreen = ({ navigation }) => { 
     const usersContext =  useContext(AuthContext); 
     const carsContext = useContext(CarContext);
@@ -15,14 +16,15 @@ const CarOwnScreen = ({ navigation }) => {
       
     return (
         <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'always' }}>         
-            {state.user !== undefined ? UserOwnCars(navigation, carsContext) : noUser(navigation) }                      
+            {state.user !== undefined ? UserOwnCars(navigation, carsContext, state.user) : noUser(navigation) }                      
         </SafeAreaView>
        
     );
 }
 
-const UserOwnCars = (navigation,carsContext) => {
+const UserOwnCars = (navigation,carsContext, user) => {
     const { state, fetchCars, deleteCar} = carsContext;
+    const ownCars = state.car.filter(car => car.user_id === user.id);
 
     return (   
         <ScrollView>
@@ -33,43 +35,46 @@ const UserOwnCars = (navigation,carsContext) => {
                         <Entypo style={StyleSheet.iconColor} name="plus" size={30} />         
                     </TouchableOpacity> 
                 </View>  
-            </View> 
-            <NavigationEvents onWillFocus={fetchCars} /> 
-            <FlatList 
-                data={state.car}
-                keyExtractor={item => item.id.toString()}
-                renderItem={({ item }) => {
-                    return ( 
-                        <View>                            
-                            <Card >                      
-                                <TouchableOpacity onPress={() => navigation.navigate('CarOwnDetail', { id: item.id })} >
-                                    <View style={StyleSheet.carView}>
-                                        <View style={StyleSheet.imageView}>
-                                            <Image style={StyleSheet.image} source={{ uri: item.images }} />  
+            </View>
+            {ownCars !='' ?  
+                <FlatList 
+                    data={ownCars}
+                    keyExtractor={item => item.id.toString()}
+                    renderItem={({ item }) => {
+                        return ( 
+                            <View>                            
+                                <Card >                      
+                                    <TouchableOpacity onPress={() => navigation.navigate('CarOwnDetail', { id: item.id })} >
+                                        <View style={StyleSheet.carView}>
+                                            <View style={StyleSheet.imageView}>
+                                                <Image style={StyleSheet.image} source={{ uri: item.images }} />  
+                                            </View>
+                                            <View style={StyleSheet.detailView}>
+                                                <Text style={StyleSheet.titleCar}>{item.brand},{item.seats} locuri</Text>
+                                                <Text style={StyleSheet.detailTextCar}>Din {item.year}, {item.doors} usi, {item.hp} cai putere.</Text>
+                                            </View>  
                                         </View>
-                                        <View style={StyleSheet.detailView}>
-                                            <Text style={StyleSheet.titleCar}>{item.brand},{item.seats} locuri</Text>
-                                            <Text style={StyleSheet.detailTextCar}>Din {item.year}, {item.doors} usi, {item.hp} cai putere.</Text>
-                                        </View>  
-                                    </View>
-                                </TouchableOpacity>      
-                                <View style={StyleSheet.iconView}>                                 
-                                    <View style={StyleSheet.priceDayView}>        
-                                        <TouchableOpacity onPress={() => navigation.navigate('CarOwnDetail', { id: item.id })}>
-                                            <MaterialCommunityIcons style={StyleSheet.iconColor} name="playlist-edit" size={30} />
-                                        </TouchableOpacity> 
-                                    </View>                                                      
-                                    <View style={StyleSheet.bookView}>    
-                                        <TouchableOpacity onPress={() => deleteCar(item.id)}>
-                                            <AntDesign style={StyleSheet.OwnControlsIcon} name="delete" size={20}/>     
-                                        </TouchableOpacity> 
-                                    </View>                                                                                
-                                </View>                                                                 
-                            </Card>                            
-                        </View>    
-                    );
-                }}
-            /> 
+                                    </TouchableOpacity>      
+                                    <View style={StyleSheet.iconView}>                                 
+                                        <View style={StyleSheet.priceDayView}>        
+                                            <TouchableOpacity onPress={() => navigation.navigate('CarOwnDetail', { id: item.id })}>
+                                                <MaterialCommunityIcons style={StyleSheet.iconColor} name="playlist-edit" size={30} />
+                                            </TouchableOpacity> 
+                                        </View>                                                      
+                                        <View style={StyleSheet.bookView}>    
+                                            <TouchableOpacity onPress={() => deleteCar(item.id)}>
+                                                <AntDesign style={StyleSheet.OwnControlsIcon} name="delete" size={20}/>     
+                                            </TouchableOpacity> 
+                                        </View>                                                                                
+                                    </View>                                                                 
+                                </Card>                            
+                            </View>    
+                        );
+                    }}
+                />
+                ://Aici se termina comporbarea daca are masini sau nu
+                <Text>Nu ai masini da o masina de alta</Text>
+            } 
         </ScrollView>    
     );
 };

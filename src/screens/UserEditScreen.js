@@ -13,10 +13,7 @@ const UserEditScreen = ({ navigation }) => {
     const { state, editUser, clearErrorMessage  } = useContext(Authcontext);
 
     const user = state.user ;
-
- 
-    console.log('***state USER EDIT', user);
-
+    
     return (
         <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'always' }}>  
             <ScrollView >           

@@ -17,16 +17,13 @@ import IfSignOut from '../components/IfSignOut';
 const CarListScreen = ({ navigation }) => {
     const { state, fetchCars} = useContext(CarContext); 
     const { fetchUserAuth } = useContext(AuthContext);
-    console.log('***state CarListScreen', state)
     /* We run Fecth User to have the user data Like this is the Home page*/
     useEffect(() => {   
         fetchUserAuth();
     }, []);
-    console.log('***state CarListScreen', state)
-    return ( 
-        
+    return (         
         <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>  
-        <ScrollView>
+        <ScrollView >
             <CheckLogin />
             <SearchBar />
             <NavigationEvents onWillFocus={fetchCars} />    
@@ -35,8 +32,8 @@ const CarListScreen = ({ navigation }) => {
                 keyExtractor={item => item.id.toString()}
                 renderItem={({ item }) => {
                     return ( 
-                        <View>                            
-                            <Card >                      
+                        <View>                             
+                            <Card>                      
                                 <TouchableOpacity onPress={() => navigation.navigate('CarDetail', { id: item.id })} >
                                     <View style={StyleSheet.carView}>
                                         <View style={StyleSheet.imageView}>

@@ -11,7 +11,7 @@ import StyleSheet from '../styles';
 
 const SignupScreen = ({ navigation }) => {
    const { state, signUp,clearErrorMessage  } = useContext(AuthContext);
-   console.log('***state SignupScreen', state)
+
     return ( 
         <SafeAreaView style={StyleSheet.AppStyle}  forceInset={{ top: 'always' }} >
             <ScrollView>

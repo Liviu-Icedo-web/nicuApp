@@ -21,7 +21,7 @@ const authReducer = (state, action) => {
         case 'edit_user':
             return {...state, user:action.payload, errorMessage: ''};    
         case 'delete_user':  
-            return state.filter(({ user }) => user.id !== action.payload);      
+            return { token: null, errorMessage: '' };    
         default:
             return state;
     }
@@ -74,7 +74,6 @@ const signout = dispatch => async () => {
 
 const fetchUserAuth = dispatch => async () => {
     const response = await nicuApi.get(`/user`);
-    console.log('*** fetchuser *** 222')
     dispatch({ type: 'fetch_userAuth', payload: response.data });
 };
 

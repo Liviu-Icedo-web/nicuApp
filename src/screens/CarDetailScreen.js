@@ -12,7 +12,6 @@ import IfSignIn from '../components/IfSignIn';
 
 const CarDetailScreen = ({ navigation }) => {
     const { state } = useContext(CarContext);
-    console.log('***state CarDetailScreen', state)
     const car = state.car.find(
         car => car.id === navigation.getParam('id')
     );

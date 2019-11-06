@@ -6,17 +6,20 @@ const carsReducer = (state, action) => {
     switch (action.type) { 
         case 'fetch_cars':
             return {...state, car:action.payload};
-        case 'addCar' :
-            /* Asta o lasam aici pe cand o sa avem list by cars, acuma nu gaseste masina pentru ca nu este in lista principala de la CarDetail
-            let id = action.payload.id
-            return  navigate('CarDetail',{id});*/
-            return {erroMessage:''} ; 
+        case 'addCar':
+            let newCar = action.payload
+            return { ...state, 
+                        car:[...state.car,newCar]
+                    };
         case 'edit_car':
-            return {...state, car1:action.payload}; 
+            let editCar = action.payload
+            return { ...state, 
+                        car:[...state.car.filter(car => car.id != editCar.id),editCar]
+                    }; 
         case 'fetch_own_cars':
             return state.filter(car => car.user_id == action.payload);     
         case 'delete_car':
-            return state.filter(({ car }) => car.id !== action.payload);         
+            return { ...state, car:state.car.filter( car  => car.id !== action.payload)};         
         default:
             return state;
     }
@@ -62,7 +65,7 @@ const editCar = dispatch => {
         try {
             const response = await nicuApi.put(`/cars/${id}`, { user_id,brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour });
             dispatch({ type: 'edit_car', payload: response.data });
-            navigate('CarOwn');   
+            navigate('CarOwnDetail',{id:response.data.id});   
         } catch (error) {
             dispatch({ 
                 type: 'add_error', 

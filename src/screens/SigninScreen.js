@@ -10,8 +10,7 @@ import StyleSheet from '../styles';
 
 const SigninScreen = ({navigation}) => {
     const { state, signin, clearErrorMessage } = useContext(AuthContext);
-    console.log('***state SigninScreen', state)
-   
+    
     return ( 
         <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'always' }}>
             <View style={StyleSheet.SignView}>

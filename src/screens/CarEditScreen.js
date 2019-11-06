@@ -17,8 +17,6 @@ const CarEditScreen = ({ navigation }) => {
         car => car.id === navigation.getParam('_id')
     );
 
-    console.log('*** CAR EDIT', car);
-
     return (
         <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'always' }}>  
         <ScrollView >           
