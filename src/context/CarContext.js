@@ -62,11 +62,7 @@ const editCar = dispatch => {
         try {
             const response = await nicuApi.put(`/cars/${id}`, { user_id,brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour });
             dispatch({ type: 'edit_car', payload: response.data });
-<<<<<<< HEAD
-            navigate('CarOwnDetail',{id});   
-=======
             navigate('CarOwn');   
->>>>>>> master
         } catch (error) {
             dispatch({ 
                 type: 'add_error', 
@@ -78,11 +74,7 @@ const deleteCar = dispatch => {
     return async id => {
         await nicuApi.delete(`/cars/${id}`);
         dispatch({ type: 'delete_car', payload: id});
-<<<<<<< HEAD
-        navigate('CarOwn');
-=======
         navigate('CarOwn'); 
->>>>>>> master
     };
  }
 
