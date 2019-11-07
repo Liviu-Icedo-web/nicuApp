@@ -37,6 +37,11 @@ carOwnFlow.navigationOptions = {
 
 };
 
+AccountScreen.navigationOptions =  { 
+      title: 'Profil',
+      tabBarIcon: <FontAwesome name="gear" size={25} /> 
+};
+
 carListFlow.navigationOptions = {
   title: 'Cauta Masini',
   tabBarIcon: <FontAwesome name="th-list" size={20} />

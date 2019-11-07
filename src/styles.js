@@ -1,10 +1,10 @@
 'use strict';
 import {StyleSheet} from 'react-native';
 
-const PRIMARY_COLOR = "#F5FFFA"; 
+const PRIMARY_COLOR = "#fbfdfd"; 
 const SECONDARY_COLOR = '#dadada';
 const THIRD_COLOR = '#08ffc8';
-const QUART_COLOR = '#204969';
+const QUART_COLOR = '#112f91';
 
 const WHITE = '#fff';
 const GRAY = '#D3D3D3';
@@ -86,9 +86,10 @@ export default StyleSheet.create({
 
     //No User View
     NoUserView: {
-        justifyContent:'center',
         marginBottom: 40,
-        marginTop:100
+        marginTop:100,
+        marginHorizontal: 40,
+   
     },
 
     NoUserCardView:{
@@ -97,8 +98,7 @@ export default StyleSheet.create({
     },
     NoUserTitle:{
         color: QUART_COLOR,
-        padding: 7,
-        fontSize: 27,
+        fontSize: 20,
         fontWeight:'bold'
     },
     NoUserIcon:{
@@ -107,23 +107,54 @@ export default StyleSheet.create({
     },
 
     //SearchBar
-    backgroundSearchar: {
+    backgroundSearch:{
+        backgroundColor: QUART_COLOR,
+        minHeight: 100,
+        paddingBottom: 20,
+        paddingHorizontal: 10,
+        marginBottom:10
+    },
+    RowSearch:{
+        flex:2,
+        flexDirection:'row',
+        paddingTop: 10,
+    },
+    backgroundInput: {
+        flex:1,
         marginTop: 10,
         backgroundColor: WHITE,
-        height: 50,
+        height: 30,
         borderRadius: 5,
-        marginHorizontal: 10,
+        marginHorizontal: 5,
         flexDirection: 'row'
     },
     inputSearchStyle: {
         flex: 1,
-        fontSize: 18
+        fontSize: 15,
+        marginHorizontal: 10
+    },
+
+    picker: {
+        flex:1,
+        marginTop: 10,
+        height: 30,
+        marginHorizontal: 5,
+        color: SECONDARY_COLOR
+     
+    },
+    search:{
+        marginTop: 10,
+        marginHorizontal: 5,
+     
     },
     iconSearchStyle: {
         fontSize: 35,
         alignSelf: 'center',
-        marginHorizontal: 10
+        marginHorizontal: 10,
+        color: WHITE
     },
+  
+   
     //CarListScreen
     button: {
         marginHorizontal: 10,

@@ -1,12 +1,14 @@
 import React , {useContext} from 'react';
 import { View, ScrollView , TouchableOpacity, Image  } from 'react-native';
+import { Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import {Text} from 'react-native-elements';
-import { FontAwesome, Entypo, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
+import {  Entypo, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import Spacer from '../components/Spacer';
 import { Context as AuthContext } from '../context/AuthContext';
 import Card from '../components/Card';
 import StyleSheet from '../styles';
+
 
 const AccountScreen = ({ navigation }) => {
     const usersContext =  useContext(AuthContext); 
@@ -21,7 +23,7 @@ const AccountScreen = ({ navigation }) => {
 }
 
 const userCard = (user,navigation,usersContext) => { 
-    const { deleteUser} = usersContext;
+    const { deleteUser ,signout } = usersContext;
 
     return (
         <ScrollView >
@@ -43,6 +45,7 @@ const userCard = (user,navigation,usersContext) => {
                         </TouchableOpacity> 
                     </View>  
                 </View>
+                <Button title="Deconecteaza-te!!" onPress={signout} type="outline" /> 
                 <Spacer/>
                 <Text style={StyleSheet.Text} >Username:  {user.nick_name}</Text>
                 <Spacer/>
@@ -64,7 +67,6 @@ const userCard = (user,navigation,usersContext) => {
 
 const noUser = (navigation) =>{
     return (   
-        <SafeAreaView  style={StyleSheet.AppSecondaryStyle} forceInset={{ top: 'always' }}>  
             <ScrollView>
                 <View style={StyleSheet.NoUserView}>
                     <Card>
@@ -79,16 +81,9 @@ const noUser = (navigation) =>{
                         </View>
                     </Card>
                 </View>                   
-            </ScrollView>    
-        </SafeAreaView>        
+            </ScrollView>          
     );    
 } 
 
-AccountScreen.navigationOptions = () => {
-    return {    
-        title: 'Profil',
-        tabBarIcon: <FontAwesome name="gear" size={25} />
-    };
-};
 
 export default AccountScreen;

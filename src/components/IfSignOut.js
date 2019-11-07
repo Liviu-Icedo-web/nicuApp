@@ -7,7 +7,8 @@ const IfSignOut = (props) => {
 
     return (
         <>
-          {!state.token ?
+          {!state.token
+            ?
             <View>
                 {props.children}
             </View>

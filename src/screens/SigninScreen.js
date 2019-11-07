@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { View } from 'react-native';
+import { View ,TouchableOpacity} from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { NavigationEvents } from 'react-navigation';
+import { MaterialIcons} from '@expo/vector-icons';
 import { Context as AuthContext } from '../context/AuthContext';
 import AuthForm from '../components/AuthForm';
 import NavLink from '../components/NavLink';
@@ -16,6 +17,9 @@ const SigninScreen = ({navigation}) => {
             <View style={StyleSheet.SignView}>
                  <Card>
                     <NavigationEvents onWillBlur={clearErrorMessage} />
+                    <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+                        <MaterialIcons name="arrow-back" size={30} />
+                    </TouchableOpacity>
                     <AuthForm
                         headerText="Intra in Perfilul Tau!!"
                         errorMessage={state.errorMessage}

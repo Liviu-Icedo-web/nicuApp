@@ -2,7 +2,6 @@ import React, {  useContext } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { AntDesign,Entypo ,MaterialCommunityIcons} from '@expo/vector-icons';
 import { SafeAreaView } from 'react-navigation';
-import { NavigationEvents } from 'react-navigation';
 import { Context as CarContext } from '../context/CarContext';
 import { Context as AuthContext } from '../context/AuthContext';
 import Card from '../components/Card';
@@ -23,7 +22,7 @@ const CarOwnScreen = ({ navigation }) => {
 }
 
 const UserOwnCars = (navigation,carsContext, user) => {
-    const { state, fetchCars, deleteCar} = carsContext;
+    const { state,  deleteCar} = carsContext;
     const ownCars = state.car.filter(car => car.user_id === user.id);
 
     return (   
@@ -79,33 +78,41 @@ const UserOwnCars = (navigation,carsContext, user) => {
     );
 };
 
+
+
 const noUser = (navigation) =>{
     return (   
-        <SafeAreaView  style={StyleSheet.AppSecondaryStyle} forceInset={{ top: 'always' }}>  
-            <ScrollView>
-                <View style={StyleSheet.NoUserView}>
-                    <Card>
-                        <View style={StyleSheet.NoUserCardView}>                       
-                            <Text style={StyleSheet.NoUserTitle}> Nu ai perfil, creaza unul </Text>
-                            <Entypo style={StyleSheet.NoUserIcon} name="user" size={100} /> 
-                            <View style={StyleSheet.ButtonView}>
-                                <TouchableOpacity style={StyleSheet.TouchableStyle} onPress={() => navigation.navigate('Signup')}>
-                                    <Text style={StyleSheet.ButtonText}>Creaza</Text>
-                                </TouchableOpacity>
-                            </View> 
-                        </View>
-                    </Card>
-                </View>                   
-            </ScrollView>    
-        </SafeAreaView>        
+        <ScrollView>
+            <View style={StyleSheet.NoUserView}>
+                <Card>
+                    <View style={StyleSheet.NoUserCardView}>                       
+                        <Text style={StyleSheet.NoUserTitle}> Nu ai perfil, creaza unul </Text>
+                        <Entypo style={StyleSheet.NoUserIcon} name="user" size={100} /> 
+                        <View style={StyleSheet.ButtonView}>
+                            <TouchableOpacity style={StyleSheet.TouchableStyle} onPress={() => navigation.navigate('Signup')}>
+                                <Text style={StyleSheet.ButtonText}>Creaza</Text>
+                            </TouchableOpacity>
+                        </View> 
+                    </View>
+                </Card>
+            </View>                   
+        </ScrollView>       
     );    
 } 
 
-CarOwnScreen.navigationOptions = ({navigation}) => {
-    return {
-        header: null
-    };
+
+CarOwnScreen.navigationOptions = ({ navigation}) => { 
+    return {         
+        title: 'Masini Publicate',
+        headerTitleStyle: {
+            flex: 1,
+            color: '#112f91',
+            fontWeight:'bold'
+        },
+        
+    }     
 };
+
 
 
 export default CarOwnScreen;

@@ -87,7 +87,7 @@ CarListScreen.navigationOptions = ({ navigation}) => {
         headerTitleStyle: {
             textAlign:'center',
             flex: 1,
-            color: '#204969',
+            color: '#112f91',
             fontWeight:'bold'
         },
     }     
