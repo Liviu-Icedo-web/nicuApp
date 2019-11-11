@@ -10,7 +10,7 @@ const carsReducer = (state, action) => {
             let newCar = action.payload
             return { ...state, 
                         car:[...state.car,newCar]
-                    };
+                    };          
         case 'edit_car':
             let editCar = action.payload
             return { ...state, 
@@ -32,17 +32,18 @@ const fetchCars = dispatch => async () => {
 
 //Esta funccion habria que mirar como meter el id del token conectado  y  aver como hacemos lo del array de imagenes 
 const addCar = dispatch => {
-    return async ( brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour ) => {
+    return async ( brand, year, hp, doors, seats, insurance, images, town, price_day, price_hour ) => {
         //Pasamos los datos de string a int asi es como lo necesitamos en la api        
         year = parseInt(year)
         hp = parseInt(hp)
         doors = parseInt(doors)
         seats = parseInt(seats)
-        PriceDay = parseFloat(PriceDay)
-        PriceHour = parseFloat(PriceHour)    
+        price_day = parseFloat(price_day)
+        price_hour = parseFloat(price_hour)  
+      
 
         try {
-            const response = await nicuApi.post('/cars', { brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour });
+            const response = await nicuApi.post('/cars', { brand, year, hp, doors, seats, insurance, images, town, price_day, price_hour });
             dispatch({ type: 'addCar', payload: response.data });
             navigate ('CarOwn');
         } catch (err) {
@@ -54,18 +55,18 @@ const addCar = dispatch => {
     }; 
 } 
 const editCar = dispatch => {
-    return async (id, user_id,brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour ) => {
+    return async (id, user_id,brand, year, hp, doors, seats, insurance, images, town, price_day, price_hour ) => {
         year = parseInt(year)
         hp = parseInt(hp)
         doors = parseInt(doors)
         seats = parseInt(seats)
-        PriceDay = parseFloat(PriceDay)
-        PriceHour = parseFloat(PriceHour)  
+        price_day = parseFloat(price_day)
+        price_hour = parseFloat(price_hour)  
         
         try {
-            const response = await nicuApi.put(`/cars/${id}`, { user_id,brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour });
+            const response = await nicuApi.put(`/cars/${id}`, { user_id,brand, year, hp, doors, seats, insurance, images, town, price_day, price_hour });
             dispatch({ type: 'edit_car', payload: response.data });
-            navigate('CarOwnDetail',{id:response.data.id});   
+            navigate('CarOwnDetail',{id:response.data.id}); 
         } catch (error) {
             dispatch({ 
                 type: 'add_error', 
@@ -86,7 +87,7 @@ const deleteCar = dispatch => {
         await nicuApi.get('/cars'); 
         dispatch({ type: 'fetch_own_cars', payload: user_id });}
 };
-  
+
 
 export const { Context, Provider } = createDataContext(
     carsReducer,

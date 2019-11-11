@@ -20,7 +20,7 @@ const CarDetailScreen = ({ navigation }) => {
         <SafeAreaView style={StyleSheet.AppSecondaryStyle} forceInset={{ top: 'never' }}>
             <ScrollView>
                 <Image style={StyleSheet.imageDetail} source={{uri: car.images}} />   
-                <Text style={StyleSheet.title}>{car.brand}, {car.Town}</Text> 
+                <Text style={StyleSheet.title}>{car.brand}, {car.town}</Text> 
                 <View style={StyleSheet.stars}>
                     <FontAwesome style={StyleSheet.star} name="star" size={20} />
                     <FontAwesome style={StyleSheet.star} name="star" size={20} />
@@ -35,8 +35,8 @@ const CarDetailScreen = ({ navigation }) => {
                         <Text style={StyleSheet.info} >Cai Putere: {car.hp}</Text>
                     </View>
                     <View style={StyleSheet.detailPriceView}>
-                        <Text style={StyleSheet.Text}>{car.PriceDay} Lei Ziua</Text>
-                        <Text style={StyleSheet.Text}>{car.PriceHour} Lei Hora</Text>
+                        <Text style={StyleSheet.Text}>{car.price_day} Lei Ziua</Text>
+                        <Text style={StyleSheet.Text}>{car.price_hour} Lei Hora</Text>
                     </View>  
                 </View>                
                 <Spacer>

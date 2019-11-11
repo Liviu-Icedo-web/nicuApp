@@ -12,12 +12,11 @@ const CarForm = ({ headerText, errorMessage, initialValues , onSubmit, submitBut
     const[doors, setdoors] = useState(initialValues.doors);
     const[seats, setseats] = useState(initialValues.seats);
     const[images, setimages] = useState(initialValues.images);
-    const[insurance, setinsurance] = useState(initialValues.insurance);
-    const[Town, setTown] = useState(initialValues.Town);
-    const[PriceDay, setPriceDay] = useState(initialValues.PriceDay);
-    const[PriceHour, setPriceHour] = useState(initialValues.PriceHour);
+    const[insurance, setinsurance] = useState(initialValues.insurance );
+    const[town, setTown] = useState(initialValues.town);
+    const[price_day, setPriceDay] = useState(initialValues.price_day );
+    const[price_hour, setPriceHour] = useState(initialValues.price_hour);
 
-    
     return (
         <>
             <Spacer>
@@ -65,7 +64,7 @@ const CarForm = ({ headerText, errorMessage, initialValues , onSubmit, submitBut
             />
             <Input 
                 label="Oras"
-                value={Town}
+                value={town}
                 onChangeText={setTown}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -87,7 +86,7 @@ const CarForm = ({ headerText, errorMessage, initialValues , onSubmit, submitBut
             <Input 
                 label="Pret/ZI"
                 type="number"
-                value={PriceDay.toString()}
+                value={price_day.toString()}
                 onChangeText={setPriceDay}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -95,7 +94,7 @@ const CarForm = ({ headerText, errorMessage, initialValues , onSubmit, submitBut
              <Input 
                 label="Pret/HORA"
                 type="number"
-                value={PriceHour.toString()}
+                value={price_hour.toString()}
                 onChangeText={setPriceHour}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -104,7 +103,7 @@ const CarForm = ({ headerText, errorMessage, initialValues , onSubmit, submitBut
             <Spacer>
                 <Button
                     title={submitButtonText}
-                    onPress={() => onSubmit( brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour )}
+                    onPress={() => onSubmit( brand, year, hp, doors, seats, insurance, images, town, price_day, price_hour )}
                     type="outline"
                 />
             </Spacer>

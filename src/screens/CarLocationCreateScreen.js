@@ -3,30 +3,35 @@ import { View,ScrollView ,TouchableOpacity} from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { MaterialIcons} from '@expo/vector-icons';
 import { NavigationEvents } from 'react-navigation';
-import { Context as CarContext } from '../context/CarContext';
+import { Context as CarLocationContext } from '../context/CarLocationContext';
 import StyleSheet from '../styles';
-import CarForm from '../components/CarForm';
+import CarLocationForm from '../components/CarLocationForm';
 import Card from '../components/Card';
 
 
 
-const CarCreateScreen = ({ navigation }) => {
-   const { state, addCar, clearErrorMessage  } = useContext(CarContext);
+const CarLocationCreateScreen = ({ navigation }) => {
+   const { state, addLocationCar, clearErrorMessage  } = useContext(CarLocationContext);
+    const carId = navigation.getParam('carid')
+
+    
+   
+   console.log("*** CarLocationCreateScreen ",navigation.getParam('carid'))
     return ( 
         <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'always' }}>  
             <ScrollView >           
                 <View style={StyleSheet.CarCreateView}>
                     <Card>
                         <NavigationEvents onWillBlur={clearErrorMessage} />
-                        <TouchableOpacity onPress={() => navigation.navigate('CarOwn')}>
+                        <TouchableOpacity onPress={() => navigation.navigate('CarLocations')}>
                             <MaterialIcons name="arrow-back" size={30} />
                         </TouchableOpacity>
-                        <CarForm
-                            headerText="Adauga o Masina "
+                        <CarLocationForm
+                            headerText="Adauga o Localizare pentru Masina "
                             errorMessage={state.errorMessage}
                             submitButtonText="Salveaza"
-                            initialValues ={{brand: '', year: '', hp: '', doors: '', seats: '', insurance: '', images: '', town: '', price_day: '',price_hour: ''}}
-                            onSubmit={addCar}
+                            initialValues ={{carId:navigation.getParam('carid'),street: '', city: '', state: '', country: 'Romania'}}
+                            onSubmit={addLocationCar}
                         />
                     </Card>  
                 </View>            
@@ -35,10 +40,10 @@ const CarCreateScreen = ({ navigation }) => {
     );
 };
 
-CarCreateScreen.navigationOptions = () => {
+CarLocationCreateScreen.navigationOptions = () => {
     return {
         header: null
     };
 };
 
-export default CarCreateScreen;
+export default CarLocationCreateScreen;

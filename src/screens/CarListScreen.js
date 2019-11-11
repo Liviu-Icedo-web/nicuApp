@@ -42,18 +42,18 @@ const CarListScreen = ({ navigation }) => {
                                         <View style={StyleSheet.detailView}>
                                             <Text style={StyleSheet.titleCar}>{item.brand},{item.seats} locuri</Text>
                                             <Text style={StyleSheet.detailTextCar}>Din {item.year}, {item.doors} usi, {item.hp} cai putere.</Text>
-                                            <Text>{item.Town}</Text>
+                                            <Text>{item.town}</Text>
                                         </View>  
                                     </View>
                                 </TouchableOpacity>      
                                 <View style={StyleSheet.bookSectionView}>
                                     <View style={StyleSheet.bookSectionView}>
                                         <View style={StyleSheet.priceHourView}>
-                                            <Text style={StyleSheet.priceHourText}>{item.PriceHour} Lei</Text>
+                                            <Text style={StyleSheet.priceHourText}>{item.price_hour} Lei</Text>
                                             <Text style={StyleSheet.priceHourText}>Hora</Text>
                                         </View>
                                         <View style={StyleSheet.priceDayView}>
-                                            <Text style={StyleSheet.priceDayText}>{item.PriceDay} Lei</Text> 
+                                            <Text style={StyleSheet.priceDayText}>{item.price_day} Lei</Text> 
                                             <Text style={StyleSheet.priceDayText}>Ziua</Text> 
                                         </View>                                                      
                                     </View>

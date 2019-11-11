@@ -29,9 +29,9 @@ const CarEditScreen = ({ navigation }) => {
                     <CarForm
                         headerText="Editeaza Masina "
                         errorMessage={state.errorMessage}
-                         initialValues={{ brand: car.brand, year: car.year, hp: car.hp, doors: car.doors, seats: car.seats, insurance: car.insurance , images: car.images, Town: car.Town, PriceDay: car.PriceDay, PriceHour: car.PriceHour}}
-                         onSubmit={(brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour) => {
-                            editCar(car.id, car.user_id ,brand, year, hp, doors, seats, insurance, images, Town, PriceDay, PriceHour, () => navigation.pop());
+                        initialValues={{ brand: car.brand, year: car.year, hp: car.hp, doors: car.doors, seats: car.seats, insurance: car.insurance , images: car.images, town: car.town, price_day: car.price_day, price_hour: car.price_hour}}
+                        onSubmit={(brand, year, hp, doors, seats, insurance, images, town, price_day, price_hour) => {
+                            editCar(car.id, car.user_id ,brand, year, hp, doors, seats, insurance, images, town, price_day, price_hour, () => navigation.pop());
                         }}
                         submitButtonText="Editeaza"
                     />
