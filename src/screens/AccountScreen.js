@@ -34,16 +34,12 @@ const userCard = (user,navigation,usersContext) => {
             <Spacer>
             <View style={StyleSheet.userDetail}>
                 <View style={StyleSheet.iconView}> 
-                    <View style={StyleSheet.priceDayView}>        
-                        <TouchableOpacity  onPress={() => navigation.navigate('UserEdit')}>
-                            <MaterialCommunityIcons style={StyleSheet.iconColor} name="playlist-edit" size={30} />
-                        </TouchableOpacity> 
-                    </View>  
-                    <View style={StyleSheet.bookView}>    
-                        <TouchableOpacity onPress={() => deleteUser(user.id)}>  
-                            <AntDesign style={StyleSheet.OwnControlsIcon} name="delete" size={20}/>     
-                        </TouchableOpacity> 
-                    </View>  
+                    <TouchableOpacity style={{ marginRight: 10}} onPress={() => navigation.navigate('UserEdit')}>
+                        <MaterialCommunityIcons style={StyleSheet.iconColor} name="playlist-edit" size={25} />
+                    </TouchableOpacity> 
+                    <TouchableOpacity style={{ marginRight: 10}} onPress={() => deleteUser(user.id)}>  
+                        <AntDesign style={StyleSheet.iconColor} name="delete" size={20}/>     
+                    </TouchableOpacity> 
                 </View>
                 <Button title="Deconecteaza-te!!" onPress={signout} type="outline" /> 
                 <Spacer/>

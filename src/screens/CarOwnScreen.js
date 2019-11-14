@@ -27,13 +27,11 @@ const UserOwnCars = (navigation,carsContext, user) => {
 
     return (   
         <ScrollView>
-            <View style={StyleSheet.CheckView}>
-                <Text style={StyleSheet.CheckText}>ADAUGA, VIZUALIZA/EDITEAZA sau ELIMINA Masinile Publicate Pentru Inchiriere !!!!</Text>
-                <View style={StyleSheet.priceHourView}>
-                    <TouchableOpacity onPress={() => navigation.navigate('CarCreate')}>
-                        <Entypo style={StyleSheet.iconColor} name="plus" size={30} />         
-                    </TouchableOpacity> 
-                </View>  
+            <View style={StyleSheet.DescriptionView}>
+                <Text style={StyleSheet.white}>ADAUGA, VIZUALIZEAZA/EDITEAZA, BLOQUEAZA sau ELIMINA Masinile Publicate !!!!</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('CarCreate')}>
+                    <Entypo style={StyleSheet.white} name="plus" size={30} />         
+                </TouchableOpacity> 
             </View>
             {ownCars !='' ?  
                 <FlatList 
@@ -42,7 +40,15 @@ const UserOwnCars = (navigation,carsContext, user) => {
                     renderItem={({ item }) => {
                         return ( 
                             <View>                            
-                                <Card >                      
+                                <Card >       
+                                    <View style={StyleSheet.iconView}>                                     
+                                        <TouchableOpacity  style={{ marginRight: 10}} onPress={() => navigation.navigate('CarOwnDetail', { id: item.id })}>
+                                            <MaterialCommunityIcons style={StyleSheet.iconColor} name="playlist-edit" size={25} />
+                                        </TouchableOpacity> 
+                                        <TouchableOpacity style={{ marginRight: 10}}  onPress={() => deleteCar(item.id)}>
+                                            <AntDesign style={StyleSheet.iconColor} name="delete" size={20}/>     
+                                        </TouchableOpacity>                                                                            
+                                    </View>                 
                                     <TouchableOpacity onPress={() => navigation.navigate('CarOwnDetail', { id: item.id })} >
                                         <View style={StyleSheet.carView}>
                                             <View style={StyleSheet.imageView}>
@@ -53,18 +59,16 @@ const UserOwnCars = (navigation,carsContext, user) => {
                                                 <Text style={StyleSheet.detailTextCar}>Din {item.year}, {item.doors} usi, {item.hp} cai putere.</Text>
                                             </View>  
                                         </View>
-                                    </TouchableOpacity>      
-                                    <View style={StyleSheet.iconView}>                                 
-                                        <View style={StyleSheet.priceDayView}>        
-                                            <TouchableOpacity onPress={() => navigation.navigate('CarOwnDetail', { id: item.id })}>
-                                                <MaterialCommunityIcons style={StyleSheet.iconColor} name="playlist-edit" size={30} />
-                                            </TouchableOpacity> 
-                                        </View>                                                      
-                                        <View style={StyleSheet.bookView}>    
-                                            <TouchableOpacity onPress={() => deleteCar(item.id)}>
-                                                <AntDesign style={StyleSheet.OwnControlsIcon} name="delete" size={20}/>     
-                                            </TouchableOpacity> 
-                                        </View>                                                                                
+                                    </TouchableOpacity>  
+                                       
+                                
+                                    <View style={StyleSheet.GrayCardView}>
+                                        <TouchableOpacity onPress="">
+                                             <Text style={StyleSheet.iconColor}>Bloqueza Masina</Text> 
+                                        </TouchableOpacity>   
+                                        <TouchableOpacity onPress="">
+                                                <Entypo style={StyleSheet.iconColor} name="block" size={20} />                                                                     
+                                        </TouchableOpacity> 
                                     </View>                                                                 
                                 </Card>                            
                             </View>    
@@ -103,7 +107,7 @@ const noUser = (navigation) =>{
 
 CarOwnScreen.navigationOptions = ({ navigation}) => { 
     return {         
-        title: 'Masini Publicate',
+        title: 'Masini Publicate Pentru Inchiriere',
         headerTitleStyle: {
             flex: 1,
             color: '#112f91',

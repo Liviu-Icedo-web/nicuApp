@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-navigation';
 import { Text } from 'react-native-elements';
 import { Context as CarContext } from '../context/CarContext';
 import Spacer from '../components/Spacer';
-import { FontAwesome, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
+import { FontAwesome, MaterialCommunityIcons, Octicons } from '@expo/vector-icons';
 import StyleSheet from '../styles';
 import IfSignIn from '../components/IfSignIn';
 
@@ -19,42 +19,33 @@ const CarDetailScreen = ({ navigation }) => {
 
  
     return (
-        <SafeAreaView style={StyleSheet.AppSecondaryStyle} forceInset={{ top: 'never' }}>
+        <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>
             <ScrollView>
-                <Image style={StyleSheet.imageDetail} source={{uri: car.images}} />   
-                <Text style={StyleSheet.title}>{car.brand}, {car.town}</Text> 
-                <View style={StyleSheet.stars}>
-                    <FontAwesome style={StyleSheet.star} name="star" size={20} />
-                    <FontAwesome style={StyleSheet.star} name="star" size={20} />
-                    <FontAwesome style={StyleSheet.star} name="star" size={20} />
-                    <FontAwesome style={StyleSheet.star} name="star-half-full" size={20} />
-                    <Text style={StyleSheet.star} > (26likes) </Text>
-                </View> 
-                <View style={StyleSheet.detailCarView}>
-                    <View>              
-                        <Text style={StyleSheet.info}>Anul: {car.year}</Text>
-                        <Text style={StyleSheet.info} >Usi: {car.doors}, Locuri: {car.seats}</Text>
-                        <Text style={StyleSheet.info} >Cai Putere: {car.hp}</Text>
-                    </View>
-                    <View style={StyleSheet.detailPriceView}>
-                        <Text style={StyleSheet.Text}>{car.price_day} Lei Ziua</Text>
-                        <Text style={StyleSheet.Text}>{car.price_hour} Lei Hora</Text>
+                <Image style={StyleSheet.imageDetail} source={{uri: car.images}} /> 
+                <View style={StyleSheet.rowView}>
+                    <Text style={StyleSheet.titleAzul}>{car.brand},{car.town}</Text> 
+                    <View style={StyleSheet.AzulCardView}>
+                        <Text style={StyleSheet.white}>{car.price_day} Lei Ziua</Text>
+                        <Text style={StyleSheet.white}>{car.price_hour} Lei Hora</Text>
                     </View>  
-                </View>           
-                <Spacer>
-                    <Text style={StyleSheet.info}>Proprietar: {car.user.last_name} {car.user.first_name}</Text>
-                    <Text style={StyleSheet.info}>Mail: {car.user.email}</Text>
-                    <Text style={StyleSheet.info}>Publicada: {car.user.created_at}</Text>
-                </Spacer> 
-                <Spacer>
-                    <View style={StyleSheet.detailPriceView}>
-                        <TouchableOpacity onPress={() => navigation.navigate('CarLocations',{_id:navigation.getParam('id')})}>
-                            <Spacer>
-                                 <Text style={StyleSheet.Text}>Verifica punctele de pickUp/Return del coche</Text>
-                            </Spacer>
-                        </TouchableOpacity> 
-                    </View> 
-                </Spacer>          
+                </View> 
+                <Spacer>              
+                    <Text style={StyleSheet.azul}>Anul: {car.year}</Text>
+                    <Text style={StyleSheet.azul} >Usi: {car.doors}, Locuri: {car.seats}</Text>
+                    <Text style={StyleSheet.azul} >Cai Putere: {car.hp}</Text>
+                    <Text style={StyleSheet.azul} >Combustibil: Diesel </Text>
+                    <Text style={StyleSheet.azul} >Tip de Schimb: Automatic </Text>
+                    <Text style={StyleSheet.azul} >Categorie Masina: Jeep </Text>
+                </Spacer>       
+                <View style={StyleSheet.GrayCardView}>
+                    <TouchableOpacity onPress={() => navigation.navigate('CarLocations',{_id:navigation.getParam('id')})}>
+                        <Text style={StyleSheet.azul}>Verifica punctele de pickUp/Return del coche!!! </Text>
+                    </TouchableOpacity> 
+                    <TouchableOpacity onPress={() => navigation.navigate('CarLocations',{_id:navigation.getParam('id')})}>
+                       <Octicons style={StyleSheet.azul} name="unverified" size={20}/>
+                    </TouchableOpacity> 
+
+                </View>        
             </ScrollView>                       
         </SafeAreaView>
     );
@@ -70,7 +61,7 @@ CarDetailScreen.navigationOptions = ({ navigation}) => {
                         <MaterialCommunityIcons style={{ padding:5 }} name="playlist-edit" size={30} />
                     </TouchableOpacity>
                 </IfSignIn> ,           
-        title: 'Detalii Masina',
+        title: 'Detalii Masina/Editeaza',
         headerTitleStyle: {
             fontWeight: 'bold'
         },

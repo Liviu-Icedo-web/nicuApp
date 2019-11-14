@@ -18,6 +18,11 @@ export default StyleSheet.create({
         flex: 1,
     },
 
+    AppStyleGray:{
+        backgroundColor:SECONDARY_COLOR,
+        flex:1,
+    },
+
     AppSecondaryStyle: {
         backgroundColor: QUART_COLOR,
         flex: 1,
@@ -28,6 +33,50 @@ export default StyleSheet.create({
         flex: 1,
     },
 
+    //Class color
+    white :{
+        color: WHITE,
+        fontWeight: 'bold',
+
+    },
+    azul: {
+        color: QUART_COLOR,
+      
+    },
+    gray:{
+        color: SECONDARY_COLOR
+    },
+
+    GrayCardView:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: SECONDARY_COLOR,
+        margin: 10,
+        borderRadius: 10,
+        paddingHorizontal: 15,
+        paddingVertical: 5
+    },
+
+    AzulCardView:{
+        backgroundColor: QUART_COLOR,
+        borderRadius: 10,
+        paddingHorizontal: 15,
+        paddingVertical: 5
+    },
+
+    titleAzul:{
+        color:QUART_COLOR,
+        fontSize: 25,
+        fontWeight: 'bold'
+    },
+
+    //Justify -content
+    rowView:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 10
+    },
+    
     //Home
     HomeView:{
         justifyContent: 'center',
@@ -358,7 +407,7 @@ export default StyleSheet.create({
     },
     iconView: {
         flexDirection: 'row',
-        justifyContent:'flex-end',
+        justifyContent:'flex-end'
      
     },
     userDetail:{
@@ -375,6 +424,13 @@ export default StyleSheet.create({
     },
 
     //OwnCar
+    DescriptionView: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        backgroundColor: QUART_COLOR,
+        padding: 10
+    },
     OwnControlsView: {
         justifyContent: 'center',
         alignContent: 'center',
@@ -387,8 +443,6 @@ export default StyleSheet.create({
     OwnControlsIcon: {
         color: WHITE
     },
-
-
 
     // Check login
     CheckView: {

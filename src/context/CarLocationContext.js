@@ -10,7 +10,14 @@ const carLocationReducer = (state, action) => {
             let newlocationCar = action.payload
             return { ...state, 
                 locationCar:[...state.locationCar,newlocationCar]
-                };          
+            };  
+        case 'edit_car_location':
+            let editlocationCar = action.payload
+            return { ...state, 
+                locationCar:[...state.locationCar.filter(locationCar => locationCar.id != editlocationCar.id),editlocationCar]
+            }; 
+        case 'delete_location':
+            return { ...state, locationCar:state.locationCar.filter( locationCar  => locationCar.id !== action.payload)};                 
         default:
             return state;
     }
@@ -38,10 +45,30 @@ const addLocationCar = dispatch => {
     }; 
 } 
 
+const editLocationCar = dispatch => {
+    return async (id, car_id, street, city, state, country ) => {        
+        try {
+            const response = await nicuApi.put(`/car-location/${id}`, { car_id, street, city, state, country });
+            dispatch({ type: 'edit_car_location', payload: response.data });
+            navigate('CarLocations',{id:response.data.id}); 
+        } catch (error) {
+            dispatch({ 
+                type: 'add_error', 
+                 payload: 'Exista o erroare, editando location cu ID: `${id}` !!' });
+             }         
+        };
+}
 
+const deleteCarLocation = dispatch => {
+    return async (id)=> {
+        await nicuApi.delete(`/car-location/${id}`);
+        dispatch({ type: 'delete_location', payload: id});
+        navigate('CarLocations'); 
+    };
+ }
 
 export const { Context, Provider } = createDataContext(
     carLocationReducer,
-    { fetchLocationsCar,addLocationCar},
+    { fetchLocationsCar,addLocationCar, editLocationCar,deleteCarLocation},
     []
 );
