@@ -18,22 +18,24 @@ const CarDetailScreen = ({ navigation }) => {
     );
  
     return (
-        <SafeAreaView style={StyleSheet.AppSecondaryStyle} forceInset={{ top: 'never' }}>
+        <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>
             <ScrollView>
                 <Image style={StyleSheet.imageDetail} source={{uri: car.images}} />   
-                <Text style={StyleSheet.title}>{car.brand}, {car.town}</Text> 
+                <Spacer>
+                    <Text style={StyleSheet.titleAzul}>{car.brand}, {car.town}</Text> 
+                </Spacer>
                 <View style={StyleSheet.stars}>
-                    <FontAwesome style={StyleSheet.star} name="star" size={20} />
-                    <FontAwesome style={StyleSheet.star} name="star" size={20} />
-                    <FontAwesome style={StyleSheet.star} name="star" size={20} />
-                    <FontAwesome style={StyleSheet.star} name="star-half-full" size={20} />
-                    <Text style={StyleSheet.star} > (26likes) </Text>
+                    <FontAwesome style={StyleSheet.azul} name="star" size={20} />
+                    <FontAwesome style={StyleSheet.azul} name="star" size={20} />
+                    <FontAwesome style={StyleSheet.azul} name="star" size={20} />
+                    <FontAwesome style={StyleSheet.azul} name="star-half-full" size={20} />
+                    <Text style={StyleSheet.azul} > (26likes) </Text>
                 </View> 
                 <View style={StyleSheet.detailCarView}>
                     <View>              
-                        <Text style={StyleSheet.info}>Anul: {car.year}</Text>
-                        <Text style={StyleSheet.info} >Usi: {car.doors}, Locuri: {car.seats}</Text>
-                        <Text style={StyleSheet.info} >Cai Putere: {car.hp}</Text>
+                        <Text style={StyleSheet.azul}>Anul: {car.year}</Text>
+                        <Text style={StyleSheet.azul} >Usi: {car.doors}, Locuri: {car.seats}</Text>
+                        <Text style={StyleSheet.azul} >Cai Putere: {car.hp}</Text>
                     </View>
                     <View style={StyleSheet.detailPriceView}>
                         <Text style={StyleSheet.Text}>{car.price_day} Lei Ziua</Text>
@@ -41,9 +43,9 @@ const CarDetailScreen = ({ navigation }) => {
                     </View>  
                 </View>                
                 <Spacer>
-                    <Text style={StyleSheet.info}>Proprietar: {car.user.last_name} {car.user.first_name}</Text>
-                    <Text style={StyleSheet.info}>Mail: {car.user.email}</Text>
-                    <Text style={StyleSheet.info}>Publicada: {car.user.created_at}</Text>
+                    <Text style={StyleSheet.azul}>Proprietar: {car.user.last_name} {car.user.first_name}</Text>
+                    <Text style={StyleSheet.azul}>Mail: {car.user.email}</Text>
+                    <Text style={StyleSheet.azul}>Publicada: {car.user.created_at}</Text>
                 </Spacer> 
                 <Rental/>
             </ScrollView>                       

@@ -1,36 +1,77 @@
 
-import React, { useContext } from 'react';
-import { View, Image, ScrollView, Picker ,TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-navigation';
+import React from 'react';
+import { View, Picker } from 'react-native';
+import {  Button } from 'react-native-elements';
 import { Text } from 'react-native-elements';
-import { Context as CarContext } from '../context/CarContext';
-import Spacer from '../components/Spacer';
-import { FontAwesome, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
+import Spacer from './Spacer';
+import DatePickerRental from './DatePickerRental';
 import StyleSheet from '../styles';
 
 const Rental = ({ navigation }) => {
     return (
 
         <View style={StyleSheet.bookDetailView}>  
-            <Text h4>Completeaza pentru rezerva :</Text> 
+            <Text h4 style={StyleSheet.azul}>Completeaza pentru rezerva :</Text> 
             <Spacer/>
-            <Text style={StyleSheet.Text}>Alege cum vrei sa inchiriezi</Text>          
-            <Picker>  
-                <Picker.Item label = "Hora" value = "" />
-                <Picker.Item label = "Zi" value = "" />
-            </Picker> 
-            <Text style={StyleSheet.Text}>Alege cate hore/zile...</Text>             
-            <Picker>  
-                <Picker.Item label = "1" value = "" />
-                <Picker.Item label = "2" value = "" />
-            </Picker> 
-            <Text h4 style={StyleSheet.Text}>Suma totala rezerva : 250 Lei</Text> 
-            <View style={StyleSheet.bookButton}>
-                <TouchableOpacity onPress={() => navigation.navigate('CarList')}>
-                    <Text h4 style={StyleSheet.bookDetailText}>REZERVA</Text>
-                </TouchableOpacity>
-            </View>   
-          
+            <Text style={StyleSheet.Text}>Alege perioada in care vrei sa inchiriezi</Text>          
+            <View style={StyleSheet.rowView}>
+                <View style={{flex: 0.45}}>
+                    <Text >Din data de:</Text>
+                    <DatePickerRental /> 
+                </View>
+                <View style={{flex: 0.45}}>
+                    <Text>Pana in data de :</Text>   
+                    <DatePickerRental /> 
+                </View>     
+            </View>     
+            <Text style={StyleSheet.Text}>Completeaza hora de ridicare/predare </Text>             
+            <View style={StyleSheet.rowView}>
+                <View style={{flex: 0.45}}>
+                    <Text>De la hora:</Text>  
+                    <Picker>  
+                        <Picker.Item label = "1" value = "" />
+                        <Picker.Item label = "2" value = "" />
+                        <Picker.Item label = "3" value = "" />
+                    </Picker> 
+                </View> 
+                <View style={{flex: 0.45}}>
+                    <Text>Pana la hora:</Text>  
+                    <Picker>  
+                        <Picker.Item label = "2" value = "" />
+                        <Picker.Item label = "3" value = "" />
+                        <Picker.Item label = "4" value = "" />
+                    </Picker> 
+                </View>      
+            </View> 
+            <Text style={StyleSheet.Text}>Completeaza locul de ridicare/predare </Text>             
+            <View style={StyleSheet.rowView}>
+                <View style={{flex: 0.45}}>
+                    <Text>Ridicare in:</Text>
+                    <Picker>  
+                        <Picker.Item label = "Aeroport" value = "" />
+                        <Picker.Item label = "Centru" value = "" />
+                        <Picker.Item label = "Domiciliu" value = "" />
+                    </Picker> 
+                </View> 
+                <View style={{flex: 0.45}}>
+                    <Text>Predare in:</Text>
+                    <Picker>  
+                        <Picker.Item label = "Aeroport" value = "" />
+                        <Picker.Item label = "Centru" value = "" />
+                        <Picker.Item label = "Domiciliu" value = "" />
+                    </Picker> 
+                </View> 
+            </View>
+            <Text style={StyleSheet.Text}>Ai rezervat X zile Y hore </Text>      
+            <Text style={StyleSheet.Text}>Suma totala rezerva : 250 Lei</Text> 
+            <Spacer>
+                <Button
+                    title="Confirma Rezerva!!!"
+                    onPress=""
+                    type="outline"
+                />
+            </Spacer> 
+              
         </View>  
     );
 };
