@@ -12,10 +12,13 @@ import IfSignIn from '../components/IfSignIn';
 
 
 const CarDetailScreen = ({ navigation }) => {
-    const { state } = useContext(CarContext);
+    const { state, addRental } = useContext(CarContext);
+
     const car = state.car.find(
-        car => car.id === navigation.getParam('id')
+        car => car.id === navigation.getParam('id'),
     );
+
+    const user = state.user
  
     return (
         <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>
@@ -47,7 +50,13 @@ const CarDetailScreen = ({ navigation }) => {
                     <Text style={StyleSheet.azul}>Mail: {car.user.email}</Text>
                     <Text style={StyleSheet.azul}>Publicada: {car.user.created_at}</Text>
                 </Spacer> 
-                <Rental/>
+                <Rental 
+                    headerText="Inchiriaza Acum :"
+                    errorMessage={state.errorMessage}
+                    submitButtonText="Confirma Rezerva!!!"
+                    initialValues ={{  car_id: car, user_id: user, pickup_location: '', start_date: '', end_date: ''}}
+                    onSubmit={addRental}
+                />
             </ScrollView>                       
         </SafeAreaView>
     );
@@ -56,13 +65,7 @@ const CarDetailScreen = ({ navigation }) => {
 
 
 CarDetailScreen.navigationOptions = ({ navigation}) => { 
-    return {
-       /*// headerRight:
-               // <IfSignIn>
-                   // <TouchableOpacity onPress={() => navigation.navigate('CarEdit',{_id:navigation.getParam('id')})}>
-                     //   <MaterialCommunityIcons style={{ padding:5 }} name="playlist-edit" size={30} />
-                    //</TouchableOpacity>
-               // </IfSignIn> , */          
+    return {         
         title: 'Rezerva',
         headerTitleStyle: {
             fontWeight: 'bold'
