@@ -63,7 +63,8 @@ CarDetailScreen.navigationOptions = ({ navigation}) => {
                 </IfSignIn> ,           
         title: 'Detalii Masina/Editeaza',
         headerTitleStyle: {
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            color: '#112f91',
         },
     }     
 };

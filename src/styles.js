@@ -76,6 +76,7 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         padding: 10
     },
+
     
     //Home
     HomeView:{
@@ -399,8 +400,9 @@ export default StyleSheet.create({
 
     //AccoutScreen
     userView: {
-        justifyContent: 'center',
-        alignItems: 'center'
+        flexDirection:'row',
+        justifyContent:'center',
+        alignContent:'center'
     },
     iconColor: {
         color: QUART_COLOR

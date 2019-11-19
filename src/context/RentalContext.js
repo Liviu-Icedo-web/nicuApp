@@ -2,6 +2,7 @@ import createDataContext from './createDataContext';
 import nicuApi from '../api/nicuApi';
 import { navigate } from '../navigationRef';
 
+
 const RentalReducer = (state, action) => {
     switch (action.type) { 
         case 'fetch_rentals':

@@ -1,9 +1,9 @@
 import React , {useContext} from 'react';
-import { View, ScrollView , TouchableOpacity, Image  } from 'react-native';
-import { Button } from 'react-native-elements';
+import { View, ScrollView , TouchableOpacity } from 'react-native';
+import {  Divider } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import {Text} from 'react-native-elements';
-import {  Entypo, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
+import {  Entypo, AntDesign,MaterialIcons} from '@expo/vector-icons';
 import Spacer from '../components/Spacer';
 import { Context as AuthContext } from '../context/AuthContext';
 import Card from '../components/Card';
@@ -27,36 +27,48 @@ const userCard = (user,navigation,usersContext) => {
 
     return (
         <ScrollView >
-            <View style={StyleSheet.userView}>
-                <Spacer/>
-                <Entypo style={StyleSheet.iconColor} name="user" size={100} /> 
+            <View style={StyleSheet.iconView}>
+                <TouchableOpacity style={{ margin: 20}} onPress={signout}>
+                        <Text style={StyleSheet.gray}>Deconecteaza-te!!</Text>
+                </TouchableOpacity> 
             </View> 
             <Spacer>
-            <View style={StyleSheet.userDetail}>
-                <View style={StyleSheet.iconView}> 
-                    <TouchableOpacity style={{ marginRight: 10}} onPress={() => navigation.navigate('UserEdit')}>
-                        <MaterialCommunityIcons style={StyleSheet.iconColor} name="playlist-edit" size={25} />
-                    </TouchableOpacity> 
-                    <TouchableOpacity style={{ marginRight: 10}} onPress={() => deleteUser(user.id)}>  
-                        <AntDesign style={StyleSheet.iconColor} name="delete" size={20}/>     
-                    </TouchableOpacity> 
-                </View>
-                <Button title="Deconecteaza-te!!" onPress={signout} type="outline" /> 
-                <Spacer/>
-                <Text style={StyleSheet.Text} >Username:  {user.nick_name}</Text>
-                <Spacer/>
-                <Text style={StyleSheet.Text}>Nume:  {user.first_name} </Text>
-                <Spacer/>
-                <Text style={StyleSheet.Text}>Prenume:  {user.last_name}</Text>
-                <Spacer/>
-                <Text style={StyleSheet.Text}>Prenume2:  {user.last_name2} </Text>
-                <Spacer/>
-                <Text style={StyleSheet.Text}>Mail:  {user.email} </Text>
-                <Spacer/>
-                <Text style={StyleSheet.Text}>Numar Permis de Condus:  {user.driving_licence_number}</Text>
-                <Spacer/>
-            </View> 
-            </Spacer>    
+                <View style={StyleSheet.userView}>
+                    <View style={{ justifyContent:'flex-end', paddingRight:10}}>
+                        <Entypo style={StyleSheet.iconColor} name="user" size={50} /> 
+                    </View>
+                    <View style={{ justifyContent:'flex-end'}}>
+                        <Text style={StyleSheet.azul} >Salut: </Text>
+                        <Text style={StyleSheet.azul} >{user.email} </Text>
+                    </View> 
+                </View> 
+            </Spacer> 
+            <Spacer>     
+                <TouchableOpacity style={{ marginRight: 10}} onPress={() => navigation.navigate('Profile')}>
+                    <View style={StyleSheet.rowView}>
+                        <Text style={StyleSheet.azul}>Datos Personales</Text>
+                        <AntDesign style={StyleSheet.iconColor} name="idcard" size={30} /> 
+                    </View>
+                </TouchableOpacity> 
+                <Spacer>
+                    <Divider />
+                </Spacer> 
+                <TouchableOpacity style={{ marginRight: 10}} onPress={() => navigation.navigate('RentalOwn')}>
+                    <View style={StyleSheet.rowView}>
+                        <Text style={StyleSheet.azul}>Rezervari</Text>
+                        <AntDesign style={StyleSheet.iconColor} name="carryout" size={30} /> 
+                    </View>
+                </TouchableOpacity> 
+                <Spacer>
+                    <Divider />
+                </Spacer> 
+                <TouchableOpacity style={{ marginRight: 10}} onPress={() => navigation.navigate('')}>
+                    <View style={StyleSheet.rowView}>
+                        <Text style={StyleSheet.azul}>Mesaje</Text>
+                        <AntDesign style={StyleSheet.iconColor} name="message1" size={30} /> 
+                    </View>
+                </TouchableOpacity>  
+            </Spacer> 
         </ScrollView> 
     );
 }
@@ -80,6 +92,12 @@ const noUser = (navigation) =>{
             </ScrollView>          
     );    
 } 
+
+AccountScreen.navigationOptions = () => {
+    return {
+        header: null
+    };
+};
 
 
 export default AccountScreen;

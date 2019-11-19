@@ -72,7 +72,8 @@ CarDetailScreen.navigationOptions = ({ navigation}) => {
     return {         
         title: 'Rezerva',
         headerTitleStyle: {
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            color: '#112f91',
         },
     }     
 };

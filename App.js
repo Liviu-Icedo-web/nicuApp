@@ -12,6 +12,8 @@ import CarLocationsScreen from './src/screens/CarLocationsScreen';
 import CarLocationCreateScreen from './src/screens/CarLocationCreateScreen';
 import CarLocationEditScreen from './src/screens/CarLocationEditScreen';
 import AccountScreen from './src/screens/AccountScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
+import RentalOwnScreen from './src/screens/RentalOwnScreen';
 import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
 import CarOwnScreen from './src/screens/CarOwnScreen';
 import CarOwnDetailScreen from './src/screens/CarOwnDetailScreen';
@@ -40,6 +42,12 @@ const carOwnFlow = createStackNavigator({
     CarLocationEdit: CarLocationEditScreen
 });
 
+const accountFlow = createStackNavigator({
+    Account: AccountScreen,
+    Profile: ProfileScreen,
+    RentalOwn: RentalOwnScreen
+});
+
 carOwnFlow.navigationOptions = {
   title: 'Verifica Masinile tale',
   tabBarIcon:
@@ -47,7 +55,7 @@ carOwnFlow.navigationOptions = {
 
 };
 
-AccountScreen.navigationOptions =  { 
+accountFlow.navigationOptions =  { 
       title: 'Profil',
       tabBarIcon: <FontAwesome name="gear" size={25} /> 
 };
@@ -63,16 +71,11 @@ const switchNavigator = createSwitchNavigator({
   mainFlow: createBottomTabNavigator({
     carListFlow,
     carOwnFlow,
-    Account: AccountScreen,
+    accountFlow
    }),
-
-   Account: createBottomTabNavigator({
-    carListFlow,
-   }),
-   
    CarEdit: CarEditScreen,
    UserEdit: UserEditScreen,
-   loginFlow: createStackNavigator({
+  loginFlow: createStackNavigator({
     Signup: SignupScreen,
     Signin: SigninScreen,
   }),
