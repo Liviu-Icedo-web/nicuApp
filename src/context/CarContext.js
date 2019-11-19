@@ -25,8 +25,7 @@ const carsReducer = (state, action) => {
                 let newRental = action.payload
                 return { ...state, 
                     rental:[...state.rental,newRental]
-                }; 
-                
+                };          
         default:
             return state;
     }
@@ -95,11 +94,13 @@ const deleteCar = dispatch => {
         dispatch({ type: 'fetch_own_cars', payload: user_id });}
 };
 
+
+//apaños en este Context para evitar errores
 const addRental = dispatch => {
     return async ( car_id, user_id, pickup_location, start_date, end_date ) => {
         try {
             console.log("*** addRental ",car_id)
-            const response = await nicuApi.post('/rental-car/', {car_id, user_id, pickup_location, start_date, end_date});
+            const response = await nicuApi.post('/rental-car/', {car_id,user_id, pickup_location, start_date, end_date});
             dispatch({ type: 'addRental', payload: response.data });
             navigate('CarLocations'); 
         } catch (err) {
@@ -110,7 +111,6 @@ const addRental = dispatch => {
             }
     }; 
 } 
-
 
 
 export const { Context, Provider } = createDataContext(

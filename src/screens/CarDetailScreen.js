@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useEffect,useContext } from 'react';
 import { View, Image, ScrollView, Picker ,TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { Text } from 'react-native-elements';
 import { Context as CarContext } from '../context/CarContext';
+import { Context as AuthContext } from '../context/AuthContext';
 import Spacer from '../components/Spacer';
 import { FontAwesome, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import StyleSheet from '../styles';
@@ -13,12 +14,15 @@ import IfSignIn from '../components/IfSignIn';
 
 const CarDetailScreen = ({ navigation }) => {
     const { state, addRental } = useContext(CarContext);
+    const { fetchUserAuth  } = useContext(AuthContext);
 
     const car = state.car.find(
         car => car.id === navigation.getParam('id'),
     );
 
-    const user = state.user
+    const user = useEffect(() => {   
+        fetchUserAuth()           
+    }, []);
  
     return (
         <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>
@@ -45,18 +49,18 @@ const CarDetailScreen = ({ navigation }) => {
                         <Text style={StyleSheet.Text}>{car.price_hour} Lei Hora</Text>
                     </View>  
                 </View>                
-                <Spacer>
-                    <Text style={StyleSheet.azul}>Proprietar: {car.user.last_name} {car.user.first_name}</Text>
-                    <Text style={StyleSheet.azul}>Mail: {car.user.email}</Text>
-                    <Text style={StyleSheet.azul}>Publicada: {car.user.created_at}</Text>
-                </Spacer> 
                 <Rental 
                     headerText="Inchiriaza Acum :"
                     errorMessage={state.errorMessage}
                     submitButtonText="Confirma Rezerva!!!"
-                    initialValues ={{  car_id: car, user_id: user, pickup_location: '', start_date: '', end_date: ''}}
+                    initialValues ={{  car_id: car,user_id: user, pickup_location: '', start_date: '', end_date: ''}}
                     onSubmit={addRental}
                 />
+                    <Spacer>
+                    <Text style={StyleSheet.azul}>Proprietar: {car.user.last_name} {car.user.first_name}</Text>
+                    <Text style={StyleSheet.azul}>Mail: {car.user.email}</Text>
+                    <Text style={StyleSheet.azul}>Publicada: {car.user.created_at}</Text>
+                </Spacer>
             </ScrollView>                       
         </SafeAreaView>
     );

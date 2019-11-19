@@ -65,6 +65,10 @@ const switchNavigator = createSwitchNavigator({
     carOwnFlow,
     Account: AccountScreen,
    }),
+
+   Account: createBottomTabNavigator({
+    carListFlow,
+   }),
    
    CarEdit: CarEditScreen,
    UserEdit: UserEditScreen,

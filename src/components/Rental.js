@@ -1,11 +1,11 @@
 
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { View, Picker } from 'react-native';
 import {  Button } from 'react-native-elements';
 import { Text } from 'react-native-elements';
 import Spacer from './Spacer';
-import DatePickerRental from './DatePickerRental';
 import StyleSheet from '../styles';
+import DatePicker from 'react-native-datepicker';
 
 
 
@@ -24,16 +24,34 @@ const Rental = ({ headerText, errorMessage, initialValues , onSubmit, submitButt
             <View style={StyleSheet.rowView}>
                 <View style={{flex: 0.45}}>
                     <Text >Din data de:</Text>
-                    <DatePickerRental  
-                        value={start_date.toString()}                
-                        onDateChange={(date) => {setStartDate({date: date})}}
+                    <DatePicker  
+                        date={start_date}                
+                        onDateChange={setStartDate}
+                        format="DD-MM-YYYY"
+                        customStyles={{
+                            dateIcon: {
+                              position: 'absolute',
+                              left: 0,
+                              top: 4,
+                              marginLeft: 0
+                            },
+                        }}
                     /> 
                 </View>
                 <View style={{flex: 0.45}}>
                     <Text>Pana in data de :</Text>   
-                    <DatePickerRental 
-                        value={end_date.toString()} 
-                        onDateChange={(date) => {setEndDate({date: date})}}
+                    <DatePicker 
+                        date={end_date} 
+                        onDateChange={setEndDate}
+                        format="DD-MM-YYYY"
+                        customStyles={{
+                            dateIcon: {
+                              position: 'absolute',
+                              left: 0,
+                              top: 4,
+                              marginLeft: 0
+                            },
+                        }}
                     /> 
                 </View>     
             </View>     
@@ -70,9 +88,9 @@ const Rental = ({ headerText, errorMessage, initialValues , onSubmit, submitButt
                 <View style={{flex: 0.45}}>
                     <Text>Predare in:</Text>
                     <Picker>  
-                        <Picker.Item label = "Aeroport" value = {pickup_location} onValueChange={setPickupLocation} />
-                        <Picker.Item label = "Centru" value = {pickup_location} onValueChange={setPickupLocation} />
-                        <Picker.Item label = "Domiciliu" value = {pickup_location} onValueChange={setPickupLocation} />
+                        <Picker.Item label = "Aeroport" />
+                        <Picker.Item label = "Centru"  />
+                        <Picker.Item label = "Domiciliu"  />
                     </Picker> 
                 </View> 
             </View>
@@ -82,7 +100,7 @@ const Rental = ({ headerText, errorMessage, initialValues , onSubmit, submitButt
             <Spacer>
                 <Button
                     title={submitButtonText}
-                    onPress={() => onSubmit(pickup_location, start_date, end_date )}
+                    onPress={() => onSubmit(initialValues.car_id,initialValues.user_id,pickup_location, start_date, end_date )}
                     type="outline"
                 />
             </Spacer> 
