@@ -34,7 +34,7 @@ const userCard = (user,navigation,usersContext) => {
             </View> 
             <Spacer>
                 <View style={StyleSheet.userView}>
-                    <View style={{ justifyContent:'flex-end', paddingRight:10}}>
+                    <View style={{ justifyContent:'flex-end', paddingHorizontal:10}}>
                         <Entypo style={StyleSheet.iconColor} name="user" size={50} /> 
                     </View>
                     <View style={{ justifyContent:'flex-end'}}>
@@ -43,7 +43,7 @@ const userCard = (user,navigation,usersContext) => {
                     </View> 
                 </View> 
             </Spacer> 
-            <Spacer>     
+            <Spacer >  
                 <TouchableOpacity style={{ marginRight: 10}} onPress={() => navigation.navigate('Profile')}>
                     <View style={StyleSheet.rowView}>
                         <Text style={StyleSheet.azul}>Datos Personales</Text>
@@ -53,7 +53,7 @@ const userCard = (user,navigation,usersContext) => {
                 <Spacer>
                     <Divider />
                 </Spacer> 
-                <TouchableOpacity style={{ marginRight: 10}} onPress={() => navigation.navigate('RentalOwn')}>
+                <TouchableOpacity style={{ marginRight: 10}} onPress={() => navigation.navigate('Rental')}>
                     <View style={StyleSheet.rowView}>
                         <Text style={StyleSheet.azul}>Rezervari</Text>
                         <AntDesign style={StyleSheet.iconColor} name="carryout" size={30} /> 
@@ -62,7 +62,7 @@ const userCard = (user,navigation,usersContext) => {
                 <Spacer>
                     <Divider />
                 </Spacer> 
-                <TouchableOpacity style={{ marginRight: 10}} onPress={() => navigation.navigate('')}>
+                <TouchableOpacity style={{ marginRight: 10}} onPress={() => navigation.navigate('Message')}>
                     <View style={StyleSheet.rowView}>
                         <Text style={StyleSheet.azul}>Mesaje</Text>
                         <AntDesign style={StyleSheet.iconColor} name="message1" size={30} /> 

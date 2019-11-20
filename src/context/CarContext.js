@@ -25,7 +25,7 @@ const carsReducer = (state, action) => {
                 let newRental = action.payload
                 return { ...state, 
                     rental:[...state.rental,newRental]
-                };          
+                };  
         default:
             return state;
     }
@@ -112,6 +112,7 @@ const addRental = dispatch => {
     }; 
 } 
 
+//...end_Apaños
 
 export const { Context, Provider } = createDataContext(
     carsReducer,

@@ -14,7 +14,7 @@ const CarOwnScreen = ({ navigation }) => {
     const { state } = usersContext; 
       
     return (
-        <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'always' }}>         
+        <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>         
             {state.user !== undefined ? UserOwnCars(navigation, carsContext, state.user) : noUser(navigation) }                      
         </SafeAreaView>
        
@@ -29,7 +29,7 @@ const UserOwnCars = (navigation,carsContext, user) => {
         <ScrollView>
             <View style={StyleSheet.DescriptionView}>
                 <Text style={StyleSheet.white}>ADAUGA, VIZUALIZEAZA/EDITEAZA, BLOQUEAZA sau ELIMINA Masinile Publicate !!!!</Text>
-                <TouchableOpacity onPress={() => navigation.navigate('CarCreate')}>
+                <TouchableOpacity  onPress={() => navigation.navigate('CarCreate')}>
                     <Entypo style={StyleSheet.white} name="plus" size={30} />         
                 </TouchableOpacity> 
             </View>
@@ -107,11 +107,10 @@ const noUser = (navigation) =>{
 
 CarOwnScreen.navigationOptions = ({ navigation}) => { 
     return {         
-        title: 'Masini Publicate Pentru Inchiriere',
+        title: 'Masini Publicate',
         headerTitleStyle: {
             flex: 1,
-            color: '#112f91',
-            fontWeight:'bold'
+           // color: '#D3D3D3',  
         },
         
     }     

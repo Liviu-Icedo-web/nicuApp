@@ -21,6 +21,8 @@ const CarListScreen = ({ navigation }) => {
     useEffect(() => {   
         fetchUserAuth();
     }, []);
+
+
     return (         
         <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>  
         <ScrollView >
@@ -80,17 +82,15 @@ CarListScreen.navigationOptions = ({ navigation}) => {
         headerRight:
                 <IfSignOut>
                     <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-                        <SimpleLineIcons style={{ margin : 15 }} name="user-follow" size={30} />
+                        <SimpleLineIcons style={{ margin : 15,color: '#112f91' }} name="user-follow" size={30} />
                     </TouchableOpacity>  
                 </IfSignOut>  ,           
         title: 'NicuApp',
         headerTitleStyle: {
-            textAlign:'center',
-            flex: 1,
-            color: '#112f91',
-            fontWeight:'bold'
+           // fontWeight: 'bold',
+           // color: '#112f91'
         },
-    }     
+    };    
 };
 
 

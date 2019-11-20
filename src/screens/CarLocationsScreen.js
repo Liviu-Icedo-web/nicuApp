@@ -1,6 +1,7 @@
 import React , { useContext ,useEffect} from 'react';
 import { View ,Text ,ScrollView, FlatList, TouchableOpacity} from 'react-native';
 import { AntDesign,Entypo ,MaterialCommunityIcons} from '@expo/vector-icons';
+import {  Divider } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import { Context as CarLocationContext } from '../context/CarLocationContext';
 import StyleSheet from '../styles';
@@ -20,7 +21,7 @@ const CarLocationsScreen = ({ navigation}) => {
     }, []);
 
     return (
-        <SafeAreaView  style={StyleSheet.AppStyle}  forceInset={{ top: 'always' }}>  
+        <SafeAreaView  style={StyleSheet.AppStyle}>  
             <ScrollView >
                 <View style={StyleSheet.DescriptionView}>
                     <Text style={StyleSheet.white}>ADAUGA O LOCALIZARE (ex: aeroport, centru, domicili etc...)</Text> 
@@ -36,8 +37,8 @@ const CarLocationsScreen = ({ navigation}) => {
                     keyExtractor={item => item.id.toString()}
                     renderItem={({ item }) => {
                         return ( 
-                            <View>                            
-                                <Card >   
+                            <View>  
+                                <Spacer>                    
                                     <View style={StyleSheet.iconView}>                                     
                                         <TouchableOpacity  style={{ marginRight: 10}} onPress={() => navigation.navigate('CarLocationEdit', { id: item.id })}>
                                             <MaterialCommunityIcons style={StyleSheet.iconColor} name="playlist-edit" size={25} />
@@ -50,9 +51,11 @@ const CarLocationsScreen = ({ navigation}) => {
                                         <Text style={StyleSheet.azul}>Adresa: {item.street}</Text>
                                         <Text style={StyleSheet.azul}>Orasul: {item.city}</Text>
                                         <Text style={StyleSheet.azul}>Judetul: {item.state}, Tara: {item.country}</Text>
-                                    </View>                                                                    
-                                </Card>                            
-                            </View>    
+                                    </View> 
+                                    <Spacer/>                                                                   
+                                    <Divider/>                          
+                                </Spacer>  
+                            </View>          
                         );
                     }}
                 />  
@@ -67,8 +70,7 @@ CarLocationsScreen.navigationOptions = ({ navigation}) => {
         title: 'Localizari Publicate ',
         headerTitleStyle: {
             flex: 1,
-            color: '#112f91',
-            fontWeight:'bold'
+           // color: '#D3D3D3',
         },
         
     }     

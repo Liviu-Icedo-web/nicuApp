@@ -67,7 +67,7 @@ export default StyleSheet.create({
     titleAzul:{
         color:QUART_COLOR,
         fontSize: 25,
-        fontWeight: 'bold'
+        
     },
 
     //Justify -content
@@ -401,8 +401,8 @@ export default StyleSheet.create({
     //AccoutScreen
     userView: {
         flexDirection:'row',
-        justifyContent:'center',
-        alignContent:'center'
+        justifyContent: 'flex-start',
+        alignContent:'flex-start'
     },
     iconColor: {
         color: QUART_COLOR
@@ -428,8 +428,7 @@ export default StyleSheet.create({
     //OwnCar
     DescriptionView: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
+        justifyContent: 'space-around',
         backgroundColor: QUART_COLOR,
         padding: 10
     },

@@ -61,10 +61,9 @@ CarDetailScreen.navigationOptions = ({ navigation}) => {
                         <MaterialCommunityIcons style={{ padding:5 }} name="playlist-edit" size={30} />
                     </TouchableOpacity>
                 </IfSignIn> ,           
-        title: 'Detalii Masina/Editeaza',
+        title: 'Editeaza Masina',
         headerTitleStyle: {
-            fontWeight: 'bold',
-            color: '#112f91',
+            //color: '#D3D3D3',
         },
     }     
 };

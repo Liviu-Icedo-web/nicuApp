@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { View, Picker } from 'react-native';
 import {  Button } from 'react-native-elements';
 import { Text } from 'react-native-elements';
+import Card from '../components/Card';
 import Spacer from './Spacer';
 import StyleSheet from '../styles';
 import DatePicker from 'react-native-datepicker';
@@ -17,7 +18,7 @@ const Rental = ({ headerText, errorMessage, initialValues , onSubmit, submitButt
 
     return (
 
-        <View style={StyleSheet.bookDetailView}>  
+        <Card>  
             <Text style={StyleSheet.titleAzul}>{headerText}</Text> 
             <Spacer/>
             <Text style={StyleSheet.Text}>Alege perioada in care vrei sa inchiriezi</Text>          
@@ -105,7 +106,7 @@ const Rental = ({ headerText, errorMessage, initialValues , onSubmit, submitButt
                 />
             </Spacer> 
               
-        </View>  
+        </Card>  
     );
 };
 

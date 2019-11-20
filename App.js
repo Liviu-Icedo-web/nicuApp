@@ -13,13 +13,14 @@ import CarLocationCreateScreen from './src/screens/CarLocationCreateScreen';
 import CarLocationEditScreen from './src/screens/CarLocationEditScreen';
 import AccountScreen from './src/screens/AccountScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
-import RentalOwnScreen from './src/screens/RentalOwnScreen';
+import RentalScreen from './src/screens/RentalScreen';
+import MessageScreen from './src/screens/MessageScreen';
+import RentalEditScreen from './src/screens/RentalEditScreen';
 import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
 import CarOwnScreen from './src/screens/CarOwnScreen';
 import CarOwnDetailScreen from './src/screens/CarOwnDetailScreen';
 import CarEditScreen from './src/screens/CarEditScreen';
 import UserEditScreen from './src/screens/UserEditScreen';
-
 
 import { Provider as CarProvider } from './src/context/CarContext';
 import { Provider as AuthProvider } from './src/context/AuthContext';
@@ -45,24 +46,42 @@ const carOwnFlow = createStackNavigator({
 const accountFlow = createStackNavigator({
     Account: AccountScreen,
     Profile: ProfileScreen,
-    RentalOwn: RentalOwnScreen
+    Rental: RentalScreen,
+    RentalEdit: RentalEditScreen,
+    Message: MessageScreen
 });
 
 carOwnFlow.navigationOptions = {
   title: 'Verifica Masinile tale',
-  tabBarIcon:
-    <FontAwesome name="car" size={20} />
-
+  tabBarIcon: ({tintColor}) => (
+    <FontAwesome
+        name="car"
+        color={tintColor}
+        size={20}
+    />
+  ),
 };
 
 accountFlow.navigationOptions =  { 
       title: 'Profil',
-      tabBarIcon: <FontAwesome name="gear" size={25} /> 
+      tabBarIcon: ({tintColor}) => (
+        <FontAwesome
+            name="gear"
+            color={tintColor}
+            size={25}
+        />
+    ),
 };
 
 carListFlow.navigationOptions = {
   title: 'Cauta Masini',
-  tabBarIcon: <FontAwesome name="th-list" size={20} />
+  tabBarIcon: ({tintColor}) => (
+    <FontAwesome
+        name="th-list"
+        color={tintColor}
+        size={20}
+    />
+  ),
 };
 
 const switchNavigator = createSwitchNavigator({

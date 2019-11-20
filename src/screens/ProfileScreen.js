@@ -1,6 +1,7 @@
 import React , {useContext} from 'react';
 import { View, ScrollView , TouchableOpacity, Image  } from 'react-native';
 import { Button } from 'react-native-elements';
+import {  Divider } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import {Text} from 'react-native-elements';
 import {  Entypo, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
@@ -27,12 +28,13 @@ const userCard = (user,navigation,usersContext) => {
 
     return (
         <ScrollView >
-            <View style={StyleSheet.userView}>
-                <Spacer/>
-                <Entypo style={StyleSheet.iconColor} name="user" size={100} /> 
-            </View> 
+            <View style={{alignItems: 'center', marginTop: 30 }}>
+                <View style={StyleSheet.userView}>
+                    <Entypo style={StyleSheet.iconColor} name="user" size={50} /> 
+                </View> 
+            </View>
             <Spacer>
-            <View style={StyleSheet.userDetail}>
+            <View>
                 <View style={StyleSheet.iconView}> 
                     <TouchableOpacity style={{ marginRight: 10}} onPress={() => navigation.navigate('UserEdit')}>
                         <MaterialCommunityIcons style={StyleSheet.iconColor} name="playlist-edit" size={25} />
@@ -43,17 +45,29 @@ const userCard = (user,navigation,usersContext) => {
                 </View>
                 <Spacer/>
                 <Text style={StyleSheet.Text} >Username:  {user.nick_name}</Text>
-                <Spacer/>
+                <Spacer>
+                    <Divider />
+                </Spacer> 
                 <Text style={StyleSheet.Text}>Nume:  {user.first_name} </Text>
-                <Spacer/>
+                <Spacer>
+                    <Divider />
+                </Spacer> 
                 <Text style={StyleSheet.Text}>Prenume:  {user.last_name}</Text>
-                <Spacer/>
+                <Spacer>
+                    <Divider />
+                </Spacer> 
                 <Text style={StyleSheet.Text}>Prenume2:  {user.last_name2} </Text>
-                <Spacer/>
+                <Spacer>
+                    <Divider />
+                </Spacer> 
                 <Text style={StyleSheet.Text}>Mail:  {user.email} </Text>
-                <Spacer/>
+                <Spacer>
+                    <Divider />
+                </Spacer> 
                 <Text style={StyleSheet.Text}>Numar Permis de Condus:  {user.driving_licence_number}</Text>
-                <Spacer/>
+                <Spacer>
+                    <Divider />
+                </Spacer> 
             </View> 
             </Spacer>    
         </ScrollView> 
@@ -82,10 +96,10 @@ const noUser = (navigation) =>{
 
 ProfileScreen.navigationOptions = ({ navigation}) => { 
     return {         
-        title: 'Actualizeaza-ti Datele',
+        title: 'Date Personale',
         headerTitleStyle: {
-            fontWeight: 'bold',
-            color: '#112f91',
+            //fontWeight: 'bold',
+           // color: '#D3D3D3',
         },
     }     
 };
