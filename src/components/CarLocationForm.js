@@ -11,7 +11,8 @@ const CarLocationForm = ({ headerText, errorMessage, initialValues, onSubmit, su
     const[state, setState] = useState(initialValues.state);
     const[country, setCountry] = useState(initialValues.country);
 
-    console.log('*** CarLocationForm',initialValues.carId);
+    console.log('*** CarLocationForm',initialValues.id);
+    console.log('*** CarLocationForm Car_ID',initialValues.carId);
      
     return (
         <>
@@ -50,7 +51,7 @@ const CarLocationForm = ({ headerText, errorMessage, initialValues, onSubmit, su
             <Spacer>
                 <Button
                     title={submitButtonText}
-                    onPress={() => onSubmit( initialValues.carId,street,city,state,country )}
+                    onPress={() => onSubmit( initialValues.id,initialValues.carId,street,city,state,country )}
                     type="outline"
                 />
             </Spacer>

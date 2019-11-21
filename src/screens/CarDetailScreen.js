@@ -20,10 +20,10 @@ const CarDetailScreen = ({ navigation }) => {
         car => car.id === navigation.getParam('id'),
     );
 
-    const user = useEffect(() => {   
+   const user = useEffect(() => {   
         fetchUserAuth()           
     }, []);
- 
+    
     return (
         <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>
             <ScrollView>

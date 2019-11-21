@@ -40,7 +40,7 @@ const CarLocationsScreen = ({ navigation}) => {
                             <View>  
                                 <Spacer>                    
                                     <View style={StyleSheet.iconView}>                                     
-                                        <TouchableOpacity  style={{ marginRight: 10}} onPress={() => navigation.navigate('CarLocationEdit', { id: item.id })}>
+                                        <TouchableOpacity  style={{ marginRight: 10}} onPress={() => navigation.navigate('CarLocationEdit', { carid: item.id })}>
                                             <MaterialCommunityIcons style={StyleSheet.iconColor} name="playlist-edit" size={25} />
                                         </TouchableOpacity> 
                                         <TouchableOpacity style={{ marginRight: 10}}  onPress={() => deleteCarLocation(item.id)}>

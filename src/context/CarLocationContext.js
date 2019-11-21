@@ -30,7 +30,7 @@ const fetchLocationsCar = dispatch => {
 } 
 
 const addLocationCar = dispatch => {
-    return async ( car_id, street, city, state, country ) => {
+    return async (id, car_id, street, city, state, country ) => {
         try {
             console.log("*** addLocationCar ",car_id)
             const response = await nicuApi.post('/car-location/', {car_id,street, city, state, country});
@@ -46,9 +46,10 @@ const addLocationCar = dispatch => {
 } 
 
 const editLocationCar = dispatch => {
-    return async (id, car_id, street, city, state, country ) => {        
+    return async (id, car_id, street, city, state, country ) => {   
+        console.log('BAAA', id, car_id)     
         try {
-            const response = await nicuApi.put(`/car-location/${id}`, { car_id, street, city, state, country });
+            const response = await nicuApi.put(`/car-location/`+id, { id, car_id, street, city, state, country });
             dispatch({ type: 'edit_car_location', payload: response.data });
             navigate('CarLocations',{id:response.data.id}); 
         } catch (error) {

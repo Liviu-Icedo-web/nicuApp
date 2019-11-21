@@ -12,6 +12,7 @@ import IfSignIn from '../components/IfSignIn';
 
 
 
+
 const CarDetailScreen = ({ navigation }) => {
     const { state, addRental } = useContext(CarContext);
     const { fetchUserAuth  } = useContext(AuthContext);
@@ -24,6 +25,7 @@ const CarDetailScreen = ({ navigation }) => {
         fetchUserAuth()           
     }, []);
  
+   
     //Aici trebuie sa se incarce masina xe am reervato ...id e pus manual in Rental OwnScreen
     return (
         <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>

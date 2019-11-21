@@ -16,13 +16,7 @@ import IfSignOut from '../components/IfSignOut';
 
 const CarListScreen = ({ navigation }) => {
     const { state, fetchCars} = useContext(CarContext); 
-    const { fetchUserAuth } = useContext(AuthContext);
-    /* We run Fecth User to have the user data Like this is the Home page*/
-    useEffect(() => {   
-        fetchUserAuth();
-    }, []);
-
-
+   
     return (         
         <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>  
         <ScrollView >

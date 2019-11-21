@@ -4,6 +4,7 @@ import nicuApi from '../api/nicuApi';
 import { navigate } from '../navigationRef';
 
 
+
 const authReducer = (state, action) => {
     switch (action.type) {
         case 'add_error':
@@ -13,7 +14,7 @@ const authReducer = (state, action) => {
         case 'signUp' :
                 return {errorMessage: ''};    
         case 'clear_error_message' :
-              return { ...state, errorMessage: '' };  
+              return { ...state, errorMessage: '' };                   
         case 'signout':
             return { token: null, errorMessage: '' };
         case 'fetch_userAuth':
@@ -72,8 +73,10 @@ const signout = dispatch => async () => {
   navigate('Home');
 };
 
+
 const fetchUserAuth = dispatch => async () => {
     const response = await nicuApi.get(`/user`);
+    await AsyncStorage.setItem('user_id', response.data.id);
     dispatch({ type: 'fetch_userAuth', payload: response.data });
 };
 

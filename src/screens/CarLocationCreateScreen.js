@@ -30,7 +30,7 @@ const CarLocationCreateScreen = ({ navigation }) => {
                             headerText="Adauga o Localizare pentru Masina "
                             errorMessage={state.errorMessage}
                             submitButtonText="Salveaza"
-                            initialValues ={{carId:navigation.getParam('carid'),street: '', city: '', state: '', country: 'Romania'}}
+                            initialValues ={{carId:carId,street: '', city: '', state: '', country: 'Romania'}}
                             onSubmit={addLocationCar}
                         />
                     </Card>  

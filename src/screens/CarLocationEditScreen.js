@@ -12,16 +12,15 @@ import Card from '../components/Card';
 
 const CarLocationEditScreen = ({ navigation }) => {
     const { state, editLocationCar, clearErrorMessage  } = useContext(CarLocationContext);
-    const carId = navigation.getParam('carid')
-
-    
    
     console.log("*** CarLocationCreateScreen ",navigation.getParam('carid'))
     const locationCar = state.locationCar.find(
-        locationCar => locationCar.id === navigation.getParam('_id')
+        locationCar => locationCar.id === navigation.getParam('carid')
     );
 
-   console.log("*** CarLocationEditScreen ",navigation.getParam('locationCar'))
+   console.log("*** CarLocationEditScreen ",navigation.getParam('carid'))
+
+   console.log("*** CarLocationEditScreen  Location",locationCar)
 
     return ( 
         <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'always' }}>  
@@ -36,9 +35,9 @@ const CarLocationEditScreen = ({ navigation }) => {
                             headerText="Editeaza Localizare"
                             errorMessage={state.errorMessage}
                             submitButtonText="Editeaza"
-                            initialValues ={{ carId:navigation.getParam('carid'),street: locationCar.street, city: locationCar.city, state: locationCar.state, country: locationCar.country}}
-                            onSubmit={( carId, street, city, state, country) => {
-                                editLocationCar(locationCar.id, carId, street, city, state, country, () => navigation.pop());
+                            initialValues ={{ id: navigation.getParam('carid'), carId: locationCar.car_id, street: locationCar.street, city: locationCar.city, state: locationCar.state, country: locationCar.country}}
+                            onSubmit={( id, carId, street, city, state, country) => {
+                                editLocationCar(id, carId, street, city, state, country, () => navigation.pop());
                             }}
                         />
                     </Card>  
