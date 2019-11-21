@@ -4,7 +4,6 @@ import nicuApi from '../api/nicuApi';
 import { navigate } from '../navigationRef';
 
 
-
 const authReducer = (state, action) => {
     switch (action.type) {
         case 'add_error':
@@ -22,7 +21,9 @@ const authReducer = (state, action) => {
         case 'edit_user':
             return {...state, user:action.payload, errorMessage: ''};    
         case 'delete_user':  
-            return { token: null, errorMessage: '' };    
+            return { token: null, errorMessage: '' };
+        case 'seesion_check':
+            return{ token: null, errorMessage: '', session:action.payload}    
         default:
             return state;
     }
@@ -73,10 +74,17 @@ const signout = dispatch => async () => {
   navigate('Home');
 };
 
+const sessionCheck = dispatch => async () => {
+    const token = await AsyncStorage.getItem('token');
+    if (token) {
+        console.log('*** session dispatch', token)
+        dispatch({ type: 'seesion_check', payload: token });
+        
+    }
+  };
 
 const fetchUserAuth = dispatch => async () => {
     const response = await nicuApi.get(`/user`);
-    await AsyncStorage.setItem('user_id', response.data.id);
     dispatch({ type: 'fetch_userAuth', payload: response.data });
 };
 
@@ -103,7 +111,7 @@ const deleteUser = dispatch => {
 
 export const { Provider, Context } = createDataContext (
     authReducer,
-    { signin, signout, signUp, clearErrorMessage , tryLocalSignin, fetchUserAuth, editUser ,deleteUser},
-    { token: null, errorMessage: ''}
+    { signin, signout, signUp, clearErrorMessage , tryLocalSignin, fetchUserAuth, editUser ,deleteUser,sessionCheck},
+    { token: null, errorMessage: '', session:null}
 );
 

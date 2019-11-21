@@ -10,20 +10,17 @@ import StyleSheet from '../styles';
 import Rental from '../components/Rental';
 
 
-
-
 const CarDetailScreen = ({ navigation }) => {
     const { state, addRental } = useContext(CarContext);
-    const { fetchUserAuth  } = useContext(AuthContext);
+    const session = useContext(AuthContext);
 
     const car = state.car.find(
         car => car.id === navigation.getParam('id'),
     );
 
-   const user = useEffect(() => {   
-        fetchUserAuth()           
-    }, []);
     
+    console.log('*** CarDetailScreen User',session.state.user) 
+
     return (
         <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>
             <ScrollView>
@@ -53,7 +50,7 @@ const CarDetailScreen = ({ navigation }) => {
                     headerText="Inchiriaza Acum :"
                     errorMessage={state.errorMessage}
                     submitButtonText="Confirma Rezerva!!!"
-                    initialValues ={{  car_id: car,user_id: user, pickup_location: '', start_date: '', end_date: ''}}
+                    initialValues ={{  car_id: car.id,user_id: session.state.user.id, pickup_location: '', start_date: '', end_date: ''}}
                     onSubmit={addRental}
                 />
                 <Spacer>
