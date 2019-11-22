@@ -102,7 +102,7 @@ const addRental = dispatch => {
             console.log("*** addRental ",car_id)
             const response = await nicuApi.post('/rental-car/', {car_id,user_id, pickup_location, start_date, end_date});
             dispatch({ type: 'addRental', payload: response.data });
-            navigate('CarLocations'); 
+            navigate('Rental'); 
         } catch (err) {
             console.log("Error URL",err)
             dispatch({ 

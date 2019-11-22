@@ -2,29 +2,30 @@ import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import HomeScreen from './src/screens/HomeScreen';
-import SigninScreen from './src/screens/SigninScreen';
-import SignupScreen from './src/screens/SignupScreen';
-import CarListScreen from './src/screens/CarListScreen';
-import CarDetailScreen from './src/screens/CarDetailScreen';
-import CarCreateScreen from './src/screens/CarCreateScreen';
-import CarLocationsScreen from './src/screens/CarLocationsScreen';
-import CarLocationCreateScreen from './src/screens/CarLocationCreateScreen';
-import CarLocationEditScreen from './src/screens/CarLocationEditScreen';
-import AccountScreen from './src/screens/AccountScreen';
-import ProfileScreen from './src/screens/ProfileScreen';
-import RentalScreen from './src/screens/RentalScreen';
-import MessageScreen from './src/screens/MessageScreen';
-import RentalEditScreen from './src/screens/RentalEditScreen';
-import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
-import CarOwnScreen from './src/screens/CarOwnScreen';
-import CarOwnDetailScreen from './src/screens/CarOwnDetailScreen';
-import CarEditScreen from './src/screens/CarEditScreen';
-import UserEditScreen from './src/screens/UserEditScreen';
+import HomeScreen from './src/screens/Home/HomeScreen';
+import SigninScreen from './src/screens/Authentification/SigninScreen';
+import SignupScreen from './src/screens/Authentification/SignupScreen';
+import CarListScreen from './src/screens/Car/CarListScreen';
+import CarDetailScreen from './src/screens/Car/CarDetailScreen';
+import CarCreateScreen from './src/screens/CarOwn/CarCreateScreen';
+import CarLocationsScreen from './src/screens/CarLocation/CarLocationsScreen';
+import CarLocationCreateScreen from './src/screens/CarLocation/CarLocationCreateScreen';
+import CarLocationEditScreen from './src/screens/CarLocation/CarLocationEditScreen';
+import AccountScreen from './src/screens/Account/AccountScreen';
+import ProfileScreen from './src/screens/Account/ProfileScreen';
+import RentalScreen from './src/screens/CarRental/RentalScreen';
+import MessageScreen from './src/screens/Message/MessageScreen';
+import RentalEditScreen from './src/screens/CarRental/RentalEditScreen';
+import ResolveAuthScreen from './src/screens/Authentification/ResolveAuthScreen';
+import CarOwnScreen from './src/screens/CarOwn/CarOwnScreen';
+import CarOwnDetailScreen from './src/screens/CarOwn/CarOwnDetailScreen';
+import CarEditScreen from './src/screens/CarOwn/CarEditScreen';
+import UserEditScreen from './src/screens/Account/UserEditScreen';
 
 import { Provider as CarProvider } from './src/context/CarContext';
 import { Provider as AuthProvider } from './src/context/AuthContext';
 import { Provider as CarLocationProvider } from './src/context/CarLocationContext';
+import { Provider as RentalProvider } from './src/context/RentalContext';
 import { setNavigator } from './src/navigationRef';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -106,9 +107,11 @@ const App = createAppContainer(switchNavigator);
 export default () => (
   <CarProvider>
     <CarLocationProvider>
-      <AuthProvider>              
-          <App ref={(navigator) => { setNavigator(navigator); }} />          
-        </AuthProvider>  
+      <RentalProvider>
+          <AuthProvider>              
+            <App ref={(navigator) => { setNavigator(navigator); }} />          
+          </AuthProvider>  
+        </RentalProvider>
       </CarLocationProvider>
   </CarProvider>   
 );
