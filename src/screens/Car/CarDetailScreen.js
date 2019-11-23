@@ -15,19 +15,11 @@ const CarDetailScreen = ({ navigation }) => {
     const { state, addRental } = useContext(CarContext);
     const user_session = useContext(AuthContext);
 
-    //Nicol Apaño para sacar User
-    const { state: id,fetchUserAuth }= user_session;
-
     const car = state.car.find(
         car => car.id === navigation.getParam('id'),
     );
 
-    useEffect(() => {   
-        fetchUserAuth();
-    }, []);
-
-    
-    console.log('*** CarDetailScreen User',id) 
+    console.log('*** CarDetailScreen User',user_session.state.user.id) 
 
     return (
         <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>
@@ -58,7 +50,7 @@ const CarDetailScreen = ({ navigation }) => {
                     headerText="Inchiriaza Acum :"
                     errorMessage={state.errorMessage}
                     submitButtonText="Confirma Rezerva!!!"
-                    initialValues ={{  car_id: car.id, user_id: id, pickup_location: '16', start_date: '', end_date: ''}}
+                    initialValues ={{  car_id: car.id, user_id: user_session.state.user.id, pickup_location: '16', start_date: '', end_date: ''}}
                     onSubmit={addRental}
                 />
                 <Spacer>
