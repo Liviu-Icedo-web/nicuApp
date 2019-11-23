@@ -20,7 +20,8 @@ const CarLocationForm = ({ headerText, errorMessage, initialValues, onSubmit, su
                 <Text style={StyleSheet.headerText}>{headerText}</Text>
             </Spacer>  
             <Input         
-                label="Adresa"
+                label="Locatie"
+                placeholder="Ex: Aeroport / Parcare Profi / Str. Principala nr 1" 
                 value={street}
                 onChangeText={setStreet}
                 autoCapitalize="none"

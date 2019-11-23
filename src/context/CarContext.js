@@ -21,7 +21,7 @@ const carsReducer = (state, action) => {
         case 'delete_car':
             return { ...state, car:state.car.filter( car  => car.id !== action.payload)};   
             
-        case 'addRental':
+        case 'add_Rental':
                 let newRental = action.payload
                 return { ...state, 
                     rental:[...state.rental,newRental]
@@ -97,11 +97,12 @@ const deleteCar = dispatch => {
 
 //apaños en este Context para evitar errores
 const addRental = dispatch => {
-    return async ( car_id, user_id, pickup_location, start_date, end_date ) => {
+    return async ( car_id, user_id, pickup_location, dropoff_location,start_date, end_date ) => {
+        start_date = new Date(start_date.replace(' ', 'T'));
+        end_date = new Date(end_date.replace(' ', 'T'));
         try {
-            console.log("*** addRental ",car_id)
-            const response = await nicuApi.post('/rental-car/', {car_id,user_id, pickup_location, start_date, end_date});
-            dispatch({ type: 'addRental', payload: response.data });
+            const response = await nicuApi.post('/rental-car/', {car_id,user_id, pickup_location, dropoff_location, start_date, end_date});
+            //dispatch({ type: 'add_Rental', payload: response.data });
             navigate('Rental'); 
         } catch (err) {
             console.log("Error URL",err)

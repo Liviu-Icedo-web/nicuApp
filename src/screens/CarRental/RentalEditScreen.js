@@ -41,7 +41,7 @@ const RentalEditScreen = ({ navigation }) => {
                     headerText="Editeaza Rezerva :"
                     errorMessage={state.errorMessage}
                     submitButtonText="Confirma noua solicitare!!!"
-                    initialValues ={{  car_id: car,user_id: user, pickup_location: '', start_date: '', end_date: ''}}
+                    initialValues ={{  car_id: car,user_id: user, pickup_location: '', dropoff_location:'',start_date: '', end_date: ''}}
                     onSubmit={addRental}
                 />
             </ScrollView>                       

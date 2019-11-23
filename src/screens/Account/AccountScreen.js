@@ -54,7 +54,7 @@ const userCard = (user,navigation,usersContext) => {
                 <Spacer>
                     <Divider />
                 </Spacer> 
-                <TouchableOpacity style={{ marginRight: 10}} onPress={() => navigation.navigate('Rental')}>
+                <TouchableOpacity style={{ marginRight: 10}} onPress={() => navigation.navigate('Rental',{userId:user.id})}>
                     <View style={StyleSheet.rowView}>
                         <Text style={StyleSheet.azul}>Rezervari</Text>
                         <AntDesign style={StyleSheet.iconColor} name="carryout" size={30} /> 

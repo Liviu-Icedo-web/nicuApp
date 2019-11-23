@@ -12,10 +12,17 @@ import StyleSheet from '../../styles';
 
 
 const Rental = ({ headerText, errorMessage, initialValues , onSubmit, submitButtonText })  => {
-    const[pickup_location, setPickupLocation] = useState(initialValues.pickup_location);
+    const[pickup_location] = useState(initialValues.pickup_location);
+    const[dropoff_location] = useState(initialValues.dropoff_location);
+    const[pickUpLocation, setPickupLocation] = useState('');
+    const[dropOffLocation, setDropOffLocation] = useState('');
     const[start_date, setStartDate] = useState(initialValues.start_date);
     const[end_date, setEndDate] = useState(initialValues.end_date);
 
+    console.log('*** Rental pickup_location',pickup_location) 
+    console.log('*** Rental selectedLocation',pickUpLocation) 
+
+    //console.log('*** Rrenatl Date', new Date('2019-11-24 23:30').toISOString())
 
     return (
 
@@ -29,7 +36,10 @@ const Rental = ({ headerText, errorMessage, initialValues , onSubmit, submitButt
                     <DatePicker  
                         date={start_date}                
                         onDateChange={setStartDate}
-                        format="DD-MM-YYYY"
+                        mode="datetime"
+                        confirmBtnText="Confirm"
+                        cancelBtnText="Cancel"
+                        minuteInterval={30}
                         customStyles={{
                             dateIcon: {
                               position: 'absolute',
@@ -45,7 +55,10 @@ const Rental = ({ headerText, errorMessage, initialValues , onSubmit, submitButt
                     <DatePicker 
                         date={end_date} 
                         onDateChange={setEndDate}
-                        format="DD-MM-YYYY"
+                        mode="datetime"
+                        confirmBtnText="Confirm"
+                        cancelBtnText="Cancel"
+                        minuteInterval={30}
                         customStyles={{
                             dateIcon: {
                               position: 'absolute',
@@ -57,52 +70,39 @@ const Rental = ({ headerText, errorMessage, initialValues , onSubmit, submitButt
                     /> 
                 </View>     
             </View>     
-            <Text style={StyleSheet.Text}>Completeaza hora de ridicare/predare </Text>             
-            <View style={StyleSheet.rowView}>
-                <View style={{flex: 0.45}}>
-                    <Text>De la hora:</Text>  
-                    <Picker>  
-                        <Picker.Item label = "1" value = "" />
-                        <Picker.Item label = "2" value = "" />
-                        <Picker.Item label = "3" value = "" />
-                    </Picker> 
-                </View> 
-                <View style={{flex: 0.45}}>
-                    <Text>Pana la hora:</Text>  
-                    <Picker>  
-                        <Picker.Item label = "2" value = "" />
-                        <Picker.Item label = "3" value = "" />
-                        <Picker.Item label = "4" value = "" />
-                    </Picker> 
-                </View>      
-            </View> 
             <Text style={StyleSheet.Text}>Completeaza locul de ridicare/predare </Text>             
-            <View style={StyleSheet.rowView}>
+            
                 <View style={{flex: 0.45}}>
                     <Text>Ridicare in:</Text>
-                    <Picker>  
-                        <Picker.Item label = "Aeroport" value = {pickup_location} onValueChange={setPickupLocation} />
-                        <Picker.Item label = "Centru" value = {pickup_location} onValueChange={setPickupLocation} />
-                        <Picker.Item label = "Domiciliu" value = {pickup_location} onValueChange={setPickupLocation} />
+                    <Picker
+                        selectedValue={pickUpLocation}
+                        onValueChange={setPickupLocation} 
+                    >    
+                            { pickup_location.map((item, key)=>
+                                <Picker.Item label={item.street +' / Ors: '+item.city +' / Jud: '+item.state } value={item.id} key={key} />
+                              )}     
                     </Picker> 
                  
                 </View> 
                 <View style={{flex: 0.45}}>
                     <Text>Predare in:</Text>
-                    <Picker>  
-                        <Picker.Item label = "Aeroport" />
-                        <Picker.Item label = "Centru"  />
-                        <Picker.Item label = "Domiciliu"  />
+                    <Picker
+                        selectedValue={dropOffLocation}
+                        onValueChange={setDropOffLocation} 
+                    >    
+                            { dropoff_location.map((item, key)=>
+                                <Picker.Item label={item.street +' / Ors: '+item.city +' / Jud: '+item.state } value={item.id} key={key} />
+                              )}     
                     </Picker> 
                 </View> 
-            </View>
+          
             <Text style={StyleSheet.Text}>Ai rezervat X zile Y hore </Text>      
             <Text style={StyleSheet.Text}>Suma totala rezerva : 250 Lei</Text> 
             {errorMessage ? <Text style={StyleSheet.errorMessage}>{errorMessage}</Text> : null }
             <Spacer>
                 <Button
                     title={submitButtonText}
-                    onPress={() => onSubmit(initialValues.car_id,initialValues.user_id,pickup_location, start_date, end_date )}
+                    onPress={() => onSubmit(initialValues.car_id,initialValues.user_id, pickUpLocation, dropOffLocation,start_date, end_date )}
                     type="outline"
                 />
             </Spacer> 
