@@ -12,12 +12,13 @@ import StyleSheet from '../../styles';
 
 
 const Rental = ({ headerText, errorMessage, initialValues , onSubmit, submitButtonText })  => {
+    const[start_date, setStartDate] = useState(initialValues.start_date);
+    const[end_date, setEndDate] = useState(initialValues.end_date);
     const[pickup_location] = useState(initialValues.pickup_location);
     const[dropoff_location] = useState(initialValues.dropoff_location);
     const[pickUpLocation, setPickupLocation] = useState('');
     const[dropOffLocation, setDropOffLocation] = useState('');
-    const[start_date, setStartDate] = useState(initialValues.start_date);
-    const[end_date, setEndDate] = useState(initialValues.end_date);
+  
 
     console.log('*** Rental pickup_location',pickup_location) 
     console.log('*** Rental selectedLocation',pickUpLocation) 
@@ -79,7 +80,7 @@ const Rental = ({ headerText, errorMessage, initialValues , onSubmit, submitButt
                         onValueChange={setPickupLocation} 
                     >    
                             { pickup_location.map((item, key)=>
-                                <Picker.Item label={item.street +' / Ors: '+item.city +' / Jud: '+item.state } value={item.id} key={key} />
+                                <Picker.Item label={item.street +' / Ors: '+item.city } value={item.id} key={key} />
                               )}     
                     </Picker> 
                  
@@ -91,7 +92,7 @@ const Rental = ({ headerText, errorMessage, initialValues , onSubmit, submitButt
                         onValueChange={setDropOffLocation} 
                     >    
                             { dropoff_location.map((item, key)=>
-                                <Picker.Item label={item.street +' / Ors: '+item.city +' / Jud: '+item.state } value={item.id} key={key} />
+                                <Picker.Item label={item.street +' / Ors: '+item.city } value={item.id} key={key} />
                               )}     
                     </Picker> 
                 </View> 
@@ -102,7 +103,7 @@ const Rental = ({ headerText, errorMessage, initialValues , onSubmit, submitButt
             <Spacer>
                 <Button
                     title={submitButtonText}
-                    onPress={() => onSubmit(initialValues.car_id,initialValues.user_id, pickUpLocation, dropOffLocation,start_date, end_date )}
+                    onPress={() => onSubmit(initialValues.car_id,initialValues.user_id,  start_date, end_date, pickUpLocation, dropOffLocation )}
                     type="outline"
                 />
             </Spacer> 

@@ -6,7 +6,7 @@ import { Context as rentalContext } from '../../context/RentalContext';
 
 
 const RentalScreen =  ({ navigation }) => {
-    const {state, fetchRentals} = useContext(rentalContext)
+    const {state, fetchRentals, deleteRental} = useContext(rentalContext)
     const userId = navigation.getParam('userId')
 
     useEffect(()=>{
@@ -17,16 +17,19 @@ const RentalScreen =  ({ navigation }) => {
 
         <Tabs>
             <Tab
-                heading='Rezerve Confirmate'>
+                heading='Rezerve Disponibile'>
                 <ReceivedRental 
                     userId = {userId}
                     rentalDate ={state.rental}
                     navigation ={navigation}
+                    cancel={deleteRental}
                 />
             </Tab>
-            <Tab heading='Rezerve Primite'>
+            <Tab heading='Historial'>
                 <View >
-                    <Text>Rezerve Primite Pentru Masinile Publicate</Text>
+                    <Text>Eu zic aici sa incarcam rezervele care sau incheiat adica din trecut si in ailalta alea care inca nu leai facut...adika daca suntem in noiembrie si 
+                        rezervarea e pentru decembrie pana nu trece decembrie nu apare in historial ...ramane in prima
+                    </Text>
                 </View>
             </Tab>
         </Tabs>

@@ -19,8 +19,7 @@ const carsReducer = (state, action) => {
         case 'fetch_own_cars':
             return state.filter(car => car.user_id == action.payload);     
         case 'delete_car':
-            return { ...state, car:state.car.filter( car  => car.id !== action.payload)};   
-            
+            return { ...state, car:state.car.filter( car  => car.id !== action.payload)};      
         case 'add_Rental':
                 let newRental = action.payload
                 return { ...state, 
@@ -97,11 +96,13 @@ const deleteCar = dispatch => {
 
 //apaños en este Context para evitar errores
 const addRental = dispatch => {
-    return async ( car_id, user_id, pickup_location, dropoff_location,start_date, end_date ) => {
+    return async ( car_id, user_id, start_date, end_date ,pickup_location, dropoff_location) => {
         start_date = new Date(start_date.replace(' ', 'T'));
         end_date = new Date(end_date.replace(' ', 'T'));
+        console.log('*** add Rental pickup_location',pickup_location)
+        console.log('*** add Rental dropff_location',dropoff_location)
         try {
-            const response = await nicuApi.post('/rental-car/', {car_id,user_id, pickup_location, dropoff_location, start_date, end_date});
+            const response = await nicuApi.post('/rental-car/', {car_id,user_id, start_date, end_date,pickup_location, dropoff_location});
             //dispatch({ type: 'add_Rental', payload: response.data });
             navigate('Rental'); 
         } catch (err) {

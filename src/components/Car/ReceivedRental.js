@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text , TouchableOpacity, Image, ScrollView,FlatList } from 'react-native';
-import { Entypo ,MaterialCommunityIcons} from '@expo/vector-icons';
+import { Entypo ,MaterialCommunityIcons,AntDesign} from '@expo/vector-icons';
 import { SafeAreaView } from 'react-navigation';
 
 import Card from '../../components/Utils/Card';
@@ -9,7 +9,8 @@ import StyleSheet from '../../styles';
 
 //Aqui tenemos que cargar las rental que hemos recibido para nuestros coche que tenemos en alquiler
 
-const ReceivedRental =  ({ userId , rentalDate, navigation }) => {
+const ReceivedRental =  ({ userId , rentalDate, navigation, cancel }) => {
+  
 
     console.log('**** ReceivedRental ', userId)
     console.log('**** ReceivedRental data ', rentalDate)
@@ -28,28 +29,44 @@ const ReceivedRental =  ({ userId , rentalDate, navigation }) => {
                                 <TouchableOpacity  style={{ marginRight: 10}} onPress={() => navigation.navigate('RentalEdit', { id: item.id })}>
                                     <MaterialCommunityIcons style={StyleSheet.iconColor} name="playlist-edit" size={25} />
                                 </TouchableOpacity>                                                                        
-                            </View>                 
-                            <TouchableOpacity onPress={() => navigation.navigate('RentalEdit', { id: 1 })} >
+                            </View>             
+                            <TouchableOpacity onPress={() => navigation.navigate('RentalEdit', { id: item.id })} >   
                                 <View style={StyleSheet.carView}>
                                     <View style={StyleSheet.imageView}>
                                         <Image style={StyleSheet.image}   source={{ uri: item.car.images }} />  
                                     </View>
                                     <View style={StyleSheet.detailView}>
-                                        <Text style={StyleSheet.text}>Din data : {getParsedDate(item.start_date)}</Text>
-                                        <Text style={StyleSheet.text}>Pana in data : {getParsedDate(item.end_date)}</Text>
-                                        <Text style={StyleSheet.detailTextCar}>Loc de Ridicare {getLocation(item.car_location,item.pickup_location)}</Text>
-                                        <Text style={StyleSheet.detailTextCar}>Hora.....</Text>
+                                        <Text style={StyleSheet.detailTextCar}>Din data : </Text>
+                                        <Text style={StyleSheet.text}>{getParsedDate(item.start_date)}</Text>
+                                        <Text style={StyleSheet.detailTextCar}>Pana in data :</Text>
+                                        <Text style={StyleSheet.text}>{getParsedDate(item.end_date)}</Text>
                                     </View>  
                                 </View>
+                                <View style={StyleSheet.detailView}>
+                                    <Text style={StyleSheet.detailTextCar}>Ridicare la adresa :</Text>
+                                    <Text>{getLocation(item.car_location,item.pickup_location)}</Text>
+                                 </View> 
+                                 <View style={StyleSheet.detailView}>
+                                    <Text style={StyleSheet.detailTextCar}>Predare la adresa :</Text>
+                                    <Text>{getLocation(item.car_location,item.dropoff_location)}</Text>
+                                 </View>    
                             </TouchableOpacity>  
-                                <View style={StyleSheet.GrayCardView}>
-                                    <TouchableOpacity onPress="">
-                                        <Text style={StyleSheet.iconColor}>Anuleaza Rezerva</Text> 
-                                    </TouchableOpacity>   
-                                    <TouchableOpacity onPress="">
-                                        <Entypo style={StyleSheet.iconColor} name="block" size={20} />                                                                     
-                                    </TouchableOpacity> 
-                                </View>                                                                 
+                            <View style={StyleSheet.GrayCardView}>
+                                <TouchableOpacity onPress={() => cancel(item.id)} >
+                                    <Text style={StyleSheet.iconColor}>Anuleaza Rezerva</Text> 
+                                </TouchableOpacity>   
+                                <TouchableOpacity  onPress={() => cancel(item.id)}>
+                                    <Entypo style={StyleSheet.iconColor} name="block" size={20} />                                                                     
+                                </TouchableOpacity> 
+                            </View> 
+                            <View style={StyleSheet.iconView}>
+                                <TouchableOpacity onPress={() => navigation.navigate('CarDetail', { id: item.car.id })} >  
+                                    <Text style={StyleSheet.iconColor}>Vezi detalli masina!!!</Text> 
+                                </TouchableOpacity>                              
+                                <TouchableOpacity onPress={() => navigation.navigate('CarDetail', { id: item.car.id })} >  
+                                    <AntDesign style={StyleSheet.iconColor} name="doubleright" size={20} />  
+                                </TouchableOpacity>   
+                            </View>                                                                  
                         </Card>                            
                     </View>  
                     );
@@ -82,7 +99,7 @@ const  getParsedDate = (strDate) =>{
 
 const getLocation = (locData, locId)=>{
    var loc = locData.filter(locData => locData.id == locId); 
-   return " Loc: "+loc[0].street +" Ors: "+loc[0].city+" Jud: "+loc[0].state // We put loc[0] becasue we can a new array on position 0
+   return " Loc: "+loc[0].street +" Ors: "+loc[0].city // We put loc[0] becasue we can a new array on position 0
 }
 
 export default ReceivedRental;

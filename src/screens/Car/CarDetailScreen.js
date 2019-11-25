@@ -18,15 +18,7 @@ const CarDetailScreen = ({ navigation }) => {
     const car = state.car.find(
         car => car.id === navigation.getParam('id'),
     );
-
-    console.log('*** CarDetailScreen User',user_session.state.user.id) 
-
-    const st_date = new Date('2019-11-24 11:00'.replace(' ', 'T'));
-    const en_date = new Date('2019-01-01 11:00'.replace(' ', 'T'));
-
-    console.log('*** CarDetailScreen st_date', st_date)
-    console.log('*** CarDetailScreen end_date', en_date)
-    
+ 
     return (
         <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>
             <ScrollView>
@@ -56,7 +48,7 @@ const CarDetailScreen = ({ navigation }) => {
                     headerText="Inchiriaza Acum :"
                     errorMessage={state.errorMessage}
                     submitButtonText="Confirma Rezerva!!!"
-                    initialValues ={{  car_id: car.id, user_id: user_session.state.user.id, pickup_location: car.car_location, dropoff_location: car.car_location,start_date: '', end_date: ''}}
+                    initialValues ={{  car_id: car.id, user_id: user_session.state.user.id, start_date: '', end_date: '', pickup_location: car.car_location, dropoff_location: car.car_location}}
                     onSubmit={addRental}
                 />
                 <Spacer>
