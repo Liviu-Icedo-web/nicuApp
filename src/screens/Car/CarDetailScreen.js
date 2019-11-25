@@ -48,7 +48,15 @@ const CarDetailScreen = ({ navigation }) => {
                     headerText="Inchiriaza Acum :"
                     errorMessage={state.errorMessage}
                     submitButtonText="Confirma Rezerva!!!"
-                    initialValues ={{  car_id: car.id, user_id: user_session.state.user.id, start_date: '', end_date: '', pickup_location: car.car_location, dropoff_location: car.car_location}}
+                    initialValues ={{  
+                        car_id: car.id, 
+                        user_id: user_session.state.user.id, 
+                        start_date: '', 
+                        end_date: '', 
+                        car_location:car.car_location,
+                        pickup_location: '', 
+                        dropoff_location: ''
+                    }}
                     onSubmit={addRental}
                 />
                 <Spacer>

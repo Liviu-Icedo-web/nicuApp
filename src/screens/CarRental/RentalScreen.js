@@ -14,7 +14,7 @@ const RentalScreen =  ({ navigation }) => {
     },[]);
  
     return  ( 
-
+        
         <Tabs>
             <Tab
                 heading='Rezerve Disponibile'>

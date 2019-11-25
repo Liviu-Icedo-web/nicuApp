@@ -15,6 +15,7 @@ const RentalEditScreen = ({ navigation }) => {
         rental => rental.id === navigation.getParam('id')
     );
 
+    console.log('*** RentalEditScreen',rental) 
 
     return (
         <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>
@@ -25,7 +26,15 @@ const RentalEditScreen = ({ navigation }) => {
                             headerText="Editeaza Acum :"
                             errorMessage={state.errorMessage}
                             submitButtonText="Confirma Noua Rezerva!!!"
-                            initialValues ={{ car_id:rental.car.id, user_id: rental.user_id,start_date: rental.start_date, end_date: rental.end_date,  pickup_location: rental.car_location, dropoff_location: rental.car_location}}
+                            initialValues ={{ 
+                                car_id:rental.car.id, 
+                                user_id: rental.user_id,
+                                start_date: rental.start_date, 
+                                end_date: rental.end_date,
+                                car_location: rental.car_location,  
+                                pickup_location: rental.pickup_location, 
+                                dropoff_location: rental.dropoff_location
+                            }}
                             onSubmit={(car_id, user_id,start_date, end_date, pickup_location, dropoff_location) => {
                                 editRental(rental.id, car_id, user_id, start_date, end_date, pickup_location, dropoff_location, () => navigation.pop());
                             }}

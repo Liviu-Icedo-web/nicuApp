@@ -2,7 +2,8 @@ import React from 'react';
 import { View, Text , TouchableOpacity, Image, ScrollView,FlatList } from 'react-native';
 import { Entypo ,MaterialCommunityIcons,AntDesign} from '@expo/vector-icons';
 import { SafeAreaView } from 'react-navigation';
-
+import { NavigationEvents } from 'react-navigation';
+import { Context as rentalContext } from '../../context/RentalContext';
 import Card from '../../components/Utils/Card';
 import StyleSheet from '../../styles';
 
@@ -11,13 +12,12 @@ import StyleSheet from '../../styles';
 
 const ReceivedRental =  ({ userId , rentalDate, navigation, cancel }) => {
   
-
     console.log('**** ReceivedRental ', userId)
     console.log('**** ReceivedRental data ', rentalDate)
     return  ( 
 
         <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>               
-            <ScrollView>         
+            <ScrollView> 
             <FlatList 
                 data={rentalDate}
                 keyExtractor={item => item.id.toString()}
