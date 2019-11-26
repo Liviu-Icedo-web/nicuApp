@@ -89,7 +89,7 @@ CarListScreen.navigationOptions = ({ navigation}) => {
         title: 'NicuApp',
         headerTitleStyle: {
            // fontWeight: 'bold',
-           // color: '#112f91'
+            color: '#112f91'
         },
     };    
 };

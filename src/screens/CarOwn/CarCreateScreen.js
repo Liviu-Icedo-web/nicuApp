@@ -18,7 +18,7 @@ const CarCreateScreen = ({ navigation }) => {
                 <View style={StyleSheet.CarCreateView}>
                     <Card>
                         <NavigationEvents onWillBlur={clearErrorMessage} />
-                        <TouchableOpacity onPress={() => navigation.navigate('CarOwn')}>
+                        <TouchableOpacity onPress={() => navigation.goBack()}>
                             <MaterialIcons name="arrow-back" size={30} />
                         </TouchableOpacity>
                         <CarForm

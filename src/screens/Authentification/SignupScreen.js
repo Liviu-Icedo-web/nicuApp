@@ -20,7 +20,7 @@ const SignupScreen = ({ navigation }) => {
                 <View style={StyleSheet.SignView}>
                     <Card>
                         <NavigationEvents onWillBlur={clearErrorMessage} />
-                        <TouchableOpacity onPress={() => navigation.navigate('CarList')}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Account')}>
                             <MaterialIcons name="arrow-back" size={30} />
                         </TouchableOpacity>
                         <UserForm

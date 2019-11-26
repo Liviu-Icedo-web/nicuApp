@@ -3,6 +3,8 @@ import React from 'react';
 import { View, TextInput, TouchableOpacity ,Picker} from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import StyleSheet from '../../styles';
+import {  Divider } from 'react-native-elements';
+import Spacer from '../../components/Utils/Spacer';
 
 const SearchBar = () => {
     return (
@@ -13,7 +15,8 @@ const SearchBar = () => {
                         autoCapitalize="none"
                         autoCorrect
                         style={StyleSheet.inputSearchStyle} 
-                        placeholder="ex.Alba Iulia" 
+                        placeholder="ex.Alba Iulia"
+                        placeholderTextColor="#112f91"  
                     />
                 </View>
                 <View style={StyleSheet.backgroundInput}>
@@ -22,6 +25,7 @@ const SearchBar = () => {
                         autoCorrect
                         style={StyleSheet.inputSearchStyle} 
                         placeholder="ex.Opel" 
+                        placeholderTextColor="#112f91" 
                     />
                 </View>
             </View>
@@ -48,6 +52,7 @@ const SearchBar = () => {
                     <Picker.Item label = "Indiferent" value = "" />
                 </Picker>    
             </View>
+            <Divider />
             <View style={StyleSheet.RowSearch}>
                 <Picker style={StyleSheet.picker}>
                     <Picker.Item label = "Manuala" value = "" />
@@ -64,7 +69,8 @@ const SearchBar = () => {
                         <Feather name="search" style={StyleSheet.iconSearchStyle} />     
                     </TouchableOpacity> 
                 </View>    
-            </View>       
+            </View> 
+            <Divider /> 
         </View>
     );
 };

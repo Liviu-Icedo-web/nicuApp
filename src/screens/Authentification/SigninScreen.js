@@ -17,7 +17,7 @@ const SigninScreen = ({navigation}) => {
             <View style={StyleSheet.SignView}>
                  <Card>
                     <NavigationEvents onWillBlur={clearErrorMessage} />
-                    <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
                         <MaterialIcons name="arrow-back" size={30} />
                     </TouchableOpacity>
                     <AuthForm

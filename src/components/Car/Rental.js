@@ -40,9 +40,9 @@ const Rental = ({ headerText, errorMessage, initialValues, onSubmit, submitButto
                         customStyles={{
                             dateIcon: {
                                 position: 'absolute',
-                                left: 0,
+                                left: -8,
                                 top: 4,
-                                marginLeft: 0
+                                marginLeft: -8
                             },
                         }}
                     />
@@ -59,9 +59,9 @@ const Rental = ({ headerText, errorMessage, initialValues, onSubmit, submitButto
                         customStyles={{
                             dateIcon: {
                                 position: 'absolute',
-                                left: 0,
+                                left: -8,
                                 top: 4,
-                                marginLeft: 0
+                                marginLeft: -8
                             },
                         }}
                     />

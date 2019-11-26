@@ -1,5 +1,5 @@
 import React, { useContext , useEffect} from 'react';
-import { View, Image, ScrollView } from 'react-native';
+import { View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { Text } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
@@ -43,14 +43,18 @@ const CarDetailScreen = ({ navigation }) => {
                         <Text style={StyleSheet.Text}>{car.price_day} Lei Ziua</Text>
                         <Text style={StyleSheet.Text}>{car.price_hour} Lei Hora</Text>
                     </View>  
-                </View>                
+                </View>  
+                <Spacer>
+                    <Text style={StyleSheet.azul}>Proprietar: {car.user.last_name} {car.user.first_name}</Text>
+                    <Text style={StyleSheet.azul}>Mail: {car.user.email}</Text>
+                </Spacer>            
                 <Rental 
                     headerText="Inchiriaza Acum :"
                     errorMessage={state.errorMessage}
                     submitButtonText="Confirma Rezerva!!!"
                     initialValues ={{  
                         car_id: car.id, 
-                        user_id: user_session.state.user.id, 
+                        user_id: user_session.state.user.id,
                         start_date: '', 
                         end_date: '', 
                         car_location:car.car_location,
@@ -59,11 +63,6 @@ const CarDetailScreen = ({ navigation }) => {
                     }}
                     onSubmit={addRental}
                 />
-                <Spacer>
-                    <Text style={StyleSheet.azul}>Proprietar: {car.user.last_name} {car.user.first_name}</Text>
-                    <Text style={StyleSheet.azul}>Mail: {car.user.email}</Text>
-                    <Text style={StyleSheet.azul}>Publicada: {car.user.created_at}</Text>
-                </Spacer>
             </ScrollView>                       
         </SafeAreaView>
     );

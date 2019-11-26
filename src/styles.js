@@ -135,6 +135,22 @@ export default StyleSheet.create({
     },
 
     //No User View
+    AUTHView:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 50
+    },
+    greenView:{
+        backgroundColor: THIRD_COLOR,
+        padding: 20,
+    },
+
+    blueView:{
+        backgroundColor: QUART_COLOR,
+        padding: 20,
+    },
+
+
     NoUserView: {
         marginBottom: 40,
         marginTop:100,
@@ -158,11 +174,9 @@ export default StyleSheet.create({
 
     //SearchBar
     backgroundSearch:{
-        backgroundColor: QUART_COLOR,
+        backgroundColor: WHITE,
         minHeight: 100,
-        paddingBottom: 20,
-        paddingHorizontal: 10,
-        marginBottom:10
+        paddingLeft:5,
     },
     RowSearch:{
         flex:2,
@@ -181,15 +195,17 @@ export default StyleSheet.create({
     inputSearchStyle: {
         flex: 1,
         fontSize: 15,
-        marginHorizontal: 10
+        paddingLeft: 10,
+        borderBottomWidth:1,
+        borderBottomColor: GRAY,
+        
     },
-
     picker: {
         flex:1,
         marginTop: 10,
         height: 30,
         marginHorizontal: 5,
-        color: SECONDARY_COLOR
+        color: QUART_COLOR,
      
     },
     search:{
@@ -198,10 +214,11 @@ export default StyleSheet.create({
      
     },
     iconSearchStyle: {
-        fontSize: 35,
+        fontSize: 30,
         alignSelf: 'center',
         marginHorizontal: 10,
-        color: WHITE
+        marginVertical: 5,
+        color: QUART_COLOR
     },
   
    
@@ -383,7 +400,7 @@ export default StyleSheet.create({
         borderRadius: 20,
         borderColor: BORDER_COLOR,
         elevation: 1,
-        marginHorizontal: 10,
+        marginHorizontal: 5,
         marginTop: 5,
         marginBottom: 5,
         padding: 10,
@@ -407,10 +424,13 @@ export default StyleSheet.create({
     iconColor: {
         color: QUART_COLOR
     },
+
+    iconColorGreen:{
+        color: THIRD_COLOR,
+    },
     iconView: {
         flexDirection: 'row',
         justifyContent:'flex-end'
-     
     },
     userDetail:{
         borderBottomRightRadius: 20,
@@ -463,6 +483,13 @@ export default StyleSheet.create({
         flex: 1,
         color: QUART_COLOR,
         marginRight: 5
+    },
+
+    //Img User
+    imgUser:{
+        height: 80,
+        width: 70,
+        borderRadius: 10
     }
 
 });

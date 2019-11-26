@@ -2,6 +2,7 @@ import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+
 import HomeScreen from './src/screens/Home/HomeScreen';
 import SigninScreen from './src/screens/Authentification/SigninScreen';
 import SignupScreen from './src/screens/Authentification/SignupScreen';
@@ -35,7 +36,21 @@ const carListFlow = createStackNavigator({
    CarDetail: CarDetailScreen,
 });
 
-const carOwnFlow = createStackNavigator({
+//const carOwnFlow = createStackNavigator({
+   // CarOwn: CarOwnScreen,
+   // CarCreate: CarCreateScreen,
+    //CarOwnDetail: CarOwnDetailScreen,
+    //CarLocations: CarLocationsScreen,
+   // CarLocationCreate: CarLocationCreateScreen,
+   // CarLocationEdit: CarLocationEditScreen
+//});
+
+const accountFlow = createStackNavigator({
+    Account: AccountScreen,
+    Profile: ProfileScreen,
+    Rental: RentalScreen,
+    RentalEdit: RentalEditScreen,
+    Message: MessageScreen,
     CarOwn: CarOwnScreen,
     CarCreate: CarCreateScreen,
     CarOwnDetail: CarOwnDetailScreen,
@@ -44,24 +59,16 @@ const carOwnFlow = createStackNavigator({
     CarLocationEdit: CarLocationEditScreen
 });
 
-const accountFlow = createStackNavigator({
-    Account: AccountScreen,
-    Profile: ProfileScreen,
-    Rental: RentalScreen,
-    RentalEdit: RentalEditScreen,
-    Message: MessageScreen
-});
-
-carOwnFlow.navigationOptions = {
-  title: 'Verifica Masinile tale',
-  tabBarIcon: ({tintColor}) => (
-    <FontAwesome
-        name="car"
-        color={tintColor}
-        size={20}
-    />
-  ),
-};
+//carOwnFlow.navigationOptions = {
+ // title: 'Verifica Masinile tale',
+  //tabBarIcon: ({tintColor}) => (
+   // <FontAwesome
+    //    name="car"
+      //  color={tintColor}
+      //  size={20}
+    ///>
+  //),
+//};
 
 accountFlow.navigationOptions =  { 
       title: 'Profil',
@@ -78,11 +85,12 @@ carListFlow.navigationOptions = {
   title: 'Cauta Masini',
   tabBarIcon: ({tintColor}) => (
     <FontAwesome
-        name="th-list"
-        color={tintColor}
-        size={20}
-    />
+    name="car"
+    color={tintColor}
+    size={20}
+/>
   ),
+ 
 };
 
 const switchNavigator = createSwitchNavigator({
@@ -90,11 +98,11 @@ const switchNavigator = createSwitchNavigator({
   Home: HomeScreen,
   mainFlow: createBottomTabNavigator({
     carListFlow,
-    carOwnFlow,
+   // carOwnFlow,
     accountFlow
    }),
-   CarEdit: CarEditScreen,
-   UserEdit: UserEditScreen,
+  CarEdit: CarEditScreen,
+  UserEdit: UserEditScreen,
   loginFlow: createStackNavigator({
     Signup: SignupScreen,
     Signin: SigninScreen,
