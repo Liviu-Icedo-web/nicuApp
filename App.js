@@ -23,6 +23,7 @@ import CarOwnDetailScreen from './src/screens/CarOwn/CarOwnDetailScreen';
 import CarEditScreen from './src/screens/CarOwn/CarEditScreen';
 import UserEditScreen from './src/screens/Account/UserEditScreen';
 import DocumentsScreen from './src/screens/Documents/DocumentsScreen';
+import CarUserDetailScreen from './src/screens/Car/CarUserDetailScreen';
 
 import { Provider as CarProvider } from './src/context/CarContext';
 import { Provider as AuthProvider } from './src/context/AuthContext';
@@ -35,6 +36,7 @@ import { FontAwesome } from '@expo/vector-icons';
 const carListFlow = createStackNavigator({
    CarList: CarListScreen,
    CarDetail: CarDetailScreen,
+   CarUserDetail: CarUserDetailScreen
 });
 
 //const carOwnFlow = createStackNavigator({

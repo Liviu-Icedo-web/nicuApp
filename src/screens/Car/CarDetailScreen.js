@@ -2,7 +2,7 @@ import React, { useContext , useEffect} from 'react';
 import { View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { Text } from 'react-native-elements';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome , AntDesign} from '@expo/vector-icons';
 
 import { Context as CarContext } from '../../context/CarContext';
 import { Context as AuthContext } from '../../context/AuthContext';
@@ -45,8 +45,16 @@ const CarDetailScreen = ({ navigation }) => {
                     </View>  
                 </View>  
                 <Spacer>
-                    <Text style={StyleSheet.azul}>Proprietar: {car.user.last_name} {car.user.first_name}</Text>
-                    <Text style={StyleSheet.azul}>Mail: {car.user.email}</Text>
+                    <Text style={StyleSheet.azul}>Proprietar: </Text>
+                    <Text style={StyleSheet.azul}>{car.user.last_name} {car.user.first_name}</Text>
+                    <View style={StyleSheet.iconView}>
+                        <TouchableOpacity onPress={() => navigation.navigate('CarUserDetail', { id: car.id })} >  
+                            <Text style={StyleSheet.iconColor}>Vezi perfil!!</Text> 
+                        </TouchableOpacity>                              
+                        <TouchableOpacity onPress={() => navigation.navigate('CarUserDetail', { id: car.id })} >  
+                            <AntDesign style={StyleSheet.iconColor} name="doubleright" size={20} />  
+                        </TouchableOpacity>   
+                    </View>  
                 </Spacer>            
                 <Rental 
                     headerText="Inchiriaza Acum!!!"

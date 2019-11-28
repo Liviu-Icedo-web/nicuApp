@@ -519,4 +519,13 @@ export default StyleSheet.create({
         color: BLUE,
      
     },
+
+    //UserDetailCar
+    flatlist: {
+        flexWrap: 'wrap'
+      },
+      content: {
+        alignItems: 'flex-start'
+      }
 });
+
