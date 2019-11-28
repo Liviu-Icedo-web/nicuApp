@@ -1,5 +1,5 @@
 import React , {useContext} from 'react';
-import { View, ScrollView , TouchableOpacity} from 'react-native';
+import { View, ScrollView , TouchableOpacity,  Image} from 'react-native';
 import {  Divider } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import {Text} from 'react-native-elements';
@@ -30,7 +30,7 @@ const userCard = (user,navigation,usersContext) => {
         <ScrollView >
             <View style={{alignItems: 'center', marginTop: 30 }}>
                 <View style={StyleSheet.userView}>
-                    <Entypo style={StyleSheet.iconColor} name="user" size={50} /> 
+                     <Image style={StyleSheet.imgUser} source={require("../../img/imgUser.jpg" )} /> 
                 </View> 
             </View>
             <Spacer>

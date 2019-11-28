@@ -49,7 +49,7 @@ const CarDetailScreen = ({ navigation }) => {
                     <Text style={StyleSheet.azul}>Mail: {car.user.email}</Text>
                 </Spacer>            
                 <Rental 
-                    headerText="Inchiriaza Acum :"
+                    headerText="Inchiriaza Acum!!!"
                     errorMessage={state.errorMessage}
                     submitButtonText="Confirma Rezerva!!!"
                     initialValues ={{  

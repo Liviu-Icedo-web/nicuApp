@@ -1,10 +1,9 @@
 import * as React from 'react';
-import {Image, View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Image, View , TouchableOpacity, Text } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
-import Spacer from './Spacer';
+import StyleSheet from '../../styles';
 
 //MODEL https://stackoverflow.com/questions/55831213/uploading-multiple-images-with-react
 // https://jsmanifest.com/uploading-files-in-react-while-keeping-ui-completely-in-sync/
@@ -25,12 +24,9 @@ export default class ImageUpload extends React.Component {
         {image &&
           <Image source={{ uri: image }} style={{ width: 200, height: 170 }} /> 
         }
-        <Spacer/>
-         <Button
-          title="Urca Imagine"
-          onPress={this._pickImage}
-          type="outline"
-        />  
+        <TouchableOpacity style={StyleSheet.galeryView} onPress={this._pickImage}>
+            <Text style={StyleSheet.white}>Incarca din Galerie</Text>
+        </TouchableOpacity> 
       </View>
     );
   }

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { View, Picker } from 'react-native';
+import { View, Picker , Image} from 'react-native';
 import { Button } from 'react-native-elements';
 import { Text } from 'react-native-elements';
 import DatePicker from 'react-native-datepicker';
 import Card from '../Utils/Card';
 import Spacer from '../Utils/Spacer';
 import StyleSheet from '../../styles';
+import {  Entypo} from '@expo/vector-icons';
 
 
 
@@ -25,13 +26,15 @@ const Rental = ({ headerText, errorMessage, initialValues, onSubmit, submitButto
 
         <Card>
             <Text style={StyleSheet.titleAzul}>{headerText}</Text>
-            <Spacer />
-            <Text style={StyleSheet.Text}>Alege perioada in care vrei sa inchiriezi</Text>
-            <View style={StyleSheet.rowView}>
-                <View style={{ flex: 0.45 }}>
-                    <Text >Din data de:</Text>
+            <Spacer/>
+            <Text  style={StyleSheet.azul}>Alege perioada in care vrei sa inchiriezi!!!</Text>
+            <Spacer/>
+            <View style={{   flexDirection: 'row',justifyContent: 'space-between',}}>
+                <View style ={{ flex: 0.5 }}>
+                    <Text style={StyleSheet.blue}>Din data de:</Text>
                     <DatePicker
                         date={start_date}
+                        iconSource={require('../../img/date.png' )}
                         onDateChange={setStartDate}
                         mode="datetime"
                         confirmBtnText="Confirm"
@@ -40,17 +43,18 @@ const Rental = ({ headerText, errorMessage, initialValues, onSubmit, submitButto
                         customStyles={{
                             dateIcon: {
                                 position: 'absolute',
-                                left: -8,
-                                top: 4,
-                                marginLeft: -8
+                                right: -8,
+                                top: 5,
+                                marginRight: -8
                             },
                         }}
                     />
                 </View>
-                <View style={{ flex: 0.45 }}>
-                    <Text>Pana in data de :</Text>
-                    <DatePicker
+                <View  style ={{ flex: 0.5 }}>
+                    <Text style={StyleSheet.blue}>Pana in data de :</Text>
+                    <DatePicker 
                         date={end_date}
+                        iconSource={require('../../img/date.png' )}
                         onDateChange={setEndDate}
                         mode="datetime"
                         confirmBtnText="Confirm"
@@ -59,31 +63,38 @@ const Rental = ({ headerText, errorMessage, initialValues, onSubmit, submitButto
                         customStyles={{
                             dateIcon: {
                                 position: 'absolute',
-                                left: -8,
-                                top: 4,
-                                marginLeft: -8
+                                right: -8,
+                                top: 5,
+                                marginRight: -8
                             },
                         }}
                     />
                 </View>
             </View>
-            <Text style={StyleSheet.Text}>Completeaza locul de ridicare/predare </Text>
-
-            <View style={{ flex: 0.45 }}>
-                <Text>Ridicare in:</Text>
-                <Picker
+            <Spacer/>
+            <Text style={StyleSheet.azul}>Completeaza locul de ridicare/predare !!!</Text>
+            <Spacer/>           
+            <View style={{ flex: 1}}>
+                <View style={StyleSheet.rowView}>
+                    <Text style={StyleSheet.blue}>Ridicare in:</Text>
+                    <Entypo style={StyleSheet.blue} name="location-pin" size={30} />  
+                </View>
+                <Picker style={StyleSheet.gray}
                     selectedValue={pickUpLocation}
                     onValueChange={setPickupLocation}
                 >
                     {car_location.map((item, key) =>
-                        <Picker.Item label={item.street + ' / Ors: ' + item.city} value={item.id} key={key} />
+                        <Picker.Item label={item.street + ' / Ors: ' + item.city} value={item.id} key={key}  />
                     )}
                 </Picker>
 
             </View>
-            <View style={{ flex: 0.45 }}>
-                <Text>Predare in:</Text>
-                <Picker
+            <View style={{ flex: 1}}>
+                <View style={StyleSheet.rowView}>
+                    <Text style={StyleSheet.blue} >Predare in:</Text>
+                    <Entypo style={StyleSheet.blue} name="location-pin" size={30} />  
+                </View>
+                <Picker style={StyleSheet.gray}
                     selectedValue={dropOffLocation}
                     onValueChange={setDropOffLocation}
                 >
@@ -92,9 +103,9 @@ const Rental = ({ headerText, errorMessage, initialValues, onSubmit, submitButto
                     )}
                 </Picker>
             </View>
-
-            <Text style={StyleSheet.Text}>Ai rezervat X zile Y hore </Text>
-            <Text style={StyleSheet.Text}>Suma totala rezerva : 250 Lei</Text>
+            <Spacer/>   
+            <Text style={StyleSheet.azul}>Ai rezervat X zile Y hore </Text>
+            <Text style={StyleSheet.azul}>Suma totala rezerva : 250 Lei</Text>
             {errorMessage ? <Text style={StyleSheet.errorMessage}>{errorMessage}</Text> : null}
             <Spacer>
                 <Button
@@ -109,3 +120,4 @@ const Rental = ({ headerText, errorMessage, initialValues, onSubmit, submitButto
 };
 
 export default Rental;
+

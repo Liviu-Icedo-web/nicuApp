@@ -22,6 +22,7 @@ import CarOwnScreen from './src/screens/CarOwn/CarOwnScreen';
 import CarOwnDetailScreen from './src/screens/CarOwn/CarOwnDetailScreen';
 import CarEditScreen from './src/screens/CarOwn/CarEditScreen';
 import UserEditScreen from './src/screens/Account/UserEditScreen';
+import DocumentsScreen from './src/screens/Documents/DocumentsScreen';
 
 import { Provider as CarProvider } from './src/context/CarContext';
 import { Provider as AuthProvider } from './src/context/AuthContext';
@@ -56,7 +57,8 @@ const accountFlow = createStackNavigator({
     CarOwnDetail: CarOwnDetailScreen,
     CarLocations: CarLocationsScreen,
     CarLocationCreate: CarLocationCreateScreen,
-    CarLocationEdit: CarLocationEditScreen
+    CarLocationEdit: CarLocationEditScreen,
+    Documents: DocumentsScreen
 });
 
 //carOwnFlow.navigationOptions = {

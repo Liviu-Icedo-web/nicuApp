@@ -5,6 +5,7 @@ const PRIMARY_COLOR = "#fbfdfd";
 const SECONDARY_COLOR = '#dadada';
 const THIRD_COLOR = '#08ffc8';
 const QUART_COLOR = '#112f91';
+const BLUE= '#0668a3';
 
 const WHITE = '#fff';
 const GRAY = '#D3D3D3';
@@ -43,6 +44,9 @@ export default StyleSheet.create({
         color: QUART_COLOR,
       
     },
+    blue:{
+        color: BLUE
+    },
     gray:{
         color: SECONDARY_COLOR
     },
@@ -76,8 +80,11 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         padding: 10
     },
-
-    
+    rowViewCard:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+  
     //Home
     HomeView:{
         justifyContent: 'center',
@@ -490,6 +497,26 @@ export default StyleSheet.create({
         height: 80,
         width: 70,
         borderRadius: 10
-    }
+    },
 
+    //Documnts View
+    docView:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20
+    },
+    galeryView:{
+        backgroundColor: THIRD_COLOR,
+        padding: 10,
+    },
+    webView:{
+        backgroundColor: QUART_COLOR,
+        padding: 10,
+    },
+
+    //Rental
+    pickerBlue: {
+        color: BLUE,
+     
+    },
 });

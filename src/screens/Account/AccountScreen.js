@@ -4,7 +4,7 @@ import {  Divider  } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import { Tab, Tabs } from 'native-base';
 import {Text} from 'react-native-elements';
-import {  Entypo, Ionicons,AntDesign, Feather,FontAwesome,MaterialIcons,MaterialCommunityIcons} from '@expo/vector-icons';
+import {  Entypo, Ionicons,AntDesign, FontAwesome,MaterialIcons,MaterialCommunityIcons} from '@expo/vector-icons';
 
 
 import Spacer from '../../components/Utils/Spacer';
@@ -71,9 +71,9 @@ const userCard = (user,navigation,usersContext) => {
                             <Spacer>
                                 <Divider />
                             </Spacer> 
-                            <TouchableOpacity style={{ marginRight: 10}} >
+                            <TouchableOpacity style={{ marginRight: 10}} onPress={() => navigation.navigate('Documents')} >
                                 <View style={StyleSheet.rowView}>
-                                    <Text style={StyleSheet.azul}>Documente</Text>
+                                    <Text style={StyleSheet.azul}>Documente </Text>
                                     <MaterialIcons style={StyleSheet.iconColor} name="verified-user" size={30} /> 
                                 </View>
                             </TouchableOpacity> 
@@ -88,13 +88,7 @@ const userCard = (user,navigation,usersContext) => {
                             </TouchableOpacity>
                             <Spacer>
                                 <Divider />
-                            </Spacer>  
-                            <TouchableOpacity style={{ marginRight: 10}} >
-                                <View style={StyleSheet.rowView}>
-                                    <Text style={StyleSheet.azul}>Notificari</Text>
-                                    <Ionicons style={StyleSheet.iconColor} name="ios-notifications" size={30} /> 
-                                </View>
-                            </TouchableOpacity>    
+                            </Spacer>   
                         </Spacer>
                      </ScrollView> 
                 </Tab>
