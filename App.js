@@ -24,6 +24,8 @@ import CarEditScreen from './src/screens/CarOwn/CarEditScreen';
 import UserEditScreen from './src/screens/Account/UserEditScreen';
 import DocumentsScreen from './src/screens/Documents/DocumentsScreen';
 import CarUserDetailScreen from './src/screens/Car/CarUserDetailScreen';
+import ReceivedOwnRentalScreen from './src/screens/CarRental/ReceivedOwnRentalScreen';
+import PublicProfileScreen from './src/screens/Account/PublicProfileScreen';
 
 import { Provider as CarProvider } from './src/context/CarContext';
 import { Provider as AuthProvider } from './src/context/AuthContext';
@@ -52,6 +54,7 @@ const accountFlow = createStackNavigator({
     Account: AccountScreen,
     Profile: ProfileScreen,
     Rental: RentalScreen,
+    ReceivedOwnRental: ReceivedOwnRentalScreen,
     RentalEdit: RentalEditScreen,
     Message: MessageScreen,
     CarOwn: CarOwnScreen,
@@ -60,7 +63,8 @@ const accountFlow = createStackNavigator({
     CarLocations: CarLocationsScreen,
     CarLocationCreate: CarLocationCreateScreen,
     CarLocationEdit: CarLocationEditScreen,
-    Documents: DocumentsScreen
+    Documents: DocumentsScreen,
+    PublicProfile: PublicProfileScreen
 });
 
 //carOwnFlow.navigationOptions = {

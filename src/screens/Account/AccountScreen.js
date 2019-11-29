@@ -117,7 +117,7 @@ const userCard = (user,navigation,usersContext) => {
                             <Spacer>
                                 <Divider />
                             </Spacer>  
-                            <TouchableOpacity style={{ marginRight: 10}} >
+                            <TouchableOpacity style={{ marginRight: 10}} onPress={() => navigation.navigate('ReceivedOwnRental')}>
                                 <View style={StyleSheet.rowView}>
                                     <Text style={StyleSheet.azul}>Solicitari Primite</Text>
                                     <Ionicons style={StyleSheet.iconColor} name="ios-notifications" size={30} /> 

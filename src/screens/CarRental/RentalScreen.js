@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { View, Text} from 'react-native';
 import { Tab, Tabs } from 'native-base';
-import ReceivedRental from '../../components/Car/ReceivedRental';
+import PickUpRental from '../../components/Car/PickUpRental';
 import { Context as rentalContext } from '../../context/RentalContext';
 
 
@@ -18,7 +18,7 @@ const RentalScreen =  ({ navigation }) => {
         <Tabs>
             <Tab
                 heading='Rezerve Disponibile'>
-                <ReceivedRental 
+                <PickUpRental 
                     userId = {userId}
                     rentalDate ={state.rental}
                     navigation ={navigation}

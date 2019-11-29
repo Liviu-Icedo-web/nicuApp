@@ -18,6 +18,8 @@ const authReducer = (state, action) => {
             return { token: null, errorMessage: '' };
         case 'fetch_userAuth':
             return {...state,user:action.payload};  
+        case 'fetch_user':
+            return {...state,user:action.payload};  
         case 'edit_user':
             return {...state, user:action.payload, errorMessage: ''};    
         case 'delete_user':  
@@ -88,6 +90,7 @@ const fetchUserAuth = dispatch => async () => {
     dispatch({ type: 'fetch_userAuth', payload: response.data });
 };
 
+
 const editUser = dispatch => async (id, email, password, nick_name, first_name, last_name, last_name2, driving_licence_number )=> {
     try {
         const response = await nicuApi.put(`/users/${id}`, { email, password, nick_name, first_name, last_name, last_name2, driving_licence_number });
@@ -109,9 +112,16 @@ const deleteUser = dispatch => {
     };
  }
 
+ const fetchUser = dispatch => {
+    return async id => {
+        const response =  await nicuApi.get(`/user/${id}`);
+        dispatch({ type: 'fetch_user', payload: response.data});
+    };
+ }
+
 export const { Provider, Context } = createDataContext (
     authReducer,
-    { signin, signout, signUp, clearErrorMessage , tryLocalSignin, fetchUserAuth, editUser ,deleteUser},
+    { signin, signout, signUp, clearErrorMessage , tryLocalSignin, fetchUserAuth,fetchUser, editUser ,deleteUser},
     { token: null, errorMessage: '', session:null}
 );
 

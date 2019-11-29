@@ -73,6 +73,15 @@ export default StyleSheet.create({
         fontSize: 25,
         
     },
+    GreenCardView:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: THIRD_COLOR,
+        margin: 10,
+        borderRadius: 10,
+        paddingHorizontal: 15,
+        paddingVertical: 5
+    },
 
     //Justify -content
     rowView:{

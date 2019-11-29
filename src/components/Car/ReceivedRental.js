@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text , TouchableOpacity, Image, ScrollView,FlatList } from 'react-native';
-import { Entypo ,MaterialCommunityIcons,AntDesign} from '@expo/vector-icons';
+import { Entypo ,MaterialIcons,AntDesign} from '@expo/vector-icons';
 import { SafeAreaView } from 'react-navigation';
 import { NavigationEvents } from 'react-navigation';
 import { Context as rentalContext } from '../../context/RentalContext';
@@ -10,10 +10,9 @@ import StyleSheet from '../../styles';
 
 //Aqui tenemos que cargar las rental que hemos recibido para nuestros coche que tenemos en alquiler
 
-const ReceivedRental =  ({ userId , rentalDate, navigation, cancel }) => {
+const ReceivedRental =  ({ rentalDate, navigation, cancel }) => {
   
-    console.log('**** ReceivedRental ', userId)
-    console.log('**** ReceivedRental data ', rentalDate)
+
     return  ( 
 
         <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>               
@@ -25,48 +24,59 @@ const ReceivedRental =  ({ userId , rentalDate, navigation, cancel }) => {
                     return ( 
                     <View>                            
                         <Card >       
-                            <View style={StyleSheet.iconView} >                                     
-                                <TouchableOpacity  style={{ marginRight: 10}} onPress={() => navigation.navigate('RentalEdit', { id: item.id })}>
-                                    <MaterialCommunityIcons style={StyleSheet.iconColor} name="playlist-edit" size={25} />
-                                </TouchableOpacity>                                                                        
-                            </View>             
-                            <TouchableOpacity onPress={() => navigation.navigate('RentalEdit', { id: item.id })} >   
-                                <View style={StyleSheet.carView}>
-                                    <View style={StyleSheet.imageView}>
-                                        <Image style={StyleSheet.image}   source={{ uri: item.car.images }} />  
-                                    </View>
-                                    <View style={StyleSheet.detailView}>
-                                        <Text style={StyleSheet.detailTextCar}>Din data : </Text>
-                                        <Text style={StyleSheet.text}>{getParsedDate(item.start_date)}</Text>
-                                        <Text style={StyleSheet.detailTextCar}>Pana in data :</Text>
-                                        <Text style={StyleSheet.text}>{getParsedDate(item.end_date)}</Text>
-                                    </View>  
+                            <View style={StyleSheet.carView}>
+                                <View style={StyleSheet.imageView}>
+                                    <Image style={StyleSheet.image}   source={{ uri: item.car.images }} />  
                                 </View>
                                 <View style={StyleSheet.detailView}>
-                                    <Text style={StyleSheet.detailTextCar}>Ridicare la adresa :</Text>
-                                    <Text>{getLocation(item.car_location,item.pickup_location)}</Text>
-                                 </View> 
-                                 <View style={StyleSheet.detailView}>
-                                    <Text style={StyleSheet.detailTextCar}>Predare la adresa :</Text>
-                                    <Text>{getLocation(item.car_location,item.dropoff_location)}</Text>
-                                 </View>    
-                            </TouchableOpacity>  
-                            <View style={StyleSheet.GrayCardView}>
-                                <TouchableOpacity onPress={() => cancel(item.id)} >
-                                    <Text style={StyleSheet.iconColor}>Anuleaza Rezerva</Text> 
-                                </TouchableOpacity>   
-                                <TouchableOpacity  onPress={() => cancel(item.id)}>
-                                    <Entypo style={StyleSheet.iconColor} name="block" size={20} />                                                                     
-                                </TouchableOpacity> 
+                                    <Text style={StyleSheet.detailTextCar}>Din data : </Text>
+                                    <Text style={StyleSheet.text}>{getParsedDate(item.start_date)}</Text>
+                                    <Text style={StyleSheet.detailTextCar}>Pana in data :</Text>
+                                    <Text style={StyleSheet.text}>{getParsedDate(item.end_date)}</Text>
+                                </View>  
+                            </View>
+                            <View style={StyleSheet.detailView}>
+                                <Text style={StyleSheet.detailTextCar}>Ridicare la adresa :</Text>
+                                <Text>{getLocation(item.car_location,item.pickup_location)}</Text>
                             </View> 
+                            <View style={StyleSheet.detailView}>
+                                <Text style={StyleSheet.detailTextCar}>Predare la adresa :</Text>
+                                <Text>{getLocation(item.car_location,item.dropoff_location)}</Text>
+                            </View> 
+                            <View style={StyleSheet.rowView}>  
+                                <View style={StyleSheet.GreenCardView}>
+                                    <TouchableOpacity  >
+                                        <Text style={StyleSheet.iconColor}>Accepta!!!</Text> 
+                                    </TouchableOpacity>   
+                                    <TouchableOpacity >
+                                        <MaterialIcons style={StyleSheet.iconColor} name="verified-user" size={20} />                                                                     
+                                    </TouchableOpacity> 
+                                </View> 
+                                    <View style={StyleSheet.GrayCardView}>
+                                    <TouchableOpacity onPress={() => cancel(item.id)} >
+                                        <Text style={StyleSheet.iconColor}>Refuza!!!</Text> 
+                                    </TouchableOpacity>   
+                                    <TouchableOpacity  onPress={() => cancel(item.id)}>
+                                        <Entypo style={StyleSheet.iconColor} name="block" size={20} />                                                                     
+                                    </TouchableOpacity> 
+                                </View> 
+                            </View>
                             <View style={StyleSheet.iconView}>
-                                <TouchableOpacity onPress={() => navigation.navigate('CarDetail', { id: item.car.id })} >  
-                                    <Text style={StyleSheet.iconColor}>Vezi detalli masina!!!</Text> 
+                                 <TouchableOpacity onPress={() => navigation.navigate('PublicProfile',{ id: item.user.id })} >  
+                                     <Text style={StyleSheet.iconColor}>Vezi perfil persoana interesata!!</Text> 
                                 </TouchableOpacity>                              
-                                <TouchableOpacity onPress={() => navigation.navigate('CarDetail', { id: item.car.id })} >  
+                                <TouchableOpacity onPress={() => navigation.navigate('PublicProfile',{ id: item.user.id })} >  
                                     <AntDesign style={StyleSheet.iconColor} name="doubleright" size={20} />  
                                 </TouchableOpacity>   
-                            </View>                                                                  
+                            </View>
+                            <View style={StyleSheet.iconView}>
+                                <TouchableOpacity onPress={() => navigation.navigate('CarOwnDetail', { id: item.car.id })} >  
+                                    <Text style={StyleSheet.iconColor}>Vezi detalli masina!!!</Text> 
+                                </TouchableOpacity>                              
+                                <TouchableOpacity onPress={() => navigation.navigate('CarOwnDetail', { id: item.car.id })} >  
+                                    <AntDesign style={StyleSheet.iconColor} name="doubleright" size={20} />  
+                                </TouchableOpacity>   
+                            </View>                                                                    
                         </Card>                            
                     </View>  
                     );

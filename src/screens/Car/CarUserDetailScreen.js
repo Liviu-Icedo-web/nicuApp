@@ -53,7 +53,7 @@ const CarUserDetailScreen = ({ navigation }) => {
                             <View style={{ marginRight: 10}}>
                                 <Entypo style={StyleSheet.iconColor} name="user" size={30} /> 
                             </View>
-                           <View>
+                            <View style={{flex: 1}}>
                                 <Text style={StyleSheet.azul}>Proprietarul f punctual , masina in buna stare , totul correct!!</Text>
                            </View>
                         </View>
@@ -61,7 +61,7 @@ const CarUserDetailScreen = ({ navigation }) => {
                             <View style={{ marginRight: 10}}>
                                 <Entypo style={StyleSheet.iconColor} name="user" size={30} /> 
                             </View>
-                           <View>
+                            <View style={{flex: 1}}>
                                 <Text style={StyleSheet.azul}>Proprietarul f punctual , masina in buna stare , totul correct!!</Text>
                            </View>
                         </View>
