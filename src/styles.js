@@ -4,7 +4,8 @@ import {StyleSheet} from 'react-native';
 const PRIMARY_COLOR = "#fbfdfd"; 
 const SECONDARY_COLOR = '#dadada';
 const THIRD_COLOR = '#08ffc8';
-const QUART_COLOR = '#112f91';
+//const QUART_COLOR = '#112f91';
+const QUART_COLOR = '#0668a3';
 const BLUE= '#0668a3';
 
 const WHITE = '#fff';
@@ -50,6 +51,20 @@ export default StyleSheet.create({
     gray:{
         color: SECONDARY_COLOR
     },
+    
+    Card: {
+        borderWidth: 1,
+        borderRadius: 5,
+        borderColor: BORDER_COLOR,
+        elevation: 1,
+        marginHorizontal: 5,
+        marginTop: 5,
+        marginBottom: 5,
+        padding: 10,
+        minHeight: 90,
+        backgroundColor: WHITE,
+    
+    },
 
     GrayCardView:{
         flexDirection: 'row',
@@ -81,6 +96,16 @@ export default StyleSheet.create({
         borderRadius: 10,
         paddingHorizontal: 15,
         paddingVertical: 5
+    },
+
+    SombraCardView:{
+        backgroundColor: PRIMARY_COLOR,
+        borderRadius: 2,
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+        borderWidth: 1,
+        borderColor: BORDER_COLOR,
+        elevation: 1,
     },
 
     //Justify -content

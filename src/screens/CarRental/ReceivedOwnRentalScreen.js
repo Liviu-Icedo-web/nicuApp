@@ -14,15 +14,21 @@ const ReceivedOwnRentalScreen =  ({ navigation }) => {
 
     const { state : stateU } = usersContext; 
     const { state : stateC } = carsContext; 
-    const { state : stateR } = rentalContext;
-    const { deleteRental} = rentalContext;
+    const { state , fetchRentalsAll, deleteRental} = rentalContext;
 
-    //intentos de sacar las solicitudes pentru masinile proprii pero.....no consigo
+
+    //Intentos Nicol pero no funcciona bien...
     const userId = stateU.user
     const ownCars = stateC.car.filter(car => car.user_id === stateU.user.id);
-    const rentalDate_Intento = ownCars.filter(car => car.id === stateR.rental.car_id);  
-    const rentalDate =  stateR.rental;//aqui sale lo mismo que en la pestaña de rezervas de usuarios.
-    //finish intentos
+    const rentalDate =  state.rental;
+
+    {ownCars.map((item) =>
+       useEffect(()=>{
+            fetchRentalsAll(item.id)
+    },[])
+    )}
+    //end
+   
 
     console.log('**** ReceivedOwnRental id ', userId)
     console.log('**** ReceivedOwnRental  masini ce detine ', ownCars)
@@ -36,6 +42,7 @@ const ReceivedOwnRentalScreen =  ({ navigation }) => {
             <Tab
                 heading='Solicitari Primite'>
                     <ReceivedRental 
+                    userId = {userId}
                     rentalDate ={rentalDate}
                     navigation ={navigation}
                     cancel={deleteRental}

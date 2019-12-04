@@ -5,6 +5,8 @@ import { navigate } from '../navigationRef';
 
 const RentalReducer = (state, action) => {
     switch (action.type) { 
+        case 'fetch_rentals_all':
+            return {...state, rental:action.payload};
         case 'fetch_rentals':
             return {...state, rental:action.payload};  
         case 'edit_rental':
@@ -18,12 +20,19 @@ const RentalReducer = (state, action) => {
             return state;
     }
 };
+
+const fetchRentalsAll = dispatch => async (car_id) => {
+    const response = await nicuApi.get('/rental-car/'+car_id);
+    dispatch({ type: 'fetch_rentals_all', payload: response.data });
+};
+
 const fetchRentals = dispatch => {
     return async (userid) => {
         const response = await nicuApi.get('/rental-user/'+userid); 
         dispatch({ type: 'fetch_rentals', payload: response.data });
     };
 } 
+
 
 const editRental = dispatch => {
     return async (id, car_id, user_id, start_date, end_date, pickup_location, dropoff_location ) => {  
@@ -52,6 +61,6 @@ const deleteRental = dispatch => {
 
 export const { Context, Provider } = createDataContext(
     RentalReducer,
-    { fetchRentals, editRental, deleteRental},
+    { fetchRentalsAll,fetchRentals, editRental, deleteRental},
     []
 );

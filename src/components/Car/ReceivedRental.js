@@ -10,8 +10,10 @@ import StyleSheet from '../../styles';
 
 //Aqui tenemos que cargar las rental que hemos recibido para nuestros coche que tenemos en alquiler
 
-const ReceivedRental =  ({ rentalDate, navigation, cancel }) => {
+const ReceivedRental =  ({ userId, rentalDate, navigation, cancel }) => {
   
+    console.log('**** ReceivedRental ', userId)
+    console.log('**** ReceivedRental data ', rentalDate)
 
     return  ( 
 
@@ -37,11 +39,11 @@ const ReceivedRental =  ({ rentalDate, navigation, cancel }) => {
                             </View>
                             <View style={StyleSheet.detailView}>
                                 <Text style={StyleSheet.detailTextCar}>Ridicare la adresa :</Text>
-                                <Text>{getLocation(item.car_location,item.pickup_location)}</Text>
+                                <Text>{item.pickup_location}</Text>
                             </View> 
                             <View style={StyleSheet.detailView}>
                                 <Text style={StyleSheet.detailTextCar}>Predare la adresa :</Text>
-                                <Text>{getLocation(item.car_location,item.dropoff_location)}</Text>
+                                <Text>{item.dropoff_location}</Text>
                             </View> 
                             <View style={StyleSheet.rowView}>  
                                 <View style={StyleSheet.GreenCardView}>
@@ -107,9 +109,9 @@ const  getParsedDate = (strDate) =>{
     return date.toString();
 }
 
-const getLocation = (locData, locId)=>{
+/*const getLocation = (locData, locId)=>{
    var loc = locData.filter(locData => locData.id == locId); 
    return " Loc: "+loc[0].street +" Ors: "+loc[0].city // We put loc[0] becasue we can a new array on position 0
-}
+}*/
 
 export default ReceivedRental;

@@ -3,6 +3,7 @@ import { View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { Text } from 'react-native-elements';
 import { FontAwesome , AntDesign} from '@expo/vector-icons';
+import {  Divider  } from 'react-native-elements';
 
 import { Context as CarContext } from '../../context/CarContext';
 import { Context as AuthContext } from '../../context/AuthContext';
@@ -43,7 +44,7 @@ const CarDetailScreen = ({ navigation }) => {
                         <Text style={StyleSheet.Text}>{car.price_day} Lei Ziua</Text>
                         <Text style={StyleSheet.Text}>{car.price_hour} Lei Hora</Text>
                     </View>  
-                </View>  
+                </View> 
                 <Spacer>
                     <Text style={StyleSheet.azul}>Proprietar: </Text>
                     <Text style={StyleSheet.azul}>{car.user.last_name} {car.user.first_name}</Text>
