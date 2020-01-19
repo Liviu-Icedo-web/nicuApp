@@ -1,7 +1,7 @@
-import React, {  useContext } from 'react';
+import React, {  useContext,useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { AntDesign,Entypo ,MaterialCommunityIcons} from '@expo/vector-icons';
-import { SafeAreaView } from 'react-navigation';
+import { SafeAreaView,NavigationEvents } from 'react-navigation';
 
 import { Context as CarContext } from '../../context/CarContext';
 import { Context as AuthContext } from '../../context/AuthContext';
@@ -9,24 +9,33 @@ import Card from '../../components/Utils/Card';
 import StyleSheet from '../../styles';
 
 
+
 const CarOwnScreen = ({ navigation }) => { 
     const usersContext =  useContext(AuthContext); 
     const carsContext = useContext(CarContext);
-    const { state } = usersContext; 
-      
+    
+    const { state } = usersContext;
+    
     return (
         <SafeAreaView  style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>         
-            {state.user !== undefined ? UserOwnCars(navigation, carsContext, state.user) : noUser(navigation) }                      
+            {state.user !== undefined ? UserOwnCars(navigation, carsContext, state.user) : noUser(navigation) }
+            
         </SafeAreaView>
        
     );
 }
 
 const UserOwnCars = (navigation,carsContext, user) => {
-    const { state,  deleteCar} = carsContext;
-    const ownCars = state.car.filter(car => car.user_id === user.id);
-
-    return (   
+    
+    const { state,getUserCars, deleteCar} = carsContext;
+    useEffect(() => {   
+        getUserCars(user.id);
+    }, []);
+    
+    const ownCars =  state.car_user;
+    console.log('*** UserOwncars',ownCars)
+    
+    return (  
         <ScrollView>
             <View style={StyleSheet.DescriptionView}>
                 <Text style={StyleSheet.white}>ADAUGA, VIZUALIZEAZA/EDITEAZA, BLOQUEAZA sau ELIMINA Masinile Publicate !!!!</Text>
@@ -64,13 +73,24 @@ const UserOwnCars = (navigation,carsContext, user) => {
                                        
                                 
                                     <View style={StyleSheet.GrayCardView}>
-                                        <TouchableOpacity >
+                                        <TouchableOpacity onPress={() => navigation.navigate('CarBlock',{car: item})}>
                                              <Text style={StyleSheet.iconColor}>Bloqueza Masina</Text> 
                                         </TouchableOpacity>   
                                         <TouchableOpacity >
                                                 <Entypo style={StyleSheet.iconColor} name="block" size={20} />                                                                     
-                                        </TouchableOpacity> 
-                                    </View>                                                                 
+                                        </TouchableOpacity>                                     
+                                    </View> 
+                                    <View>
+                                    {/** ESTE BLOQUE SACALO A UNA FUNCION */
+                                     }  
+                                     {item.car_blocked !='' ? <Text>Masina blocata:</Text> :<Text></Text>}
+                                            {item.car_blocked.map((blocked, key) =>
+                                                <View style={StyleSheet.GrayCardView} key={key}>  
+                                                        <Text key={key} style={StyleSheet.iconColor}> {getParsedDate(blocked.start_date)} -> {getParsedDate(blocked.end_date)}</Text>                                                        
+                                                </View>
+                                                )
+                                            }
+                                    </View>                                                                
                                 </Card>                            
                             </View>    
                         );
@@ -117,6 +137,30 @@ CarOwnScreen.navigationOptions = ({ navigation}) => {
     }     
 };
 
+const  getParsedDate = (strDate) =>{
+    var date = new Date(strDate);
+  
+    var dd = date.getDate();
+    var mm = date.getMonth() + 1; //January is 0!
+    var yyyy = date.getFullYear();
+    
+    var hh = date.getHours();
+    var min = date.getMinutes();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    if (hh < 10) {
+        hh = '0' + hh;
+    }
+    if (min < 10) {
+        min = '0' + min;
+    }
 
+    date =  yyyy + "-" + mm + "-" + dd +" "+hh+":"+min;//min cames like 5 , 3  etc so we have to put 50 min , 30min
+    return date.toString();
+}
 
 export default CarOwnScreen;

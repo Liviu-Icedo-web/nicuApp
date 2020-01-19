@@ -12,7 +12,7 @@ import StyleSheet from '../../styles';
 
 const ReceivedRental =  ({ userId, rentalDate, navigation, cancel }) => {
   
-    console.log('**** ReceivedRental ', userId)
+    console.log('**** ReceivedRental id ', userId)
     console.log('**** ReceivedRental data ', rentalDate)
 
     return  ( 
@@ -39,11 +39,11 @@ const ReceivedRental =  ({ userId, rentalDate, navigation, cancel }) => {
                             </View>
                             <View style={StyleSheet.detailView}>
                                 <Text style={StyleSheet.detailTextCar}>Ridicare la adresa :</Text>
-                                <Text>{item.pickup_location}</Text>
+                                <Text>{getLocation(item.car_location,item.pickup_location)}</Text>
                             </View> 
                             <View style={StyleSheet.detailView}>
                                 <Text style={StyleSheet.detailTextCar}>Predare la adresa :</Text>
-                                <Text>{item.dropoff_location}</Text>
+                                <Text>{getLocation(item.car_location,item.dropoff_location)}</Text>
                             </View> 
                             <View style={StyleSheet.rowView}>  
                                 <View style={StyleSheet.GreenCardView}>
@@ -64,18 +64,18 @@ const ReceivedRental =  ({ userId, rentalDate, navigation, cancel }) => {
                                 </View> 
                             </View>
                             <View style={StyleSheet.iconView}>
-                                 <TouchableOpacity onPress={() => navigation.navigate('PublicProfile',{ id: item.user.id })} >  
+                                 <TouchableOpacity onPress={() => navigation.navigate('PublicProfile',{ user_id: item.user_id })} >  
                                      <Text style={StyleSheet.iconColor}>Vezi perfil persoana interesata!!</Text> 
                                 </TouchableOpacity>                              
-                                <TouchableOpacity onPress={() => navigation.navigate('PublicProfile',{ id: item.user.id })} >  
+                                <TouchableOpacity onPress={() => navigation.navigate('PublicProfile',{ user_id: item.user_id })} >  
                                     <AntDesign style={StyleSheet.iconColor} name="doubleright" size={20} />  
                                 </TouchableOpacity>   
                             </View>
                             <View style={StyleSheet.iconView}>
-                                <TouchableOpacity onPress={() => navigation.navigate('CarOwnDetail', { id: item.car.id })} >  
+                                <TouchableOpacity onPress={() => navigation.navigate('CarOwnDetail', { id: item.Car_id })} >  
                                     <Text style={StyleSheet.iconColor}>Vezi detalli masina!!!</Text> 
                                 </TouchableOpacity>                              
-                                <TouchableOpacity onPress={() => navigation.navigate('CarOwnDetail', { id: item.car.id })} >  
+                                <TouchableOpacity onPress={() => navigation.navigate('CarOwnDetail', { id: item.Car_id })} >  
                                     <AntDesign style={StyleSheet.iconColor} name="doubleright" size={20} />  
                                 </TouchableOpacity>   
                             </View>                                                                    
@@ -105,13 +105,19 @@ const  getParsedDate = (strDate) =>{
     if (mm < 10) {
         mm = '0' + mm;
     }
-    date =  yyyy + "-" + mm + "-" + dd +" "+hh+":"+min+0;//min cames like 5 , 3  etc so we have to put 50 min , 30min
+    if (hh < 10) {
+        hh = '0' + hh;
+    }
+    if (min < 10) {
+        min = '0' + min;
+    }
+    date =  yyyy + "-" + mm + "-" + dd +" "+hh+":"+min;//min cames like 5 , 3  etc so we have to put 50 min , 30min
     return date.toString();
 }
 
-/*const getLocation = (locData, locId)=>{
+const getLocation = (locData, locId)=>{
    var loc = locData.filter(locData => locData.id == locId); 
    return " Loc: "+loc[0].street +" Ors: "+loc[0].city // We put loc[0] becasue we can a new array on position 0
-}*/
+}
 
 export default ReceivedRental;

@@ -19,7 +19,7 @@ const authReducer = (state, action) => {
         case 'fetch_userAuth':
             return {...state,user:action.payload};  
         case 'fetch_user':
-            return {...state,user:action.payload};  
+            return {...state,user_client:action.payload};  
         case 'edit_user':
             return {...state, user:action.payload, errorMessage: ''};    
         case 'delete_user':  
@@ -76,14 +76,6 @@ const signout = dispatch => async () => {
   navigate('Home');
 };
 
-/*const sessionCheck = dispatch => async () => {
-    const token = await AsyncStorage.getItem('token');
-    if (token) {
-        console.log('*** session dispatch', token)
-        dispatch({ type: 'seesion_check', payload: token });
-        
-    }
-  }*/
 
 const fetchUserAuth = dispatch => async () => {
     const response = await nicuApi.get(`/user`);

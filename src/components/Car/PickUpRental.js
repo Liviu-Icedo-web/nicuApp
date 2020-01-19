@@ -93,7 +93,13 @@ const  getParsedDate = (strDate) =>{
     if (mm < 10) {
         mm = '0' + mm;
     }
-    date =  yyyy + "-" + mm + "-" + dd +" "+hh+":"+min+0;//min cames like 5 , 3  etc so we have to put 50 min , 30min
+    if (hh < 10) {
+        hh = '0' + hh;
+    }
+    if (min < 10) {
+        min = '0' + min;
+    }
+    date =  yyyy + "-" + mm + "-" + dd +" "+hh+":"+min;//min cames like 5 , 3  etc so we have to put 50 min , 30min
     return date.toString();
 }
 

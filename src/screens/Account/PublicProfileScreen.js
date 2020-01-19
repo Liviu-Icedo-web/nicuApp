@@ -10,11 +10,15 @@ import Card from '../../components/Utils/Card';
 import StyleSheet from '../../styles';
 
 
-const PublicProfileScreen = ({ navigation}) => {
-    const { state } = useContext(AuthContext);
-    
-    //AQUI TENEMOS QUE SACAR NO EL USUARIO CONECTADO SI NO EL USUARIO INTERESADO ...osea no el proprietario si no el que ha alquilado 
 
+const PublicProfileScreen = ({ navigation}) => {
+    const { state,fetchUser } = useContext(AuthContext); //WE creat user_client wich will be in the STATE
+    const userId = navigation.getParam('user_id');
+   
+    useEffect(()=>{
+        fetchUser(userId)
+    },[])
+   
     return (
         <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>
             <ScrollView>
@@ -24,9 +28,12 @@ const PublicProfileScreen = ({ navigation}) => {
                             <Image style={StyleSheet.imgUser} source={require("../../img/imgUser.jpg" )} /> 
                         </View>
                         <View style={{ justifyContent:'space-around'}}>
-                            <Text style={StyleSheet.titleAzul}>{state.user.last_name} {state.user.first_name}</Text>
+                            <Text style={StyleSheet.titleAzul}>
+                                {state.user_client != undefined ? state.user_client.last_name :' '}
+                                {state.user_client != undefined ? ' '+state.user_client.first_name :' '}                            
+                            </Text>
                             <Text style={StyleSheet.Text} >Tlf: 999 999 999 </Text>
-                            <Text style={StyleSheet.Text} >Mail: {state.user.email} </Text>
+                            <Text style={StyleSheet.Text} >Mail: {state.user_client != undefined ? state.user_client.email :''}  </Text>
                         </View> 
                     </View> 
                     <Spacer/>

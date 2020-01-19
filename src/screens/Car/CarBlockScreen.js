@@ -1,4 +1,4 @@
-import React, { useContext , useEffect} from 'react';
+import React, { useContext } from 'react';
 import { View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { Text } from 'react-native-elements';
@@ -9,16 +9,21 @@ import { Context as CarContext } from '../../context/CarContext';
 import { Context as AuthContext } from '../../context/AuthContext';
 import Spacer from '../../components/Utils/Spacer';
 import StyleSheet from '../../styles';
-import Rental from '../../components/Car/Rental';
+import RentalBlock from '../../components/Car/RentalBlock';
 
 
-const CarDetailScreen = ({ navigation }) => {
+const CarBlockScreen = ({ navigation }) => {
     const { state, addRental } = useContext(CarContext);
+    
     const user_session = useContext(AuthContext);
 
-    const car = state.car.find(
-        car => car.id === navigation.getParam('id'),
-    );
+    const car = navigation.getParam('car')
+
+    console.log('***  CarBlockScreen', car)
+
+    // const car = state.car.find(
+    //     car => car.id === navigation.getParam('id'),
+    // );
  
     return (
         <SafeAreaView style={StyleSheet.AppStyle} forceInset={{ top: 'never' }}>
@@ -57,7 +62,7 @@ const CarDetailScreen = ({ navigation }) => {
                         </TouchableOpacity>   
                     </View>  
                 </Spacer>            
-                <Rental 
+                <RentalBlock 
                     headerText="Inchiriaza Acum!!!"
                     errorMessage={state.errorMessage}
                     submitButtonText="Confirma Rezerva!!!"
@@ -80,7 +85,7 @@ const CarDetailScreen = ({ navigation }) => {
 
 
 
-CarDetailScreen.navigationOptions = ({ navigation}) => { 
+CarBlockScreen.navigationOptions = ({ navigation}) => { 
     return {         
         title: 'Rezerva',
         headerTitleStyle: {
@@ -89,4 +94,4 @@ CarDetailScreen.navigationOptions = ({ navigation}) => {
         },
     }     
 };
-export default CarDetailScreen;
+export default CarBlockScreen;

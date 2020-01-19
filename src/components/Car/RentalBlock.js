@@ -11,16 +11,16 @@ import {  Divider  } from 'react-native-elements';
 
 
 
-const Rental = ({ headerText, errorMessage, initialValues, onSubmit, submitButtonText }) => {
+const RentalBlock = ({ headerText, errorMessage, initialValues, onSubmit, submitButtonText }) => {
     const [start_date, setStartDate] = useState(initialValues.start_date);
     const [end_date, setEndDate] = useState(initialValues.end_date);
     const [car_location] = useState(initialValues.car_location);
     const [pickUpLocation, setPickupLocation] = initialValues.pickup_location != '' ? useState(initialValues.pickup_location) : useState(initialValues.car_location[0].id);
     const [dropOffLocation, setDropOffLocation] = initialValues.dropoff_location != '' ? useState(initialValues.dropoff_location) : useState(initialValues.car_location[0].id);
 
-    console.log('*** Rental pickUpLocation', pickUpLocation)
-    console.log('*** Rental dropOffLocation', dropOffLocation)
-    console.log('*** Rental initial Value', initialValues)
+    console.log('*** RentalBlock pickUpLocation', pickUpLocation)
+    console.log('*** RentalBlock dropOffLocation', dropOffLocation)
+    console.log('*** RentalBlock initial Value', initialValues)
 
     return (
 
@@ -138,5 +138,5 @@ const checkData = (initialValues, start_date,end_date,pickUpLocation, dropOffLoc
     
 }
 
-export default Rental;
+export default RentalBlock;
 

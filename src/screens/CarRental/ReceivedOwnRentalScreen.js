@@ -14,25 +14,25 @@ const ReceivedOwnRentalScreen =  ({ navigation }) => {
 
     const { state : stateU } = usersContext; 
     const { state : stateC } = carsContext; 
-    const { state , fetchRentalsAll, deleteRental} = rentalContext;
+    const { state , fetchRentalsbyOwner, deleteRental} = rentalContext;
 
 
     //Intentos Nicol pero no funcciona bien...
-    const userId = stateU.user
+    const user = stateU.user
     const ownCars = stateC.car.filter(car => car.user_id === stateU.user.id);
     const rentalDate =  state.rental;
 
-    {ownCars.map((item) =>
-       useEffect(()=>{
-            fetchRentalsAll(item.id)
-    },[])
-    )}
-    //end
    
-
-    console.log('**** ReceivedOwnRental id ', userId)
+    useEffect(()=>{
+        fetchRentalsbyOwner(user.id)
+    },[]);
+   
+    //end
+  
+    console.log('**** ReceivedOwnRental id ', user)
     console.log('**** ReceivedOwnRental  masini ce detine ', ownCars)
     console.log('**** ReceivedOwnRental data rezerve solicitate ', rentalDate)
+
 
     //aqui tenemos que sacar de alguna forma las reservas que recibe para el coche publicado cuando es proprietario
  
@@ -42,7 +42,7 @@ const ReceivedOwnRentalScreen =  ({ navigation }) => {
             <Tab
                 heading='Solicitari Primite'>
                     <ReceivedRental 
-                    userId = {userId}
+                    userId = {user}
                     rentalDate ={rentalDate}
                     navigation ={navigation}
                     cancel={deleteRental}

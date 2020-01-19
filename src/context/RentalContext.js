@@ -7,6 +7,8 @@ const RentalReducer = (state, action) => {
     switch (action.type) { 
         case 'fetch_rentals_all':
             return {...state, rental:action.payload};
+        case 'fetch_rentals_owner':
+            return {...state, rental:action.payload};
         case 'fetch_rentals':
             return {...state, rental:action.payload};  
         case 'edit_rental':
@@ -26,6 +28,11 @@ const fetchRentalsAll = dispatch => async (car_id) => {
     dispatch({ type: 'fetch_rentals_all', payload: response.data });
 };
 
+const fetchRentalsbyOwner = dispatch => async (user_owner_id) => {
+    const response = await nicuApi.get('/rental-owners/'+user_owner_id);
+    dispatch({ type: 'fetch_rentals_owner', payload: response.data });
+};
+
 const fetchRentals = dispatch => {
     return async (userid) => {
         const response = await nicuApi.get('/rental-user/'+userid); 
@@ -35,11 +42,11 @@ const fetchRentals = dispatch => {
 
 
 const editRental = dispatch => {
-    return async (id, car_id, user_id, start_date, end_date, pickup_location, dropoff_location ) => {  
+    return async (id, car_id, user_id, user_owner_id,start_date, end_date, pickup_location, dropoff_location ) => {  
         start_date = new Date(start_date.replace(' ', 'T'));
         end_date = new Date(end_date.replace(' ', 'T'));  
         try {
-            const response = await nicuApi.put(`/rental-user/`+id, { id, car_id, user_id, start_date, end_date,pickup_location, dropoff_location });
+            const response = await nicuApi.put(`/rental-user/`+id, { id, car_id, user_id,user_owner_id, start_date, end_date,pickup_location, dropoff_location });
             //dispatch({ type: 'edit_rental', payload: response.data });
             navigate('Rental'); 
         } catch (error) {
@@ -61,6 +68,6 @@ const deleteRental = dispatch => {
 
 export const { Context, Provider } = createDataContext(
     RentalReducer,
-    { fetchRentalsAll,fetchRentals, editRental, deleteRental},
+    { fetchRentalsAll,fetchRentalsbyOwner,fetchRentals, editRental, deleteRental},
     []
 );

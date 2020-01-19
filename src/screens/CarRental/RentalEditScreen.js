@@ -29,14 +29,15 @@ const RentalEditScreen = ({ navigation }) => {
                             initialValues ={{ 
                                 car_id:rental.car.id, 
                                 user_id: rental.user_id,
+                                user_owner_id:rental.user_owner_id,
                                 start_date: rental.start_date, 
                                 end_date: rental.end_date,
                                 car_location: rental.car_location,  
                                 pickup_location: rental.pickup_location, 
                                 dropoff_location: rental.dropoff_location
                             }}
-                            onSubmit={(car_id, user_id,start_date, end_date, pickup_location, dropoff_location) => {
-                                editRental(rental.id, car_id, user_id, start_date, end_date, pickup_location, dropoff_location, () => navigation.pop());
+                            onSubmit={(car_id, user_id,user_owner_id,start_date, end_date, pickup_location, dropoff_location) => {
+                                editRental(rental.id, car_id, user_id, user_owner_id,start_date, end_date, pickup_location, dropoff_location, () => navigation.pop());
                             }}
                     />
                 </View>

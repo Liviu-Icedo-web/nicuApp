@@ -5,7 +5,7 @@ import { AsyncStorage } from 'react-native';
 
 
 const instance = axios.create({
-    baseURL: 'http://367fbe05.ngrok.io',
+    baseURL: 'http://1be09533.ngrok.io',
    // baseURL: 'http://localhost:8090',
     headers: {'Content-Type': 'text/plain'},
     withCredentials: false,
@@ -23,7 +23,7 @@ instance.interceptors.request.use(
                         ]
         console.log('*** Config Before Url: ',config)                
         if(noTokenUrl.includes(config.url)) {
-            console.log('*** INTRAAAAA');
+            console.log('*** INTRAAAAA config url:', config.url);
         }
         
         // if(noTokenUrl.includes(config.url)){ //Problema era ca tot timpul se treace tokenul ca si parametru la api,tokenul api il accepta doar pt PUT, POST , DELETE
@@ -32,9 +32,9 @@ instance.interceptors.request.use(
         //         config.headers.Authorization = `Bearer ${token}`;
         //      }
         // }  
-        
-        if(config.method !== 'GET' ){
-            if (token) {                
+        console.log('*** INTRAAAAA method url:', config.method);
+        if(config.method == 'get' || config.url == '/user' || config.method== 'post'){
+            if (token) {    
                 config.headers['Content-Type']= 'application/json';
                 config.headers.Authorization = `Bearer ${token}`;
             }
