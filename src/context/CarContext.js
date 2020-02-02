@@ -24,7 +24,25 @@ const carsReducer = (state, action) => {
                 let newRental = action.payload
                 return { ...state, 
                     rental:[...state.rental,newRental]
-                };  
+                };
+        case 'delete_block':
+                        console.log('**** deleteBLOCK',state.car_user[0].id)
+                        // const array = [['hellow','pastas'],['travel', 'militarie'],['oranges','mint']];
+                        // const result = array.flatMap(x => x.filter(y => y.length > 6));
+            return {...state,
+                        car_user:state.car_user
+                            .map(
+                                    (car)=>{
+                                        car.car_blocked.map((blocked,item) =>{ 
+                                            if(blocked.id == action.payload){
+                                                return delete car.car_blocked[item] 
+                                            }
+                                            return car.car_blocked
+                                         })
+                                         return car
+                                    }
+                                )   
+                    };
         default:
             return state;
     }
@@ -111,13 +129,27 @@ const addRental = dispatch => {
                type: 'add_error', 
                 payload: 'Exista o erroare, nu sa creat rezerva pt masina !!' });
             }
+       
     }; 
 } 
 
 //...end_Apaños
 
+const deleteBlock = dispatch => {
+    return async (id)=> {
+        try {
+           await nicuApi.delete(`/rental-user/${id}`);              
+            dispatch({type: 'delete_block', payload:id})
+        } catch (error) {
+            dispatch({ 
+                type: 'add_error', 
+                 payload: 'Exista o erroare, nu se a eliminat rezerva cu id: '+id+' !!' })
+        }
+    };
+ }
+
 export const { Context, Provider } = createDataContext(
     carsReducer,
-    { fetchCars ,addCar , editCar ,deleteCar,getUserCars, addRental},
+    { fetchCars ,addCar , editCar ,deleteCar,getUserCars, addRental,deleteBlock},
     []
 );

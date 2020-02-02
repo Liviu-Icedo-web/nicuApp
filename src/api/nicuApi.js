@@ -5,7 +5,7 @@ import { AsyncStorage } from 'react-native';
 
 
 const instance = axios.create({
-    baseURL: 'http://1be09533.ngrok.io',
+    baseURL: 'http://8e0122ca.ngrok.io',
    // baseURL: 'http://localhost:8090',
     headers: {'Content-Type': 'text/plain'},
     withCredentials: false,
@@ -33,7 +33,7 @@ instance.interceptors.request.use(
         //      }
         // }  
         console.log('*** INTRAAAAA method url:', config.method);
-        if(config.method == 'get' || config.url == '/user' || config.method== 'post'){
+        if(config.method == 'get' || config.url == '/user' || config.method== 'post' || config.method== 'delete' || config.method== 'put'){
             if (token) {    
                 config.headers['Content-Type']= 'application/json';
                 config.headers.Authorization = `Bearer ${token}`;

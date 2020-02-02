@@ -98,6 +98,16 @@ export default StyleSheet.create({
         paddingVertical: 5
     },
 
+    GreenCardViewBlock:{
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        backgroundColor: THIRD_COLOR,
+        margin: 2,
+        borderRadius: 2,
+        // paddingHorizontal: 2,
+        // paddingVertical: 2
+    },
+
     SombraCardView:{
         backgroundColor: PRIMARY_COLOR,
         borderRadius: 2,

@@ -3,7 +3,7 @@ import { View, Picker,Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Text } from 'react-native-elements';
 import DatePicker from 'react-native-datepicker';
-import Spacer from '../Utils/Spacer';
+import Spacer from '../../components/Utils/Spacer';
 import StyleSheet from '../../styles';
 import {  Entypo} from '@expo/vector-icons';
 import {  Divider  } from 'react-native-elements';

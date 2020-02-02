@@ -27,7 +27,7 @@ const RentalEditScreen = ({ navigation }) => {
                             errorMessage={state.errorMessage}
                             submitButtonText="Confirma Noua Rezerva!!!"
                             initialValues ={{ 
-                                car_id:rental.car.id, 
+                                car_id: typeof (rental.car) != 'undefined' ?rental.car.id:rental.Car_id, 
                                 user_id: rental.user_id,
                                 user_owner_id:rental.user_owner_id,
                                 start_date: rental.start_date, 
